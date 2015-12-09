@@ -29,8 +29,14 @@ namespace StudyConfigurationUI
         public MainPage()
         {
             this.InitializeComponent();
+            MainFrame.Navigate(typeof (HomePage));
         }
 
+        /// <summary>
+        /// When Burger button is clicked - show or hide splitpane
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HamburgerButton_OnClick(object sender, RoutedEventArgs e)
         {
             SplitView.IsPaneOpen = !SplitView.IsPaneOpen;
