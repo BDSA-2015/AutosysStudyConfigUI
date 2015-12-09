@@ -8,29 +8,32 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <SplitView x:Name="SplitView" DisplayMode="CompactInline" IsPaneOpen="True" OpenPaneLength="200">
+        <SplitView  x:Name="SplitView" DisplayMode="CompactInline" IsPaneOpen="True" OpenPaneLength="200">
             <!--Adding Navigation Buttons-->
             <SplitView.Pane>
                 <StackPanel Margin="0,30,0,0">
-                    <RadioButton>
+                    <RadioButton Tag="Home" Click="RadioSplitPaneItemButton_OnClick">
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Symbol="Home"/>
                             <TextBlock Text="Home" Margin="15,0,0,0"/>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton>
+                    
+                    <RadioButton Tag="StudyCreation" Click="RadioSplitPaneItemButton_OnClick">
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Symbol="Add"/>
                             <TextBlock Text="Study Creation" Margin="15,0,0,0"/>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton>
+                    
+                    <RadioButton Tag="ManageStudies" Click="RadioSplitPaneItemButton_OnClick">
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Symbol="Edit"/>
                             <TextBlock Text="Manage Studies" Margin="15,0,0,0"/>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton>
+                    
+                    <RadioButton Tag="Resources" Click="RadioSplitPaneItemButton_OnClick">
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Symbol="OpenFile"/>
                             <TextBlock Text="Resources" Margin="15,0,0,0"/>
@@ -38,6 +41,10 @@
                     </RadioButton>
                 </StackPanel>
             </SplitView.Pane>
+            
+            <!--Adding Frame for content -->
+            <Frame x:Name="MainFrame"/>
+            
         </SplitView>
         
         <!--Adding Hamburger button-->
@@ -48,6 +55,5 @@
                     VerticalAlignment="Top"
                     Click="HamburgerButton_OnClick">
         </Button>
-
     </Grid>
 </Page>
