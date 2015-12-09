@@ -8,6 +8,46 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <SplitView x:Name="SplitView" DisplayMode="CompactInline" IsPaneOpen="True" OpenPaneLength="200">
+            <!--Adding Navigation Buttons-->
+            <SplitView.Pane>
+                <StackPanel Margin="0,30,0,0">
+                    <RadioButton>
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Home"/>
+                            <TextBlock Text="Home" Margin="15,0,0,0"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton>
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Add"/>
+                            <TextBlock Text="Study Creation" Margin="15,0,0,0"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton>
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Edit"/>
+                            <TextBlock Text="Manage Studies" Margin="15,0,0,0"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton>
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="OpenFile"/>
+                            <TextBlock Text="Resources" Margin="15,0,0,0"/>
+                        </StackPanel>
+                    </RadioButton>
+                </StackPanel>
+            </SplitView.Pane>
+        </SplitView>
+        
+        <!--Adding Hamburger button-->
+        <Button x:Name="HamburgerButton" 
+                    FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
+                    FontSize="20"
+                    Width="{Binding ElementName=SplitView, Path=CompactPaneLength}"
+                    VerticalAlignment="Top"
+                    Click="HamburgerButton_OnClick">
+        </Button>
 
     </Grid>
 </Page>

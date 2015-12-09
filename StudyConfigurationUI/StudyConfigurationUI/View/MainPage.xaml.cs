@@ -26,5 +26,10 @@ namespace StudyConfigurationUI
         {
             this.InitializeComponent();
         }
+
+        private void HamburgerButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            SplitView.IsPaneOpen = !SplitView.IsPaneOpen;
+        }
     }
 }
