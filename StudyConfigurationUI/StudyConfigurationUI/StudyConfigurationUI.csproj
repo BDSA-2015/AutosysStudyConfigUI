@@ -105,7 +105,16 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\MainPageViewModel.cs" />
-    <Compile Include="View\StudyCreationPage.xaml.cs">
+    <Compile Include="View\Pages\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\ManageStudiesPage.xaml.cs">
+      <DependentUpon>ManageStudiesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\ResourcePage.xaml.cs">
+      <DependentUpon>ResourcePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\StudyCreationPage.xaml.cs">
       <DependentUpon>StudyCreationPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -116,6 +125,7 @@
     <None Include="StudyConfigurationUI_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\HomePageBackground.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -134,9 +144,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\StudyCreationPage.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="View\Pages\HomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\ManageStudiesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\ResourcePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\StudyCreationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
