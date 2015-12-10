@@ -7,8 +7,142 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="StudyCreation PAGE" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <ScrollViewer Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    </Grid>
+        <!--Adaptive Triggers-->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="OuterPanel.Orientation"
+                                Value="Vertical"/>
+                        <Setter Target="Seperator.Height"
+                                Value="1"/>
+                        <Setter Target="Seperator.Width"
+                                Value="300"/>
+
+                        <Setter Target="studyInformationHeader.FontSize"
+                                Value="24"/>
+
+                        <Setter Target="PhaseOverviewHeader.FontSize"
+                                Value="24"/>
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="CompactState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="studyInformationHeader.FontSize"
+                                Value="26"/>
+
+                        <Setter Target="PhaseOverviewHeader.FontSize"
+                                Value="26"/>
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1080"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+
+        </VisualStateManager.VisualStateGroups>
+
+        <StackPanel x:Name="OuterPanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <StackPanel x:Name="StudyInformationStackPanel"
+                        Margin="10"
+                        Orientation="Vertical"
+                        RelativePanel.AlignVerticalCenterWithPanel="True" 
+                        RelativePanel.AlignHorizontalCenterWithPanel="True">
+
+                    <TextBlock x:Name="studyInformationHeader" 
+                               Text="Study Information" 
+                               FontSize ="32"/>
+                    <TextBlock x:Name="titleLabel" 
+                               Text="Title" 
+                               Margin="0,10,0,0"/>
+                   
+                    <TextBox x:Name="titleTextBox" 
+                             PlaceholderText="Title of study" 
+                             MaxWidth="{Binding ElementName=descriptionTextBox, Path=ActualWidth}"/>
+
+                    <TextBlock x:Name="descriptionLabel" 
+                               Text="Description"
+                               Margin="0,10,0,0"/>
+                    
+                    <TextBox x:Name="descriptionTextBox" 
+                             PlaceholderText="Description of study" 
+                             Height="100" AcceptsReturn="True" 
+                             TextWrapping="Wrap" 
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                    
+                    <TextBlock x:Name="ClassificationLabel"
+                               Text="Classification" 
+                               Margin="0,10,0,0"/>
+                    
+                    <ComboBox x:Name="ClassificationBox" 
+                              PlaceholderText="..." 
+                              Width="{Binding ElementName=descriptionTextBox, Path=ActualWidth}"/>
+                </StackPanel>
+
+            <!-- Seperator -->
+            <Rectangle x:Name="Seperator" Fill="Gray" Height="{Binding ElementName= OuterPanel, Path=ActualHeight}" Width="1"/>
+
+            <RelativePanel x:Name="PhasePanel">
+                
+                <StackPanel x:Name="PhaseOverviewPanel"
+                            Orientation="Vertical"
+                            RelativePanel.AlignVerticalCenterWithPanel="True" 
+                            RelativePanel.AlignHorizontalCenterWithPanel="True"
+                            Margin="10">
+
+                    <TextBlock x:Name="PhaseOverviewHeader"
+                               HorizontalAlignment="Center"
+                               Text="Phase Overview" 
+                               FontSize="32"/>
+
+
+                    <ListView x:Name="PhaseList" 
+                          Height="200"
+                          Width="{Binding ElementName=PhasePanel,Path=ActualWidth}"  
+                          BorderBrush="Black"
+                          BorderThickness="1" 
+                          SelectionMode="Single"
+                             >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+
+                    <!-- Phase Table Buttons -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
+                        <Button x:Name="DeletePhaseBut" Background="White">
+                            <SymbolIcon Symbol="Delete"/>
+                        </Button>
+                        <Button x:Name="EditPhaseBut" Background="White">
+                            <SymbolIcon Symbol="Edit"/>
+                        </Button>
+                        <Button x:Name="AddPhaseBut" Click="AddPhaseBut_OnClick" Background="White">
+                            <SymbolIcon Symbol="Add"/>
+                        </Button>
+                    </StackPanel>
+                    
+                </StackPanel>
+
+            </RelativePanel>
+            
+
+        </StackPanel>
+
+    </ScrollViewer>
 </Page>
