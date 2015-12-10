@@ -136,9 +136,10 @@
                             <SymbolIcon Symbol="Add"/>
                         </Button>
                     </StackPanel>
-                    
+                    <Button x:Name="SubmitBut" Content="Submit" HorizontalAlignment="Center" Margin="10"/>
                 </StackPanel>
-
+                
+                
             </RelativePanel>
             
 
