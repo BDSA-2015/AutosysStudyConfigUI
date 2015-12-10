@@ -8,7 +8,114 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="Ressource PAGE" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Adaptive Triggers-->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RelativePanel.Height"
+                                Value="150"/>
+                        <Setter Target="RelativePanel.Width"
+                                Value="250"/>
+                        <Setter Target="LabelTitle.FontSize"
+                                Value ="12"/>
+                        <Setter Target="SelectedFileLabel.FontSize"
+                                Value="12"/>
+                        <Setter Target="HeaderText.FontSize"
+                                Value="12"/>
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="NarrowLongState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" MinWindowHeight="500"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RelativePanel.Height"
+                                Value="300"/>
+                        <Setter Target="RelativePanel.Width"
+                                Value="250"/>
+                        <Setter Target="ButtonPanel.Orientation"
+                                Value="Vertical"/>
+                        <Setter Target="SelectedFileLabel.FontSize"
+                                Value="12"/>
+                        <Setter Target="LabelTitle.FontSize"
+                                Value ="12"/>
+                        <Setter Target="HeaderText.FontSize"
+                                Value="12"/>
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="CompactState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RelativePanel.Height"
+                                Value="300"/>
+                        <Setter Target="RelativePanel.Width"
+                                Value="400"/>
+                        <Setter Target="LabelPanel.Orientation"
+                                Value="Horizontal"/>
+                        <Setter Target="HeaderText.FontSize"
+                                Value="14"/>
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1080"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RelativePanel.Height"
+                                Value="400"/>
+                        <Setter Target="RelativePanel.Width"
+                                Value="650"/>
+                        <Setter Target="LabelPanel.Orientation"
+                                Value="Horizontal"/>
+                        <Setter Target="HeaderText.FontSize"
+                                Value="16"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+
+        </VisualStateManager.VisualStateGroups>
+
+        <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Left">
+            <TextBlock 
+                x:Name="HeaderText"
+                Text="You can add additional resources to the database here."
+                Margin="20,5,0,0"/>
+        </StackPanel>
+        
+        <RelativePanel x:Name="RelativePanel" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="2">
+           
+            <StackPanel x:Name="LabelPanel" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+                <TextBlock x:Name ="LabelTitle" 
+                       Text="Label:" 
+                       FontWeight="Bold"
+                       Margin="10,0,0,0"/>
+                <TextBlock x:Name="SelectedFileLabel"
+                           Text="No file selected."
+                           TextTrimming="WordEllipsis"
+                           Margin="10,0,0,0"/>
+            </StackPanel>
+            
+            <StackPanel x:Name="ButtonPanel" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Orientation="Horizontal">
+                <Button x:Name="SelectFileBut" Content="Select File" Click="SelectFile_OnClick" Margin="10,0,0,5" />
+                <Button x:Name="SubmitFileBut" Content="Submit" Click="SubmitFile_OnClick" Margin="10,0,0,5" Width="{Binding ElementName=SelectFileBut, Path=ActualWidth}"/>
+            </StackPanel>
+       
+
+        </RelativePanel>
 
     </Grid>
 </Page>
