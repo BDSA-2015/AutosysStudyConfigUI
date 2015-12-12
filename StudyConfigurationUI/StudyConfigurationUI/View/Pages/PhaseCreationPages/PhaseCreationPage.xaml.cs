@@ -1,4 +1,5 @@
 ﻿using Windows.UI.Xaml.Controls;
+using StudyConfigurationUI.View.Pages.PhaseCreationPages.SubPages;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -7,13 +8,14 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages
     /// <summary>
     ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class PhaseOverviewPage : Page
+    public sealed partial class PhaseCreationPage : Page
     {
-        public PhaseOverviewPage()
+        public PhaseCreationPage()
         {
             InitializeComponent();
+            OverviewPageBut.IsSelected = true;
+            PhasePageFrame.Navigate(typeof (PhaseOverviewPage));
         }
-
 
         /// <summary>
         ///     Naviagte between pages in phase creation page
@@ -22,17 +24,21 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages
         /// <param name="e"></param>
         private void MenuListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (TeamsBut.IsSelected)
+            if (OverviewPageBut.IsSelected)
             {
-                Frame.Navigate(typeof (PhaseTeamRolesPage));
+                PhasePageFrame.Navigate(typeof (PhaseOverviewPage));
+            }
+            else if (TeamsBut.IsSelected)
+            {
+                PhasePageFrame.Navigate(typeof (PhaseTeamRolesPage));
             }
             else if (TasksBut.IsSelected)
             {
-                Frame.Navigate(typeof (PhaseTaskPage));
+                PhasePageFrame.Navigate(typeof (PhaseTaskPage));
             }
             else if (CriteriasBut.IsSelected)
             {
-                Frame.Navigate(typeof (PhaseCriteriaPage));
+                PhasePageFrame.Navigate(typeof (PhaseCriteriaPage));
             }
         }
     }

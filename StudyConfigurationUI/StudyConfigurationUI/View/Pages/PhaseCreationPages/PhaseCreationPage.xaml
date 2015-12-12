@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="StudyConfigurationUI.View.Pages.PhaseCreationPages.PhaseCriteriaPage"
+    x:Class="StudyConfigurationUI.View.Pages.PhaseCreationPages.PhaseCreationPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:StudyConfigurationUI.View.Pages.PhaseCreationPages"
@@ -71,9 +71,9 @@
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal" />
                 </ItemsPanelTemplate>
-
             </ListView.ItemsPanel>
-            <ListViewItem x:Name="OverviewBut">
+
+            <ListViewItem x:Name="OverviewPageBut">
                 <TextBlock x:Name="OverviewLabel" Text="Overview" FontSize="12" />
             </ListViewItem>
 
@@ -85,12 +85,14 @@
                 <TextBlock x:Name="TasksLabel" Text="Tasks" FontSize="12" />
             </ListViewItem>
 
-            <ListViewItem x:Name="CriteriasBut" IsSelected="True">
+            <ListViewItem x:Name="CriteriasBut">
                 <TextBlock x:Name="CriteriasLabel" Text="Criterias" FontSize="12" />
             </ListViewItem>
         </ListView>
         <!--=================================-->
-        
-        
+
+        <!-- Frame for subpages -->
+        <Frame x:Name="PhasePageFrame" Grid.Row="1" />
+
     </Grid>
 </Page>
