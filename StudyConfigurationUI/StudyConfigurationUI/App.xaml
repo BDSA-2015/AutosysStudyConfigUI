@@ -4,9 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:StudyConfigurationUI"
     RequestedTheme="Light">
-    
-    <!-- Removing circle from radio button so it doesnt get displayed in splitview-->
+
     <Application.Resources>
+        <!-- Removing circle from radio button so it doesnt get displayed in splitview-->
         <ResourceDictionary>
             <Style TargetType="RadioButton">
                 <Setter Property="Template">
@@ -18,7 +18,8 @@
                 </Setter>
             </Style>
         </ResourceDictionary>
-    </Application.Resources> 
-   
+    </Application.Resources>
+
+
 
 </Application>

@@ -2,6 +2,7 @@
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using StudyConfigurationUI.View.Pages.PhaseCreationPages;
 using StudyConfigurationUI.ViewModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -23,9 +24,8 @@ namespace StudyConfigurationUI.View.Pages
 
         private void AddPhaseBut_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
             var toCreate = _viewModel.AddPhase();
-            Frame.Navigate(typeof(ResourcePage));
+            Frame.Navigate(typeof(PhaseOverviewPage));
            
         }
 

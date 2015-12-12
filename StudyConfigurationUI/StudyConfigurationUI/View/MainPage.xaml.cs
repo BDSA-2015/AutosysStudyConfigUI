@@ -39,35 +39,6 @@ namespace StudyConfigurationUI.View
         }
 
         /// <summary>
-        /// Naviagte between pages when a radio button is
-        /// pressed in splitview
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RadioSplitPaneItemButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            var pressedRadioButton = sender as RadioButton;
-            if (pressedRadioButton != null)
-            {
-                switch (pressedRadioButton.Tag.ToString())
-                {
-                    case "Home":
-                        MainFrame.Navigate(typeof(HomePage));
-                        break;
-                    case "StudyCreation":
-                        MainFrame.Navigate(typeof (StudyCreationPage));
-                        break;
-                    case "ManageStudies":
-                        MainFrame.Navigate(typeof (ManageStudiesPage));
-                        break;
-                    case "Resources":
-                        MainFrame.Navigate(typeof (ResourcePage));
-                        break;
-                }
-            }
-        }
-
-        /// <summary>
         /// Naviagte between pages when a page button is
         /// pressed in splitview
         /// </summary>
