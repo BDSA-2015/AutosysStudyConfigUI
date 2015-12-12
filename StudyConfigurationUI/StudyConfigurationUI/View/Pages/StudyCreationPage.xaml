@@ -83,19 +83,7 @@
                              Height="100" AcceptsReturn="True" 
                              TextWrapping="Wrap" 
                              ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-                    
-                    <TextBlock x:Name="ClassificationLabel"
-                               Text="Classification" 
-                               Margin="0,10,0,0"/>
-
-                    <ComboBox x:Name="ClassificationBox" 
-                              PlaceholderText="..." 
-                              Width="{Binding ElementName=descriptionTextBox, Path=ActualWidth}">
-                        <!--Add Classifcations Below -->    
-                        <ComboBoxItem Tag="First" Content="ClassificationA"/>
-                        <ComboBoxItem Tag="Second" Content="ClassificationB"/>
-                    </ComboBox>
-                </StackPanel>
+            </StackPanel>
 
             <!-- Seperator -->
             <Rectangle x:Name="Seperator" Fill="Gray" Height="{Binding ElementName= OuterPanel, Path=ActualHeight}" Width="1"/>
