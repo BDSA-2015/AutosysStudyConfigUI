@@ -24,10 +24,9 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages
         /// <param name="e"></param>
         private void MenuListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-          
             if (OverviewPageBut.IsSelected)
             {
-                PhasePageFrame.Navigate(typeof(PhaseOverviewPage));
+                PhasePageFrame.Navigate(typeof (PhaseOverviewPage));
             }
             else if (TeamsBut.IsSelected)
             {
@@ -41,7 +40,6 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages
             {
                 PhasePageFrame.Navigate(typeof (PhaseCriteriaPage));
             }
-            
         }
     }
 }

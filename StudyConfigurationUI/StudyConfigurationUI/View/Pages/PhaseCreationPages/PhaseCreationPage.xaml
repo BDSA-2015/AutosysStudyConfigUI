@@ -72,7 +72,7 @@
                     <StackPanel Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
-            
+
             <ListViewItem x:Name="OverviewPageBut">
                 <TextBlock x:Name="OverviewLabel" Text="Overview" FontSize="12" />
             </ListViewItem>
@@ -90,9 +90,9 @@
             </ListViewItem>
         </ListView>
         <!--=================================-->
-        
+
         <!-- Frame for subpages -->
-        <Frame x:Name="PhasePageFrame" Grid.Row="1"/>
+        <Frame x:Name="PhasePageFrame" Grid.Row="1" />
 
     </Grid>
 </Page>
