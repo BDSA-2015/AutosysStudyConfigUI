@@ -96,7 +96,7 @@
                 Margin="20,5,0,0"/>
         </StackPanel>
         
-        <RelativePanel x:Name="RelativePanel" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="2">
+        <RelativePanel x:Name="RelativePanel" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="1">
            
             <StackPanel x:Name="LabelPanel" RelativePanel.AlignVerticalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
                 <TextBlock x:Name ="LabelTitle" 
