@@ -10,40 +10,40 @@
 
     <Page.Resources>
         <Style TargetType="TextBlock" x:Key="ItemText">
-            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontSize" Value="11" />
         </Style>
     </Page.Resources>
 
     <Grid x:Name="MainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="NarrowState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"/>
+                        <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="CriteriaTable.(Grid.Column)" Value="1" />
                         <Setter Target="CriteriaTable.(Grid.Row)" Value="0" />
-                        <Setter Target="LeftColumn.Width" Value="Auto"/>
-                        <Setter Target="CommandBar.ClosedDisplayMode" Value="Minimal"/>
+                        <Setter Target="LeftColumn.Width" Value="Auto" />
+                        <Setter Target="CommandBar.ClosedDisplayMode" Value="Minimal" />
                     </VisualState.Setters>
                 </VisualState>
 
-              <VisualState x:Name="WideState">
+                <VisualState x:Name="WideState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1080"/>
+                        <AdaptiveTrigger MinWindowWidth="1080" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="CriteriaTable.(Grid.Column)" Value="0" />
                         <Setter Target="CriteriaTable.(Grid.Row)" Value="2" />
-                        <Setter Target="LeftColumn.Width" Value="*"/>
-                        <Setter Target="CommandBar.ClosedDisplayMode" Value="Compact"/>
+                        <Setter Target="LeftColumn.Width" Value="*" />
+                        <Setter Target="CommandBar.ClosedDisplayMode" Value="Compact" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -52,9 +52,10 @@
 
         <!-- Description header -->
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">
-            <TextBlock Text="Description:" Margin="10,10,0,0" FontSize="14" FontWeight="SemiBold"/>
-            <TextBlock Text="This page shows you an overview of the current phase setup." Margin="10,0,0,0" FontSize="12" FontWeight="Light"  TextWrapping="WrapWholeWords" MaxWidth="200"/>
-        </StackPanel >
+            <TextBlock Text="Description:" Margin="10,10,0,0" FontSize="14" FontWeight="SemiBold" />
+            <TextBlock Text="This page shows you an overview of the current phase setup." Margin="10,0,0,0"
+                       FontSize="12" FontWeight="Light" TextWrapping="WrapWholeWords" MaxWidth="200" />
+        </StackPanel>
 
         <!-- Table Pane -->
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
@@ -64,20 +65,19 @@
                     <ColumnDefinition x:Name="Right" Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
-                
 
                 <!-- Tables -->
                 <StackPanel x:Name="RoleTable" VerticalAlignment="Center" Margin="20" Grid.Column="1" Grid.Row="1">
-                    <TextBlock Text="Role" FontWeight="Medium" FontSize="18"/>
+                    <TextBlock Text="Role" FontWeight="Medium" FontSize="18" />
 
-                    <ListView SelectionMode="None" CanReorderItems="True" BorderThickness="1" BorderBrush="Black" 
-                      ItemsSource="{Binding Role}"
-                      Height="200">
+                    <ListView SelectionMode="None" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
+                              ItemsSource="{Binding Role}"
+                              Height="200">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Role">
                                 <StackPanel Orientation="Horizontal">
@@ -89,45 +89,54 @@
                 </StackPanel>
 
                 <StackPanel x:Name="TaskTable" VerticalAlignment="Bottom" Margin="20" Grid.Column="1" Grid.Row="2">
-                    <TextBlock Text="Tasks" FontWeight="Medium" FontSize="18"/>
+                    <TextBlock Text="Tasks" FontWeight="Medium" FontSize="18" />
 
-                    <ListView SelectionMode="None" CanReorderItems="True" BorderThickness="1" BorderBrush="Black" 
-                      ItemsSource="{Binding Tasks}"
-                      Height="200">
+                    <ListView SelectionMode="None" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
+                              ItemsSource="{Binding Tasks}"
+                              Height="200">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Task">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Description:" Margin="10,0,10,0" Style="{StaticResource ItemText}" FontWeight="SemiBold"/>
-                                    <TextBlock x:Name="Description" Text="{Binding Description}" Style="{StaticResource ItemText}"/>
+                                    <TextBlock Text="Description:" Margin="10,0,10,0" Style="{StaticResource ItemText}"
+                                               FontWeight="SemiBold" />
+                                    <TextBlock x:Name="Description" Text="{Binding Description}"
+                                               Style="{StaticResource ItemText}" />
 
-                                    <TextBlock Text="Type:" Margin="10,0,10,0" Style="{StaticResource ItemText}" FontWeight="SemiBold"/>
-                                    <TextBlock x:Name="Type" Text="{Binding Type}" Style="{StaticResource ItemText}"/>
+                                    <TextBlock Text="Type:" Margin="10,0,10,0" Style="{StaticResource ItemText}"
+                                               FontWeight="SemiBold" />
+                                    <TextBlock x:Name="Type" Text="{Binding Type}" Style="{StaticResource ItemText}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackPanel>
 
-                <StackPanel x:Name="CriteriaTable" VerticalAlignment="Bottom" Margin="20"  Grid.Column="0" Grid.Row="2">
-                    <TextBlock Text="Criteria" FontWeight="Medium" FontSize="18"/>
+                <StackPanel x:Name="CriteriaTable" VerticalAlignment="Bottom" Margin="20" Grid.Column="0" Grid.Row="2">
+                    <TextBlock Text="Criteria" FontWeight="Medium" FontSize="18" />
 
-                    <ListView SelectionMode="None" CanReorderItems="True" BorderThickness="1" BorderBrush="Black" 
-                      ItemsSource="{Binding Criterias}"
-                      Height="200">
+                    <ListView SelectionMode="None" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
+                              ItemsSource="{Binding Criterias}"
+                              Height="200">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Criteria">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Name:" Margin="10,0,10,0" Style="{StaticResource ItemText}" FontWeight="SemiBold"/>
-                                    <TextBlock x:Name="Name" Text="{Binding Name}"   Style="{StaticResource ItemText}"/>
+                                    <TextBlock Text="Name:" Margin="10,0,10,0" Style="{StaticResource ItemText}"
+                                               FontWeight="SemiBold" />
+                                    <TextBlock x:Name="Name" Text="{Binding Name}" Style="{StaticResource ItemText}" />
 
-                                    <TextBlock Text="Description:" Margin="10,0,10,0" Style="{StaticResource ItemText}" FontWeight="SemiBold"/>
-                                    <TextBlock x:Name="Description" Text="{Binding Description}" Style="{StaticResource ItemText}"/>
+                                    <TextBlock Text="Description:" Margin="10,0,10,0" Style="{StaticResource ItemText}"
+                                               FontWeight="SemiBold" />
+                                    <TextBlock x:Name="Description" Text="{Binding Description}"
+                                               Style="{StaticResource ItemText}" />
 
-                                    <TextBlock Text="Comparator:" Margin="10,0,10,0" Style="{StaticResource ItemText}" FontWeight="SemiBold"/>
-                                    <TextBlock x:Name="Comparator" Text="{Binding Comparator}" Style="{StaticResource ItemText}"/>
+                                    <TextBlock Text="Comparator:" Margin="10,0,10,0" Style="{StaticResource ItemText}"
+                                               FontWeight="SemiBold" />
+                                    <TextBlock x:Name="Comparator" Text="{Binding Comparator}"
+                                               Style="{StaticResource ItemText}" />
 
-                                    <TextBlock Text="Value:" Margin="10,0,10,0" Style="{StaticResource ItemText}" FontWeight="SemiBold"/>
-                                    <TextBlock x:Name="Value" Text="{Binding Value}" Style="{StaticResource ItemText}"/>
+                                    <TextBlock Text="Value:" Margin="10,0,10,0" Style="{StaticResource ItemText}"
+                                               FontWeight="SemiBold" />
+                                    <TextBlock x:Name="Value" Text="{Binding Value}" Style="{StaticResource ItemText}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -139,11 +148,11 @@
 
 
         <CommandBar x:Name="CommandBar" Grid.Row="2">
-            <AppBarButton Icon="Save" Label="Save Phase"  />
-            <AppBarSeparator/>
-            <AppBarButton Icon="Back" Label="Back"/>
+            <AppBarButton Icon="Save" Label="Save Phase" />
+            <AppBarSeparator />
+            <AppBarButton Icon="Back" Label="Back" />
             <CommandBar.Content>
-                <TextBlock Text="Options" Margin="12,14"/>
+                <TextBlock Text="Options" Margin="12,14" />
             </CommandBar.Content>
         </CommandBar>
 
