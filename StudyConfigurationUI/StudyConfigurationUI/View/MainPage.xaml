@@ -61,6 +61,7 @@
                     FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
                     FontSize="20"
                     Width="{Binding ElementName=SplitView, Path=CompactPaneLength}"
+                    Height="45"
                     VerticalAlignment="Top"
                     Click="HamburgerButton_OnClick"
                     RelativePanel.AlignLeftWithPanel="True">
@@ -68,6 +69,7 @@
             <TextBlock x:Name="Title" 
                        Text="Title" 
                        RelativePanel.RightOf="HamburgerButton" 
+                       RelativePanel.AlignVerticalCenterWith="HamburgerButton"
                        Margin="5,5,0,0"
                        FontWeight="Bold"/>
             
