@@ -99,7 +99,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Phase.cs" />
+    <Compile Include="Model\PhaseModels\Criteria.cs" />
+    <Compile Include="Model\PhaseModels\Datafield.cs" />
+    <Compile Include="Model\PhaseModels\Phase.cs" />
+    <Compile Include="Model\PhaseModels\Role.cs" />
+    <Compile Include="Model\PhaseModels\Task.cs" />
+    <Compile Include="Model\PhaseModels\User.cs" />
+    <Compile Include="ViewModel\PhaseCreationViewModels\PhaseCreationViewModel.cs" />
     <Compile Include="ViewModel\StudyCreationPageViewModel.cs" />
     <Compile Include="ViewModel\ResourcePageViewModel.cs" />
     <Compile Include="View\MainPage.xaml.cs">
@@ -175,8 +181,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\PhaseCreationPages\SubPages\PhaseCriteriaPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\PhaseCreationPages\SubPages\PhaseOverviewPage.xaml">
       <SubType>Designer</SubType>
@@ -201,7 +207,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\WebAPI\" />
-    <Folder Include="ViewModel\PhaseCreationViewModels\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

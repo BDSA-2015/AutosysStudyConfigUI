@@ -5,7 +5,7 @@
     xmlns:local="using:StudyConfigurationUI.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:data="using:StudyConfigurationUI.Model"
+    xmlns:phaseModels="using:StudyConfigurationUI.Model.PhaseModels"
     mc:Ignorable="d">
 
     <ScrollViewer Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -122,7 +122,7 @@
                           SelectionMode="Single"
                           ItemsSource="{Binding Phases}">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="data:Phase">
+                            <DataTemplate x:DataType="phaseModels:Phase">
                                 <StackPanel>
                                     <TextBlock FontSize="16" FontWeight="SemiBold" Text="{x:Bind Name}"/>
                                     <TextBlock FontSize="12" Foreground="DimGray" Text="{x:Bind Description}" TextTrimming="WordEllipsis"/> 

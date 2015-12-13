@@ -12,7 +12,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using StudyConfigurationUI.ViewModel.PhaseCreationViewModels;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -21,14 +20,11 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages.SubPages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class PhaseOverviewPage : Page
+    public sealed partial class PhaseCriteriaPage : Page
     {
-        private PhaseCreationViewModel _viewModel;
-        public PhaseOverviewPage()
+        public PhaseCriteriaPage()
         {
             this.InitializeComponent();
-            _viewModel = new PhaseCreationViewModel();
-            DataContext = _viewModel;
         }
     }
 }

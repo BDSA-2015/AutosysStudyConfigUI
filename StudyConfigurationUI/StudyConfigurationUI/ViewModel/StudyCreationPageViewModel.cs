@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using StudyConfigurationUI.Annotations;
-using StudyConfigurationUI.Model;
+using StudyConfigurationUI.Model.PhaseModels;
 
 namespace StudyConfigurationUI.ViewModel
 {
