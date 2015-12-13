@@ -30,7 +30,7 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages
             }
             else if (TeamsBut.IsSelected)
             {
-                PhasePageFrame.Navigate(typeof (PhaseTeamRolesPage));
+                PhasePageFrame.Navigate(typeof (PhaseTeamRolePage));
             }
             else if (TasksBut.IsSelected)
             {

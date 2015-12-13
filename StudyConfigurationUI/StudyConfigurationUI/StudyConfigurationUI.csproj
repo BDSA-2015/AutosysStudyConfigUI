@@ -129,11 +129,11 @@
     <Compile Include="View\Pages\PhaseCreationPages\SubPages\PhaseOverviewPage.xaml.cs">
       <DependentUpon>PhaseOverviewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\PhaseCreationPages\SubPages\PhaseTeamRolePage.xaml.cs">
+      <DependentUpon>PhaseTeamRolePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\PhaseCreationPages\SubPages\PhaseTaskPage.xaml.cs">
       <DependentUpon>PhaseTaskPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Pages\PhaseCreationPages\SubPages\PhaseTeamRolesPage.xaml.cs">
-      <DependentUpon>PhaseTeamRolesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\ResourcePage.xaml.cs">
       <DependentUpon>ResourcePage.xaml</DependentUpon>
@@ -188,11 +188,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\PhaseCreationPages\SubPages\PhaseTaskPage.xaml">
+    <Page Include="View\Pages\PhaseCreationPages\SubPages\PhaseTeamRolePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Pages\PhaseCreationPages\SubPages\PhaseTeamRolesPage.xaml">
+    <Page Include="View\Pages\PhaseCreationPages\SubPages\PhaseTaskPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
