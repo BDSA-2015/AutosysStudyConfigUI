@@ -40,9 +40,12 @@
                     <VisualState.Setters>
                         <Setter Target="studyInformationHeader.FontSize"
                                 Value="26"/>
-
                         <Setter Target="PhaseOverviewHeader.FontSize"
                                 Value="26"/>
+                        <Setter Target="Seperator.Height"
+                                Value="300"/>
+                        <Setter Target="Seperator.Width"
+                                Value="1"/>
                     </VisualState.Setters>
                 </VisualState>
 
@@ -63,45 +66,48 @@
                         RelativePanel.AlignVerticalCenterWithPanel="True" 
                         RelativePanel.AlignHorizontalCenterWithPanel="True">
 
-                    <TextBlock x:Name="studyInformationHeader" 
+                <TextBlock x:Name="studyInformationHeader" 
                                Text="Study Information" 
                                FontSize ="32"/>
-                    <TextBlock x:Name="titleLabel" 
+                <TextBlock x:Name="titleLabel" 
                                Text="Title" 
+                               HorizontalAlignment="Left"
                                Margin="0,10,0,0"/>
-                   
-                    <TextBox x:Name="titleTextBox" 
-                             PlaceholderText="Title of study" 
-                             MaxWidth="{Binding ElementName=descriptionTextBox, Path=ActualWidth}"/>
 
-                    <TextBlock x:Name="descriptionLabel" 
+                <TextBox x:Name="titleTextBox" 
+                             PlaceholderText="Title of study" 
+                             HorizontalAlignment="Left"
+                             Width="{Binding ElementName=descriptionTextBox, Path=ActualWidth}"/>
+
+                <TextBlock x:Name="descriptionLabel" 
                                Text="Description"
+                               HorizontalAlignment="Left"
                                Margin="0,10,0,0"/>
-                    
-                    <TextBox x:Name="descriptionTextBox" 
+
+                <TextBox x:Name="descriptionTextBox" 
                              PlaceholderText="Description of study" 
                              Height="100" AcceptsReturn="True" 
-                             TextWrapping="Wrap" 
+                             TextWrapping="Wrap"
                              ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-                    
-                    <TextBlock x:Name="ClassificationLabel"
+
+                <TextBlock x:Name="ClassificationLabel"
                                Text="Classification" 
                                Margin="0,10,0,0"/>
 
-                    <ComboBox x:Name="ClassificationBox" 
+                <ComboBox x:Name="ClassificationBox" 
                               PlaceholderText="..." 
                               Width="{Binding ElementName=descriptionTextBox, Path=ActualWidth}">
-                        <!--Add Classifcations Below -->    
-                        <ComboBoxItem Tag="First" Content="ClassificationA"/>
-                        <ComboBoxItem Tag="Second" Content="ClassificationB"/>
-                    </ComboBox>
-                </StackPanel>
+                    <!--Add Classifcations Below -->
+                    <ComboBoxItem Tag="First" Content="ClassificationA"/>
+                    <ComboBoxItem Tag="Second" Content="ClassificationB"/>
+                </ComboBox>
+            </StackPanel>
 
             <!-- Seperator -->
-            <Rectangle x:Name="Seperator" Fill="Gray" Height="{Binding ElementName= OuterPanel, Path=ActualHeight}" Width="1"/>
+            <Rectangle x:Name="Seperator" Fill="Gray"/>
 
             <RelativePanel x:Name="PhasePanel">
-                
+
                 <StackPanel x:Name="PhaseOverviewPanel"
                             Orientation="Vertical"
                             RelativePanel.AlignVerticalCenterWithPanel="True" 
@@ -125,7 +131,7 @@
                             <DataTemplate x:DataType="phaseModels:Phase">
                                 <StackPanel>
                                     <TextBlock FontSize="16" FontWeight="SemiBold" Text="{x:Bind Name}"/>
-                                    <TextBlock FontSize="12" Foreground="DimGray" Text="{x:Bind Description}" TextTrimming="WordEllipsis"/> 
+                                    <TextBlock FontSize="12" Foreground="DimGray" Text="{x:Bind Description}" TextTrimming="WordEllipsis"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -146,10 +152,10 @@
                     </StackPanel>
                     <Button x:Name="SubmitBut" Content="Submit" HorizontalAlignment="Center" Margin="10" Click="SubmitBut_OnClick"/>
                 </StackPanel>
-                
-                
+
+
             </RelativePanel>
-            
+
 
         </StackPanel>
 
