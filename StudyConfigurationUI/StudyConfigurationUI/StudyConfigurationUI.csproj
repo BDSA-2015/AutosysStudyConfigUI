@@ -107,6 +107,15 @@
     <Compile Include="Model\PhaseModels\Task.cs" />
     <Compile Include="Model\PhaseModels\Team.cs" />
     <Compile Include="Model\PhaseModels\User.cs" />
+    <Compile Include="Model\WebAPI\Models\ConflictingData.cs" />
+    <Compile Include="Model\WebAPI\Models\DataField.cs" />
+    <Compile Include="Model\WebAPI\Models\Resource.cs" />
+    <Compile Include="Model\WebAPI\Models\StageOverview.cs" />
+    <Compile Include="Model\WebAPI\Models\StudyOverview.cs" />
+    <Compile Include="Model\WebAPI\Models\TaskRequest.cs" />
+    <Compile Include="Model\WebAPI\Models\TaskSubmission.cs" />
+    <Compile Include="Model\WebAPI\Models\Team.cs" />
+    <Compile Include="Model\WebAPI\Models\User.cs" />
     <Compile Include="ViewModel\PhaseCreationViewModels\PhaseCreationViewModel.cs" />
     <Compile Include="ViewModel\StudyCreationPageViewModel.cs" />
     <Compile Include="ViewModel\ResourcePageViewModel.cs" />
@@ -207,9 +216,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\WebAPI\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
