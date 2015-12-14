@@ -74,19 +74,19 @@
             </ListView.ItemsPanel>
 
             <ListViewItem x:Name="OverviewPageBut">
-                <TextBlock x:Name="OverviewLabel" Text="Overview" FontSize="12" />
+                <TextBlock x:Name="OverviewLabel" Text="Overview" />
             </ListViewItem>
 
             <ListViewItem x:Name="TeamsBut">
-                <TextBlock x:Name="TeamsLabel" Text="Teams and Roles" FontSize="12" />
+                <TextBlock x:Name="TeamsLabel" Text="Teams and Roles" />
             </ListViewItem>
 
             <ListViewItem x:Name="TasksBut">
-                <TextBlock x:Name="TasksLabel" Text="Tasks" FontSize="12" />
+                <TextBlock x:Name="TasksLabel" Text="Tasks"/>
             </ListViewItem>
 
             <ListViewItem x:Name="CriteriasBut">
-                <TextBlock x:Name="CriteriasLabel" Text="Criterias" FontSize="12" />
+                <TextBlock x:Name="CriteriasLabel" Text="Criteria"/>
             </ListViewItem>
         </ListView>
         <!--=================================-->

@@ -100,6 +100,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\PhaseModels\Criteria.cs" />
+    <Compile Include="Model\PhaseModels\BibTag.cs" />
     <Compile Include="Model\PhaseModels\Datafield.cs" />
     <Compile Include="Model\PhaseModels\Phase.cs" />
     <Compile Include="Model\PhaseModels\Role.cs" />
