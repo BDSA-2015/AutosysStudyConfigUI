@@ -32,9 +32,9 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages
             {
                 PhasePageFrame.Navigate(typeof (PhaseTeamRolePage));
             }
-            else if (TasksBut.IsSelected)
+            else if (DatafieldBut.IsSelected)
             {
-                PhasePageFrame.Navigate(typeof (PhaseTaskPage));
+                PhasePageFrame.Navigate(typeof (PhaseDatafieldPage));
             }
             else if (CriteriasBut.IsSelected)
             {

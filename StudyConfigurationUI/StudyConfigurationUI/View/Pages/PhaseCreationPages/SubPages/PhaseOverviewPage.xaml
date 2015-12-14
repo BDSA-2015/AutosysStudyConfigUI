@@ -72,14 +72,14 @@
 
 
                 <!-- Tables -->
-                <StackPanel x:Name="RoleTable" VerticalAlignment="Center" Margin="20" Grid.Column="1" Grid.Row="1">
-                    <TextBlock Text="Role" FontWeight="Medium" FontSize="18" />
+                <StackPanel x:Name="MembersTable" VerticalAlignment="Center" Margin="20" Grid.Column="1" Grid.Row="1">
+                    <TextBlock Text="Members" FontWeight="Medium" FontSize="18" />
 
                     <ListView SelectionMode="None" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
-                              ItemsSource="{Binding Role}"
+                              ItemsSource="{Binding Members}"
                               Height="200">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="data:Role">
+                            <DataTemplate x:DataType="data:Member">
                                 <StackPanel Orientation="Horizontal">
                                     <!-- TODO figure out how to display roles and user together-->
                                 </StackPanel>
@@ -88,23 +88,23 @@
                     </ListView>
                 </StackPanel>
 
-                <StackPanel x:Name="TaskTable" VerticalAlignment="Bottom" Margin="20" Grid.Column="1" Grid.Row="2">
-                    <TextBlock Text="Tasks" FontWeight="Medium" FontSize="18" />
+                <StackPanel x:Name="DataFieldTable" VerticalAlignment="Bottom" Margin="20" Grid.Column="1" Grid.Row="2">
+                    <TextBlock Text="Datafields" FontWeight="Medium" FontSize="18" />
 
                     <ListView SelectionMode="None" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
-                              ItemsSource="{Binding Tasks}"
+                              ItemsSource="{Binding Datafields}"
                               Height="200">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="data:Task">
+                            <DataTemplate x:DataType="data:Datafield">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Description:" Margin="10,0,10,0" Style="{StaticResource ItemText}"
+                                    <TextBlock Text="Name:" Margin="10,0,10,0" Style="{StaticResource ItemText}"
                                                FontWeight="SemiBold" />
-                                    <TextBlock x:Name="Description" Text="{Binding Description}"
+                                    <TextBlock x:Name="DatafieldName" Text="{Binding Name}"
                                                Style="{StaticResource ItemText}" />
 
                                     <TextBlock Text="Type:" Margin="10,0,10,0" Style="{StaticResource ItemText}"
                                                FontWeight="SemiBold" />
-                                    <TextBlock x:Name="Type" Text="{Binding Type}" Style="{StaticResource ItemText}" />
+                                    <TextBlock x:Name="Type" Text="{Binding Description}" Style="{StaticResource ItemText}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

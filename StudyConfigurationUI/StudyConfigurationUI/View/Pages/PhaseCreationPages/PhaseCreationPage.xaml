@@ -23,7 +23,7 @@
                     <VisualState.Setters>
                         <Setter Target="OverviewLabel.FontSize" Value="12" />
                         <Setter Target="TeamsLabel.FontSize" Value="12" />
-                        <Setter Target="TasksLabel.FontSize" Value="12" />
+                        <Setter Target="DatafieldLabel.FontSize" Value="12" />
                         <Setter Target="CriteriasLabel.FontSize" Value="12" />
                     </VisualState.Setters>
                 </VisualState>
@@ -35,7 +35,7 @@
                     <VisualState.Setters>
                         <Setter Target="OverviewLabel.FontSize" Value="13" />
                         <Setter Target="TeamsLabel.FontSize" Value="13" />
-                        <Setter Target="TasksLabel.FontSize" Value="13" />
+                        <Setter Target="DatafieldLabel.FontSize" Value="13" />
                         <Setter Target="CriteriasLabel.FontSize" Value="13" />
                     </VisualState.Setters>
                 </VisualState>
@@ -47,7 +47,7 @@
                     <VisualState.Setters>
                         <Setter Target="OverviewLabel.FontSize" Value="14" />
                         <Setter Target="TeamsLabel.FontSize" Value="14" />
-                        <Setter Target="TasksLabel.FontSize" Value="14" />
+                        <Setter Target="DatafieldLabel.FontSize" Value="14" />
                         <Setter Target="CriteriasLabel.FontSize" Value="14" />
                     </VisualState.Setters>
                 </VisualState>
@@ -81,8 +81,8 @@
                 <TextBlock x:Name="TeamsLabel" Text="Teams and Roles" />
             </ListViewItem>
 
-            <ListViewItem x:Name="TasksBut">
-                <TextBlock x:Name="TasksLabel" Text="Tasks"/>
+            <ListViewItem x:Name="DatafieldBut">
+                <TextBlock x:Name="DatafieldLabel" Text="Datafields"/>
             </ListViewItem>
 
             <ListViewItem x:Name="CriteriasBut">
