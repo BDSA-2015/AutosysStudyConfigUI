@@ -52,8 +52,8 @@
 
         <!-- Description header -->
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">
-            <TextBlock Text="Description:" Margin="10,10,0,0" FontSize="14" FontWeight="SemiBold" />
-            <TextBlock Text="This page shows you an overview of the current phase setup." Margin="10,0,0,0"
+            <TextBlock Text="Phase Setup:" Margin="10,10,0,0" FontSize="14" FontWeight="SemiBold" />
+            <TextBlock Text="You can set up a phase in this page" Margin="10,0,0,0"
                        FontSize="12" FontWeight="Light" TextWrapping="WrapWholeWords" MaxWidth="200" />
         </StackPanel>
 
@@ -72,8 +72,8 @@
 
 
                 <!-- Tables -->
-                <StackPanel x:Name="MembersTable" VerticalAlignment="Center" Margin="20" Grid.Column="1" Grid.Row="1">
-                    <TextBlock Text="Members" FontWeight="Medium" FontSize="18" />
+                <StackPanel x:Name="RolesTable" VerticalAlignment="Center" Margin="20" Grid.Column="1" Grid.Row="1">
+                    <TextBlock Text="Roles" FontWeight="Medium" FontSize="18" />
 
                     <ListView SelectionMode="None" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
                               ItemsSource="{Binding Members}"
@@ -88,8 +88,8 @@
                     </ListView>
                 </StackPanel>
 
-                <StackPanel x:Name="DataFieldTable" VerticalAlignment="Bottom" Margin="20" Grid.Column="1" Grid.Row="2">
-                    <TextBlock Text="Datafields" FontWeight="Medium" FontSize="18" />
+                <StackPanel x:Name="VisibleDataFieldTable" VerticalAlignment="Bottom" Margin="20" Grid.Column="1" Grid.Row="2">
+                    <TextBlock Text="VisibleDataFieldTable" FontWeight="Medium" FontSize="18" />
 
                     <ListView SelectionMode="None" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
                               ItemsSource="{Binding Datafields}"
@@ -101,15 +101,23 @@
                                                FontWeight="SemiBold" />
                                     <TextBlock x:Name="DatafieldName" Text="{Binding Name}"
                                                Style="{StaticResource ItemText}" />
-
-                                    <TextBlock Text="Type:" Margin="10,0,10,0" Style="{StaticResource ItemText}"
-                                               FontWeight="SemiBold" />
-                                    <TextBlock x:Name="Type" Text="{Binding Description}" Style="{StaticResource ItemText}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <ComboBox Header="Tags" PlaceholderText="..." ItemsSource="{Binding Datafields}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="data:Datafield">
+                                    <ComboBoxItem Content="{x:Bind Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button Margin="10,0,0,0" Content="Add"/>
+                    </StackPanel>
+                 
                 </StackPanel>
+            
 
                 <StackPanel x:Name="CriteriaTable" VerticalAlignment="Bottom" Margin="20" Grid.Column="0" Grid.Row="2">
                     <TextBlock Text="Criteria" FontWeight="Medium" FontSize="18" />
