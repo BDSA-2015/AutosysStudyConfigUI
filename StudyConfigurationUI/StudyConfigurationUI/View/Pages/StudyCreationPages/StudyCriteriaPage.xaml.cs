@@ -1,33 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿// StudyCriteriaPage.xaml.cs is a part of Autosys project in BDSA-2015. Created: 14, 12, 2015.
+// Creators: Dennis Thinh Tan Nguyen, William Diedricsehn Marstrand, Thor Valentin Aakjær Olesen Nielsen, 
+// Jacob Mullit Møiniche.
+
+#region
+
+using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+
+#endregion
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace StudyConfigurationUI.View.Pages.PhaseCreationPages.SubPages
+namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class PhaseCriteriaPage : Page
+    public sealed partial class StudyCriteriaPage : Page
     {
-        public PhaseCriteriaPage()
+        public StudyCriteriaPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
-        private void ExclusionCreationWindow_OnPrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private void ExclusionCreationWindow_OnPrimaryButtonClick(ContentDialog sender,
+            ContentDialogButtonClickEventArgs args)
         {
             //Todo add creation of criteria and add it to obs list in viewmodel.
             //throw new NotImplementedException();
@@ -48,7 +46,8 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages.SubPages
             //throw new NotImplementedException();
         }
 
-        private void InclusionCreationWindow_OnPrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private void InclusionCreationWindow_OnPrimaryButtonClick(ContentDialog sender,
+            ContentDialogButtonClickEventArgs args)
         {
             //throw new NotImplementedException();
         }
