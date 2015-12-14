@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using WebApi.Controllers;
 
-namespace WebApi.Models
+namespace StudyConfigurationUI.Model.ServerHandler.Models
 {
     /// <summary>
     ///     A data field part of a <see cref="TaskRequest" />.

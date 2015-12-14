@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SystematicStudyService.Models
+namespace StudyConfigurationUI.Model.ServerHandler.Models
 {
     /// <summary>
     ///     A team using the systematic study service.
