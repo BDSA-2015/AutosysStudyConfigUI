@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="StudyConfigurationUI.View.Pages.PhaseCreationPages.SubPages.PhaseCriteriaPage"
+    x:Class="StudyConfigurationUI.View.Pages.StudyCreationPages.StudyCriteriaPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:StudyConfigurationUI.View.Pages.PhaseCreationPages.SubPages"
@@ -24,8 +24,6 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="DatafieldsTable.(Grid.Column)" Value="1" />
-                        <Setter Target="DatafieldsTable.(Grid.Row)" Value="0" />
                         <Setter Target="TopRow.Height" Value="*" />
                         <Setter Target="LeftColumn.Width" Value="Auto" />
                     </VisualState.Setters>
@@ -36,8 +34,6 @@
                         <AdaptiveTrigger MinWindowWidth="1080" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="DatafieldsTable.(Grid.Column)" Value="0" />
-                        <Setter Target="DatafieldsTable.(Grid.Row)" Value="2" />
                         <Setter Target="TopRow.Height" Value="Auto" />
                         <Setter Target="LeftColumn.Width" Value="*" />
                     </VisualState.Setters>
@@ -138,7 +134,7 @@
            SecondaryButtonText="Cancel" 
            Opened="ExclusionCreationWindow_OnOpened"
            FullSizeDesired ="False"
-           Grid.Row="1" Grid.Column="0">
+           Grid.Row="2" Grid.Column="0">
             <ContentDialog.TitleTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -207,7 +203,7 @@
            SecondaryButtonText="Cancel" 
            Opened="InclusionCreationWindow_OnOpened"
            FullSizeDesired ="False"
-           Grid.Row="1" Grid.Column="0">
+           Grid.Row="2" Grid.Column="0">
             <ContentDialog.TitleTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

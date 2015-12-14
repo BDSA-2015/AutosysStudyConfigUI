@@ -8,150 +8,91 @@
     xmlns:phaseModels="using:StudyConfigurationUI.Model.PhaseModels"
     mc:Ignorable="d">
 
-    <ScrollViewer Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
         <!--Adaptive Triggers-->
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="NarrowState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0"/>
+                        <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="OuterPanel.Orientation"
-                                Value="Vertical"/>
-                        <Setter Target="Seperator.Height"
-                                Value="1"/>
-                        <Setter Target="Seperator.Width"
-                                Value="300"/>
-
-                        <Setter Target="studyInformationHeader.FontSize"
-                                Value="24"/>
-
-                        <Setter Target="PhaseOverviewHeader.FontSize"
-                                Value="24"/>
+                        <Setter Target="OverviewLabel.FontSize" Value="12" />
+                        <Setter Target="TeamsLabel.FontSize" Value="12" />
+                        <Setter Target="DatafieldLabel.FontSize" Value="12" />
+                        <Setter Target="CriteriasLabel.FontSize" Value="12" />
                     </VisualState.Setters>
                 </VisualState>
 
                 <VisualState x:Name="CompactState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720"/>
+                        <AdaptiveTrigger MinWindowWidth="720" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="studyInformationHeader.FontSize"
-                                Value="26"/>
-                        <Setter Target="PhaseOverviewHeader.FontSize"
-                                Value="26"/>
-                        <Setter Target="Seperator.Height"
-                                Value="300"/>
-                        <Setter Target="Seperator.Width"
-                                Value="1"/>
+                        <Setter Target="OverviewLabel.FontSize" Value="13" />
+                        <Setter Target="TeamsLabel.FontSize" Value="13" />
+                        <Setter Target="DatafieldLabel.FontSize" Value="13" />
+                        <Setter Target="CriteriasLabel.FontSize" Value="13" />
                     </VisualState.Setters>
                 </VisualState>
 
                 <VisualState x:Name="WideState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1080"/>   
+                        <AdaptiveTrigger MinWindowWidth="1080" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="Seperator.Height"
-                                Value="300"/>
-                        <Setter Target="Seperator.Width"
-                                Value="1"/>
+                        <Setter Target="OverviewLabel.FontSize" Value="14" />
+                        <Setter Target="TeamsLabel.FontSize" Value="14" />
+                        <Setter Target="DatafieldLabel.FontSize" Value="14" />
+                        <Setter Target="CriteriasLabel.FontSize" Value="14" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
 
         </VisualStateManager.VisualStateGroups>
+        <!-- Top Navigation Bar DO NOT DELETE-->
+        <ListView Grid.Row="0"
+                  Height="40"
+                  VerticalAlignment="Center"
+                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                  ScrollViewer.HorizontalScrollMode="Enabled"
+                  ScrollViewer.VerticalScrollMode="Disabled"
+                  ScrollViewer.ZoomMode="Disabled"
+                  SelectionMode="Single"
+                  Background="LightGray"
+                  SelectionChanged="MenuListBox_OnSelectionChanged">
+            <!-- Setting list view for horizontal display -->
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
 
-        <StackPanel x:Name="OuterPanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ListViewItem x:Name="GeneralBut">
+                <TextBlock x:Name="GeneralLabel" Text="General" />
+            </ListViewItem>
 
-            <StackPanel x:Name="StudyInformationStackPanel"
-                        Margin="10"
-                        Orientation="Vertical"
-                        RelativePanel.AlignVerticalCenterWithPanel="True" 
-                        RelativePanel.AlignHorizontalCenterWithPanel="True">
+            <ListViewItem x:Name="DatafieldBut">
+                <TextBlock x:Name="DatafieldLabel" Text="Datafields"/>
+            </ListViewItem>
 
-                <TextBlock x:Name="studyInformationHeader" 
-                               Text="Study Information" 
-                               FontSize ="32"/>
-                <TextBlock x:Name="titleLabel" 
-                               Text="Title" 
-                               HorizontalAlignment="Left"
-                               Margin="0,10,0,0"/>
+            <ListViewItem x:Name="CriteriasBut">
+                <TextBlock x:Name="CriteriasLabel" Text="Criteria"/>
+            </ListViewItem>
+            
+            <ListViewItem x:Name="PhaseBut">
+                <TextBlock x:Name="PhaseLabel" Text="Phases"/>
+            </ListViewItem>
+        </ListView>
+        <!--=================================-->
 
-                <TextBox x:Name="titleTextBox" 
-                             PlaceholderText="Title of study" 
-                             HorizontalAlignment="Left"
-                             Width="{Binding ElementName=descriptionTextBox, Path=ActualWidth}"/>
+        <!-- Frame for subpages -->
+        <Frame x:Name="StudyPageFrame" Grid.Row="1" />
 
-                <TextBlock x:Name="descriptionLabel" 
-                               Text="Description"
-                               HorizontalAlignment="Left"
-                               Margin="0,10,0,0"/>
-
-                <TextBox x:Name="descriptionTextBox" 
-                             PlaceholderText="Description of study" 
-                             Height="100" AcceptsReturn="True" 
-                             TextWrapping="Wrap"
-                             ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-            </StackPanel>
-
-            <!-- Seperator -->
-            <Rectangle x:Name="Seperator" Fill="Gray"/>
-
-            <RelativePanel x:Name="PhasePanel">
-
-                <StackPanel x:Name="PhaseOverviewPanel"
-                            Orientation="Vertical"
-                            RelativePanel.AlignVerticalCenterWithPanel="True" 
-                            RelativePanel.AlignHorizontalCenterWithPanel="True"
-                            Margin="10">
-
-                    <TextBlock x:Name="PhaseOverviewHeader"
-                               HorizontalAlignment="Center"
-                               Text="Phase Overview" 
-                               FontSize="32"/>
-
-
-                    <ListView x:Name="PhaseList" 
-                          Height="200"
-                          Width="{Binding ElementName=PhasePanel,Path=ActualWidth}"  
-                          BorderBrush="Black"
-                          BorderThickness="1" 
-                          SelectionMode="Single"
-                          ItemsSource="{Binding Phases}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="phaseModels:Phase">
-                                <StackPanel>
-                                    <TextBlock FontSize="16" FontWeight="SemiBold" Text="{x:Bind Name}"/>
-                                    <TextBlock FontSize="12" Foreground="DimGray" Text="{x:Bind Description}" TextTrimming="WordEllipsis"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-
-
-                    <!-- Phase Table Buttons -->
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
-                        <Button x:Name="DeletePhaseBut" Background="White" Click="DeletePhaseBut_OnClick">
-                            <SymbolIcon Symbol="Delete"/>
-                        </Button>
-                        <Button x:Name="EditPhaseBut" Background="White" Click="EditPhaseBut_OnClick">
-                            <SymbolIcon Symbol="Edit"/>
-                        </Button>
-                        <Button x:Name="AddPhaseBut" Click="AddPhaseBut_OnClick" Background="White">
-                            <SymbolIcon Symbol="Add"/>
-                        </Button>
-                    </StackPanel>
-                    <Button x:Name="SubmitBut" Content="Submit" HorizontalAlignment="Center" Margin="10" Click="SubmitBut_OnClick"/>
-                </StackPanel>
-
-
-            </RelativePanel>
-
-
-        </StackPanel>
-
-    </ScrollViewer>
+    </Grid>
 </Page>

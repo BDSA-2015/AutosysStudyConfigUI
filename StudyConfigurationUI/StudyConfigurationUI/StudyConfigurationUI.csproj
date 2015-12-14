@@ -122,26 +122,26 @@
     <Compile Include="View\Pages\ManageStudiesPage.xaml.cs">
       <DependentUpon>ManageStudiesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\PhaseCreationPages\PhaseCreationPage.xaml.cs">
-      <DependentUpon>PhaseCreationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Pages\PhaseCreationPages\SubPages\PhaseCriteriaPage.xaml.cs">
-      <DependentUpon>PhaseCriteriaPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Pages\PhaseCreationPages\SubPages\PhaseDatafieldPage.xaml.cs">
-      <DependentUpon>PhaseDatafieldPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Pages\PhaseCreationPages\SubPages\PhaseOverviewPage.xaml.cs">
       <DependentUpon>PhaseOverviewPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\PhaseCreationPages\SubPages\PhaseTeamRolePage.xaml.cs">
-      <DependentUpon>PhaseTeamRolePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Pages\ResourcePage.xaml.cs">
-      <DependentUpon>ResourcePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Pages\StudyCreationPage.xaml.cs">
       <DependentUpon>StudyCreationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\StudyCreationPages\StudyCreationMainPage.xaml.cs">
+      <DependentUpon>StudyCreationMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\StudyCreationPages\StudyGeneralSettingsPage.xaml.cs">
+      <DependentUpon>StudyGeneralSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\StudyCreationPages\StudyCriteriaPage.xaml.cs">
+      <DependentUpon>StudyCriteriaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\StudyCreationPages\StudyDatafieldPage.xaml.cs">
+      <DependentUpon>StudyDatafieldPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\StudyCreationPages\StudyPhaseListPage.xaml.cs">
+      <DependentUpon>StudyPhaseListPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -178,33 +178,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Pages\PhaseCreationPages\PhaseCreationPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Pages\PhaseCreationPages\SubPages\PhaseCriteriaPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Pages\PhaseCreationPages\SubPages\PhaseDatafieldPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Pages\PhaseCreationPages\SubPages\PhaseOverviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\PhaseCreationPages\SubPages\PhaseTeamRolePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\Pages\ResourcePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\Pages\StudyCreationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\StudyCreationPages\StudyCreationMainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\StudyCreationPages\StudyGeneralSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\StudyCreationPages\StudyCriteriaPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\StudyCreationPages\StudyDatafieldPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\StudyCreationPages\StudyPhaseListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
