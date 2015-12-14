@@ -104,6 +104,7 @@
     <Compile Include="Model\PhaseModels\Phase.cs" />
     <Compile Include="Model\PhaseModels\Role.cs" />
     <Compile Include="Model\PhaseModels\Task.cs" />
+    <Compile Include="Model\PhaseModels\Team.cs" />
     <Compile Include="Model\PhaseModels\User.cs" />
     <Compile Include="ViewModel\PhaseCreationViewModels\PhaseCreationViewModel.cs" />
     <Compile Include="ViewModel\StudyCreationPageViewModel.cs" />
