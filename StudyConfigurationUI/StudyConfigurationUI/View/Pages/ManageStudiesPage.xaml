@@ -70,14 +70,11 @@
 
             <!--Delete, Edit, and Add buttons-->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="DeleteButton" Background="White">
+                <Button x:Name="DeleteButton" Style="{StaticResource TableButton}">
                     <SymbolIcon Symbol="Delete"/>
                 </Button>
-                <Button x:Name="EditButton" Background="White">
+                <Button x:Name="EditButton" Style="{StaticResource TableButton}">
                     <SymbolIcon Symbol="Edit"/>
-                </Button>
-                <Button x:Name="AddButton" Background="White">
-                    <SymbolIcon Symbol="Add"/>
                 </Button>
             </StackPanel>
 

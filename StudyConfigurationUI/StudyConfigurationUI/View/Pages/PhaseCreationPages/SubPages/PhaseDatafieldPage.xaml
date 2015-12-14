@@ -124,15 +124,16 @@
                         <ComboBoxItem Tag="Enumerable" Content="Enumerable"/>
                     </ComboBox>
 
-                    <StackPanel Orientation="Horizontal">
+                    <RelativePanel Margin="0,15,0,0">
                         <TextBox x:Name="DatafieldValueBox" 
-                             Header="Name:" 
+                             Header="Value:" 
                              PlaceholderText="Value of datafield" 
-                             Width="300" HorizontalAlignment="Left" 
-                             Margin="0,10,0,10"/>
-                        <CheckBox Name="IsModifiableCheckbox" Content="Modifiable" Checked="IsModifiableCheckbox_OnChecked"/>
-                    </StackPanel>
-
+                             Width="300" VerticalAlignment="Center"/>
+                        <CheckBox Name="IsModifiableCheckbox" Content="Modifiable" Checked="IsModifiableCheckbox_OnChecked" 
+                                  RelativePanel.RightOf="DatafieldValueBox" 
+                                  RelativePanel.AlignVerticalCenterWith="DatafieldValueBox" 
+                                  Margin="10,25,0,0"/>
+                    </RelativePanel>
                 </StackPanel>
             </ScrollViewer>
         </ContentDialog>
