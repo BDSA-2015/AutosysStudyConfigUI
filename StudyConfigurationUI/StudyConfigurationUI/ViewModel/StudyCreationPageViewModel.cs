@@ -34,6 +34,8 @@ namespace StudyConfigurationUI.ViewModel
                 Name = "Phase 1 Test",
                 Description = "This is just a test of a phase object added to phase collection"
             });
+
+            AllUsers.Add(new User() {Name = "Test",Description = "Test"});
         }
 
 
@@ -73,8 +75,7 @@ namespace StudyConfigurationUI.ViewModel
 
         public ObservableCollection<Phase> Phases { get; }
         public ObservableCollection<User> AllUsers { get; }
-        public IList<User> SelectedUsers { get; }
-
+        public IList<User> SelectedUsers { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -122,6 +123,11 @@ namespace StudyConfigurationUI.ViewModel
         public bool ValidateStudy()
         {
             throw new NotImplementedException();
+        }
+
+        public void AddSelectedUsers(IList<User> selectedUsers)
+        {
+            SelectedUsers = selectedUsers;
         }
     }
 }

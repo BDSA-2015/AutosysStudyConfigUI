@@ -5,10 +5,13 @@
 #region
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Windows.Storage.Pickers;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using StudyConfigurationUI.Model.PhaseModels;
 using StudyConfigurationUI.ViewModel;
 
 #endregion
@@ -79,5 +82,11 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
             }
         }
 
+
+        private void ConfirmSelectionBut_OnClick(object sender, RoutedEventArgs e)
+        {
+            var selections = MembersTable.SelectedItems.Cast<User>().ToList();
+            _viewModel.AddSelectedUsers(selections);
+        }
     }
 }
