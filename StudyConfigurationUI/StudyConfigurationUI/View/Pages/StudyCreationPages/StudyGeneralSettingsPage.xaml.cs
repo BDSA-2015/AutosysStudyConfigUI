@@ -1,11 +1,10 @@
-﻿// StudyGeneralSettingsPage.xaml.cs is a part of Autosys project in BDSA-2015. Created: 14, 12, 2015.
+﻿// StudyGeneralSettingsPage.xaml.cs is a part of Autosys project in BDSA-2015. Created: 15, 12, 2015.
 // Creators: Dennis Thinh Tan Nguyen, William Diedricsehn Marstrand, Thor Valentin Aakjær Olesen Nielsen, 
 // Jacob Mullit Møiniche.
 
 #region
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Windows.Storage.Pickers;
 using Windows.UI.Popups;
@@ -25,8 +24,8 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
     /// </summary>
     public sealed partial class StudyGeneralSettingsPage : Page
     {
-
         private StudyCreationPageViewModel _viewModel;
+
         public StudyGeneralSettingsPage()
         {
             InitializeComponent();
@@ -48,7 +47,7 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
             if (file != null)
             {
                 SelectedFileLabel.Text = file.Path;
-               
+
                 var isSucces = await _viewModel.AddResourceFile(file);
                 if (!isSucces)
                 {
@@ -74,9 +73,9 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 
             var dialog = new MessageDialog(
                 "Are you sure you want to submit the Study?")
-            { Title = "Submit Phase." };
-            dialog.Commands.Add(new UICommand("Yes") { Id = 0 });
-            dialog.Commands.Add(new UICommand("No") { Id = 1 });
+            {Title = "Submit Phase."};
+            dialog.Commands.Add(new UICommand("Yes") {Id = 0});
+            dialog.Commands.Add(new UICommand("No") {Id = 1});
 
             dialog.DefaultCommandIndex = 1;
             dialog.CancelCommandIndex = 1;

@@ -58,14 +58,21 @@
                     <TextBlock Text="Exclusion Criteria" FontWeight="Medium" FontSize="18" />
 
                     <!--Exclusion table-->
-                    <ListView SelectionMode="Multiple" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
+                    <ListView SelectionMode="Single" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
                               ItemsSource="{Binding ExclusionCriteria}"
                               Height="200"
                               Width="500">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Criteria">
                                 <StackPanel Orientation="Horizontal">
-                                    <!--Todo Add Data layout here -->
+                                    <TextBlock Text="Name:" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{x:Bind Name}" Margin="5,0,0,0" FontWeight="SemiLight"/>
+                                    <TextBlock Text="Description:" FontWeight="SemiBold" Margin="50,0,0,0"/>
+                                    <TextBlock Text="{x:Bind Description}" Margin="5,0,0,0" FontWeight="SemiLight"/>
+                                    <TextBlock Text="Type:" FontWeight="SemiBold" Margin="50,0,0,0"/>
+                                    <TextBlock Text="{x:Bind FieldTag}" Margin="5,0,0,0" FontWeight="SemiLight"/>
+                                    <TextBlock Text="Default Value:" FontWeight="SemiBold" Margin="50,0,0,0"/>
+                                    <TextBlock Text="{x:Bind Value}" FontWeight="SemiLight" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -74,9 +81,6 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
                         <Button x:Name="DeleteExclusionBut" Style="{StaticResource TableButton}">
                             <SymbolIcon Symbol="Delete"/>
-                        </Button>
-                        <Button x:Name="EditExclusionBut" Style="{StaticResource TableButton}">
-                            <SymbolIcon Symbol="Edit"/>
                         </Button>
                         <Button x:Name="AddExclusionBut" Style="{StaticResource TableButton}" Click="AddExclusionBut_OnClick">
                             <SymbolIcon Symbol="Add"/>
@@ -95,7 +99,14 @@
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Criteria">
                                 <StackPanel Orientation="Horizontal">
-                                    <!--Todo Add Data layout here -->
+                                    <TextBlock Text="Name:" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{x:Bind Name}" Margin="5,0,0,0" FontWeight="SemiLight"/>
+                                    <TextBlock Text="Description:" FontWeight="SemiBold" Margin="50,0,0,0"/>
+                                    <TextBlock Text="{x:Bind Description}" Margin="5,0,0,0" FontWeight="SemiLight"/>
+                                    <TextBlock Text="Type:" FontWeight="SemiBold" Margin="50,0,0,0"/>
+                                    <TextBlock Text="{x:Bind FieldTag}" Margin="5,0,0,0" FontWeight="SemiLight"/>
+                                    <TextBlock Text="Default Value:" FontWeight="SemiBold" Margin="50,0,0,0"/>
+                                    <TextBlock Text="{x:Bind Value}" FontWeight="SemiLight" />
                                 </StackPanel>
 
                             </DataTemplate>
@@ -136,14 +147,16 @@
                              Header="Name:" 
                              PlaceholderText="Name of Criteria" 
                              Width="300" HorizontalAlignment="Left" 
-                             Margin="0,10,0,10"/>
+                             Margin="0,10,0,10"
+                             TextChanging="CheckTextInput"/>
 
                     <TextBox x:Name="CriteriaDescriptionBox" 
                              Header="Description:" 
                              PlaceholderText="Description of criteria"
                              Width="{Binding ElementName=CriteriaNameBox, Path=ActualWidth}" 
                              Height="75" 
-                             Margin="0,10,0,0" HorizontalAlignment="Left"/>
+                             Margin="0,10,0,0" HorizontalAlignment="Left"
+                             TextChanging="CheckTextInput"/>
 
 
                     <ComboBox x:Name="TagComboBox" 
@@ -176,7 +189,8 @@
                              Header="Name:" 
                              PlaceholderText="Value of comparator eg: John Doe if tag is Author " 
                              Width="300" HorizontalAlignment="Left" 
-                             Margin="0,10,0,10"/>
+                             Margin="0,10,0,10"
+                             TextChanging="CheckTextInput"/>
 
                 </StackPanel>
             </ScrollViewer>

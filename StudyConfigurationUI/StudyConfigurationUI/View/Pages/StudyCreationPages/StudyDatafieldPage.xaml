@@ -85,7 +85,8 @@
                              PlaceholderText="Name of datafield" 
                              Width="300" HorizontalAlignment="Left" 
                              Margin="0,10,0,10"
-                             TextChanging="CheckTextInput"/>
+                             TextChanging="CheckTextInput"
+                             />
 
                     <TextBox x:Name="DatafieldDescriptionBox" 
                              Header="Description:" 

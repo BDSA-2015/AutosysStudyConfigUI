@@ -35,10 +35,6 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
             //throw new NotImplementedException();
         }
 
-        private void ExclusionCreationWindow_OnOpened(ContentDialog sender, ContentDialogOpenedEventArgs args)
-        {
-            //throw new NotImplementedException();
-        }
 
         private void ExclusionComparator_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -56,29 +52,44 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
             //throw new NotImplementedException();
         }
 
-        private void InclusionCreationWindow_OnOpened(ContentDialog sender, ContentDialogOpenedEventArgs args)
-        {
-            ///throw new NotImplementedException();
-        }
-
-        private void InclusionTagComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //throw new NotImplementedException();
-        }
-
-        private void InclusionComparator_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //throw new NotImplementedException();
-        }
 
         private async void AddInclusionBut_OnClick(object sender, RoutedEventArgs e)
         {
             await CriteriaCreationWindow.ShowAsync();
+            ResetFields();
         }
 
         private async void AddExclusionBut_OnClick(object sender, RoutedEventArgs e)
         {
             await CriteriaCreationWindow.ShowAsync();
+            ResetFields();
         }
+
+
+        private void CheckTextInput(TextBox sender, TextBoxTextChangingEventArgs args)
+        {
+
+            if (!string.IsNullOrWhiteSpace(CriteriaNameBox.Text) &&
+                !string.IsNullOrWhiteSpace(CriteriaDescriptionBox.Text) &&
+                !string.IsNullOrWhiteSpace(CriteriaValueBox.Text))
+                CriteriaCreationWindow.IsPrimaryButtonEnabled = true;
+            else
+                CriteriaCreationWindow.IsPrimaryButtonEnabled = false;
+        
+        }
+
+        /// <summary>
+        /// Resets every fields in popup window
+        /// </summary>
+        private void ResetFields()
+        {
+            CriteriaNameBox.Text = "";
+            CriteriaDescriptionBox.Text = "";
+            CriteriaValueBox.Text ="";
+            TagComboBox.SelectedIndex = -1;
+            CriteriaComparatorComboBox.SelectedIndex = -1;   
+            CriteriaCreationWindow.IsPrimaryButtonEnabled = false;
+        }
+
     }
 }

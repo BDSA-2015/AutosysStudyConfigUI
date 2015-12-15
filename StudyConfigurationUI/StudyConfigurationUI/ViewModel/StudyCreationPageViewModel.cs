@@ -75,6 +75,9 @@ namespace StudyConfigurationUI.ViewModel
         public ObservableCollection<Phase> Phases { get; }
         public ObservableCollection<User> AllUsers { get; }
         public ObservableCollection<Datafield> Datafields { get; }
+        public ObservableCollection<Criteria> ExclusionCriteria { get; }
+        public ObservableCollection<Criteria> InclusionCriteria { get; }
+
         public IList<User> SelectedUsers { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
