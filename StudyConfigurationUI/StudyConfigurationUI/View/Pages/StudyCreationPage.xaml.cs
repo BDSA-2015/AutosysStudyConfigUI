@@ -22,45 +22,14 @@ namespace StudyConfigurationUI.View.Pages
     /// </summary>
     public sealed partial class StudyCreationPage : Page
     {
-        private StudyCreationPageViewModel _viewModel;
 
         public StudyCreationPage()
         {
             InitializeComponent();
-            _viewModel = new StudyCreationPageViewModel();
-            DataContext = _viewModel;
+            DataContext = App.StudyViewModel;
             StudyPageFrame.Navigate(typeof (StudyGeneralSettingsPage));
         }
 
-        private async void SubmitBut_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (!_viewModel.ValidateStudy())
-            {
-                var errorMsg =
-                    new MessageDialog("Study has not been configured correctly. Please validate your settings again")
-                    {
-                        Title = "Error"
-                    };
-                return;
-            }
-
-
-            var dialog = new MessageDialog(
-                "Are you sure you want to submit the Study?")
-            {Title = "Submit Phase."};
-            dialog.Commands.Add(new UICommand("Yes") {Id = 0});
-            dialog.Commands.Add(new UICommand("No") {Id = 1});
-
-            dialog.DefaultCommandIndex = 1;
-            dialog.CancelCommandIndex = 1;
-
-            var choice = await dialog.ShowAsync();
-
-            if (choice.Id.Equals(0))
-            {
-                //Todo Submit method
-            }
-        }
 
 
         /// <summary>

@@ -14,7 +14,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using StudyConfigurationUI.Model;
 using StudyConfigurationUI.View;
+using StudyConfigurationUI.ViewModel;
 
 namespace StudyConfigurationUI
 {
@@ -35,6 +37,21 @@ namespace StudyConfigurationUI
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
+
+
+        private static StudyCreationPageViewModel _studyViewModel; 
+        /// <summary>
+        /// Returns StudCreation ViewModel
+        /// </summary>
+        public static StudyCreationPageViewModel StudyViewModel   
+        {
+            get { return _studyViewModel ?? (_studyViewModel = new StudyCreationPageViewModel()); }
+        }
+
+        /// <summary>
+        /// Returns cache 
+        /// </summary>
+        public static LocalCache Cache => LocalCache.GetCache();
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points

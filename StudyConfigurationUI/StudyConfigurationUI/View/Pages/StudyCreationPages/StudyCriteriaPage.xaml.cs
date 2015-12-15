@@ -7,6 +7,7 @@
 using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using StudyConfigurationUI.ViewModel;
 
 #endregion
 
@@ -19,9 +20,12 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
     /// </summary>
     public sealed partial class StudyCriteriaPage : Page
     {
+        private StudyCreationPageViewModel _viewModel;
         public StudyCriteriaPage()
         {
             InitializeComponent();
+            _viewModel = App.StudyViewModel;
+            DataContext = _viewModel;
         }
 
         private void CriteriaCreationWindow_OnPrimaryButtonClick(ContentDialog sender,
