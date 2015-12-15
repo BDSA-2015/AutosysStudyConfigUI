@@ -110,7 +110,6 @@
     <Compile Include="ViewModel\PhaseCreationViewModels\PhaseCreationViewModel.cs" />
     <Compile Include="ViewModel\PhaseViewModel.cs" />
     <Compile Include="ViewModel\StudyCreationPageViewModel.cs" />
-    <Compile Include="ViewModel\ResourcePageViewModel.cs" />
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
