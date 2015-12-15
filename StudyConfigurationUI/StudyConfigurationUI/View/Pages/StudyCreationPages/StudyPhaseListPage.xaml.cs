@@ -8,7 +8,6 @@ using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using StudyConfigurationUI.View.Pages.PhaseCreationPages.SubPages;
 using StudyConfigurationUI.ViewModel;
 using PhaseSetupPage = StudyConfigurationUI.View.Pages.PhaseCreationPages.PhaseSetupPage;
 
@@ -59,9 +58,15 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
             }
         }
 
-        private void AddPhaseBut_OnClick(object sender, RoutedEventArgs e)
+        private async void AddPhaseBut_OnClick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof (PhaseSetupPage));
+            var dto = _viewModel.AddPhase();
+            if( dto == null)
+            {
+                var dialog = new MessageDialog("Something went wrong when creating phase") {Title = "Error"};
+                await dialog.ShowAsync();
+            }
+            else Frame.Navigate(typeof (PhaseSetupPage),dto);
         }
     }
 }
