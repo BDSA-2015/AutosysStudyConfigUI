@@ -21,8 +21,8 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="OverviewLabel.FontSize" Value="12" />
-                        <Setter Target="TeamsLabel.FontSize" Value="12" />
+                        <Setter Target="GeneralLabel.FontSize" Value="12" />
+                        <Setter Target="PhaseLabel.FontSize" Value="12" />
                         <Setter Target="DatafieldLabel.FontSize" Value="12" />
                         <Setter Target="CriteriasLabel.FontSize" Value="12" />
                     </VisualState.Setters>
@@ -33,8 +33,8 @@
                         <AdaptiveTrigger MinWindowWidth="720" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="OverviewLabel.FontSize" Value="13" />
-                        <Setter Target="TeamsLabel.FontSize" Value="13" />
+                        <Setter Target="GeneralLabel.FontSize" Value="13" />
+                        <Setter Target="PhaseLabel.FontSize" Value="13" />
                         <Setter Target="DatafieldLabel.FontSize" Value="13" />
                         <Setter Target="CriteriasLabel.FontSize" Value="13" />
                     </VisualState.Setters>
@@ -45,8 +45,8 @@
                         <AdaptiveTrigger MinWindowWidth="1080" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="OverviewLabel.FontSize" Value="14" />
-                        <Setter Target="TeamsLabel.FontSize" Value="14" />
+                        <Setter Target="GeneralLabel.FontSize" Value="14" />
+                        <Setter Target="PhaseLabel.FontSize" Value="14" />
                         <Setter Target="DatafieldLabel.FontSize" Value="14" />
                         <Setter Target="CriteriasLabel.FontSize" Value="14" />
                     </VisualState.Setters>

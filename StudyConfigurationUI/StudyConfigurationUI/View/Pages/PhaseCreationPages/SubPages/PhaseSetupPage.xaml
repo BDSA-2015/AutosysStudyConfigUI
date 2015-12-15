@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="StudyConfigurationUI.View.Pages.PhaseCreationPages.SubPages.PhaseOverviewPage"
+    x:Class="StudyConfigurationUI.View.Pages.PhaseCreationPages.SubPages.PhaseSetupPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:StudyConfigurationUI.View.Pages.PhaseCreationPages.SubPages"
@@ -28,8 +28,14 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="CriteriaTable.(Grid.Column)" Value="1" />
-                        <Setter Target="CriteriaTable.(Grid.Row)" Value="0" />
+                        <Setter Target="TextboxPane.(Grid.Column)" Value="1"/>
+                        <Setter Target="TextboxPane.(Grid.Row)" Value="0"/>
+                        <Setter Target="RolesTable.(Grid.Column)" Value="1" />
+                        <Setter Target="RolesTable.(Grid.Row)" Value="1" />
+                        <Setter Target="VisibleDataFieldTable.(Grid.Column)" Value="1" />
+                        <Setter Target="VisibleDataFieldTable.(Grid.Row)" Value="2" />
+                        <Setter Target="RequestedDatafieldTable.(Grid.Column)" Value="1" />
+                        <Setter Target="RequestedDatafieldTable.(Grid.Row)" Value="3" />
                         <Setter Target="LeftColumn.Width" Value="Auto" />
                         <Setter Target="CommandBar.ClosedDisplayMode" Value="Minimal" />
                     </VisualState.Setters>
@@ -40,8 +46,10 @@
                         <AdaptiveTrigger MinWindowWidth="1080" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="CriteriaTable.(Grid.Column)" Value="0" />
-                        <Setter Target="CriteriaTable.(Grid.Row)" Value="2" />
+                        <Setter Target="VisibleDataFieldTable.(Grid.Column)" Value="0" />
+                        <Setter Target="VisibleDataFieldTable.(Grid.Row)" Value="2" />
+                        <Setter Target="TextboxPane.(Grid.Column)" Value="0"/>
+                        <Setter Target="TextboxPane.(Grid.Row)" Value="1"/>
                         <Setter Target="LeftColumn.Width" Value="*" />
                         <Setter Target="CommandBar.ClosedDisplayMode" Value="Compact" />
                     </VisualState.Setters>
@@ -51,25 +59,36 @@
         </VisualStateManager.VisualStateGroups>
 
         <!-- Description header -->
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">
-            <TextBlock Text="Phase Setup:" Margin="10,10,0,0" FontSize="14" FontWeight="SemiBold" />
-            <TextBlock Text="You can set up a phase in this page" Margin="10,0,0,0"
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" >
+                <TextBlock Text="Phase Setup:" Margin="10,10,0,0" FontSize="14" FontWeight="SemiBold" />
+                <TextBlock Text="You can set up a phase in this page" Margin="10,0,0,0"
                        FontSize="12" FontWeight="Light" TextWrapping="WrapWholeWords" MaxWidth="200" />
+            </StackPanel>
+   
+
         </StackPanel>
 
+
         <!-- Table Pane -->
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" ViewChanged="ScrollViewer_ViewChanged">
             <Grid x:Name="InnerGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition x:Name="LeftColumn" Width="*" />
                     <ColumnDefinition x:Name="Right" Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition/>
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
+                <!-- Textboxes -->
+                <StackPanel Name="TextboxPane" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20">
+                    <TextBox Name="NameTextBox" Header="Name:" PlaceholderText="Name of phase" Width="300"/>
+                    <TextBox Name="DescriptionTextBox" Header="Description" PlaceholderText="Description of phase" TextWrapping="Wrap" Height="200" Width="300"/>
+                </StackPanel>
 
                 <!-- Tables -->
                 <StackPanel x:Name="RolesTable" VerticalAlignment="Center" Margin="20" Grid.Column="1" Grid.Row="1">
@@ -88,10 +107,10 @@
                     </ListView>
                 </StackPanel>
 
-                <StackPanel x:Name="VisibleDataFieldTable" VerticalAlignment="Bottom" Margin="20" Grid.Column="1" Grid.Row="2">
+                <StackPanel x:Name="VisibleDataFieldTable" VerticalAlignment="Bottom" Margin="20" Grid.Column="0" Grid.Row="2">
                     <TextBlock Text="VisibleDataFieldTable" FontWeight="Medium" FontSize="18" />
 
-                    <ListView SelectionMode="None" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
+                    <ListView SelectionMode="Single" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
                               ItemsSource="{Binding Datafields}"
                               Height="200">
                         <ListView.ItemTemplate>
@@ -106,27 +125,30 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                        <ComboBox Header="Tags" PlaceholderText="..." ItemsSource="{Binding Datafields}">
+                        <ComboBox Name="VisibleFields" Header="Tags" PlaceholderText="..." ItemsSource="{Binding Datafields}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="data:Datafield">
                                     <ComboBoxItem Content="{x:Bind Name}"/>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <Button Margin="10,0,0,0" Content="Add"/>
+                        <Button Name="AddVisibleFieldsBut" Margin="5,27,0,0" Content="Add" Style="{StaticResource TableButton}" BorderBrush="Gray"/>
+                        <Button Name="DeleteVisibleFieldsBut" Margin="5,27,0,0" Style="{StaticResource TableButton}"  BorderBrush="Gray">
+                            <SymbolIcon Symbol="Delete"/>
+                        </Button>
                     </StackPanel>
-                 
+
                 </StackPanel>
-            
 
-                <StackPanel x:Name="CriteriaTable" VerticalAlignment="Bottom" Margin="20" Grid.Column="0" Grid.Row="2">
-                    <TextBlock Text="Criteria" FontWeight="Medium" FontSize="18" />
 
-                    <ListView SelectionMode="None" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
-                              ItemsSource="{Binding Criterias}"
+                <StackPanel x:Name="RequestedDatafieldTable" VerticalAlignment="Bottom" Margin="20" Grid.Column="1" Grid.Row="2">
+                    <TextBlock Text="Requested Datafields" FontWeight="Medium" FontSize="18" />
+
+                    <ListView SelectionMode="Single" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
+                              ItemsSource="{Binding Datafields}"
                               Height="200">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="data:Criteria">
+                            <DataTemplate x:DataType="data:Datafield">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Name:" Margin="10,0,10,0" Style="{StaticResource ItemText}"
                                                FontWeight="SemiBold" />
@@ -136,19 +158,23 @@
                                                FontWeight="SemiBold" />
                                     <TextBlock x:Name="Description" Text="{Binding Description}"
                                                Style="{StaticResource ItemText}" />
-
-                                    <TextBlock Text="Comparator:" Margin="10,0,10,0" Style="{StaticResource ItemText}"
-                                               FontWeight="SemiBold" />
-                                    <TextBlock x:Name="Comparator" Text="{Binding Comparator}"
-                                               Style="{StaticResource ItemText}" />
-
-                                    <TextBlock Text="Value:" Margin="10,0,10,0" Style="{StaticResource ItemText}"
-                                               FontWeight="SemiBold" />
-                                    <TextBlock x:Name="Value" Text="{Binding Value}" Style="{StaticResource ItemText}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <ComboBox Name="RequestedFields" Header="Tags" PlaceholderText="..." ItemsSource="{Binding Datafields}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="data:Datafield">
+                                    <ComboBoxItem Content="{x:Bind Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button Name="AddRequestedFieldsBut" Margin="5,27,0,0" Content="Add" Style="{StaticResource TableButton}" BorderBrush="Gray"/>
+                        <Button Name="DeleteRequestedFieldsBut" Margin="5,27,0,0" Style="{StaticResource TableButton}"  BorderBrush="Gray">
+                            <SymbolIcon Symbol="Delete"/>
+                        </Button>
+                    </StackPanel>
                 </StackPanel>
 
             </Grid>
