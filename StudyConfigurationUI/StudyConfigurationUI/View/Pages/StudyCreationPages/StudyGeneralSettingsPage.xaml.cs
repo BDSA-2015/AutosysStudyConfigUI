@@ -45,10 +45,17 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
             };
 
             var file = await filePicker.PickSingleFileAsync();
-
             if (file != null)
             {
                 SelectedFileLabel.Text = file.Path;
+               
+                var isSucces = await _viewModel.AddResourceFile(file);
+                if (!isSucces)
+                {
+                    var dialog = new MessageDialog("Something went wrong while loading file.") {Title = "Error"};
+                    await dialog.ShowAsync();
+                    SelectedFileLabel.Text = "";
+                }
             }
         }
 

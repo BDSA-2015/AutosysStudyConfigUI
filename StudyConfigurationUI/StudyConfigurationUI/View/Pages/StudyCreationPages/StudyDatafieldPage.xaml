@@ -31,7 +31,7 @@
                     <TextBlock Text="Datafields" FontWeight="Medium" FontSize="18" />
 
                     <ListView x:Name="DatafieldsTable"  SelectionMode="Single" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
-                              ItemsSource="{Binding CreatedDatafields}"
+                              ItemsSource="{Binding Datafields}"
                               Height="200">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Datafield">

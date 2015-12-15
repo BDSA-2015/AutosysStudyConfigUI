@@ -5,6 +5,9 @@
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Data.Json;
+using Windows.Storage;
+using Newtonsoft.Json;
 
 namespace StudyConfigurationUI.Model
 {
@@ -14,30 +17,27 @@ namespace StudyConfigurationUI.Model
     public class FileHandler
     {
         /// <summary>
-        /// Read file into as string. This was taken from 
-        /// <code>https://msdn.microsoft.com/library/jj155757.aspx?cs-save-lang=1&cs-lang=csharp#code-snippet-4 <code/>
+        /// Read file into as string and converts it into JSON
         /// </summary>
-        /// <param name="filePath">Path to file</param>
+        /// <param name="file">Path to file</param>
         /// <returns> file as a string</returns>
-        private async Task<string> ReadTextAsync(string filePath)
+        public async Task<string> Parse(StorageFile file)
         {
-            using (FileStream sourceStream = new FileStream(filePath,
-                FileMode.Open, FileAccess.Read, FileShare.Read,
-                bufferSize: 4096, useAsync: true))
+           return await Task.Run(() =>
             {
+                var fileStream = file.OpenStreamForReadAsync();
                 var sb = new StringBuilder();
-
-                byte[] buffer = new byte[0x1000];
-                int numRead;
-                while ((numRead = await sourceStream.ReadAsync(buffer, 0, buffer.Length)) != 0)
+                using (var reader = new StreamReader(fileStream.Result))
                 {
-                    string text = Encoding.Unicode.GetString(buffer, 0, numRead);
-                    sb.Append(text);
+                    string line; 
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        sb.AppendLine(line);
+                    }
                 }
-
                 return sb.ToString();
-            }
-
+            });
+      
         }
     }
 }

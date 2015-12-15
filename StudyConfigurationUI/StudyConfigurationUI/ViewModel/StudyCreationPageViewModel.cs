@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using Windows.Storage;
 using StudyConfigurationUI.Annotations;
 using StudyConfigurationUI.Model;
 using StudyConfigurationUI.Model.Handlers;
@@ -22,7 +24,7 @@ namespace StudyConfigurationUI.ViewModel
     {
         private string _description;
         private string _name;
-        private string _selectedFile;
+        private string _loadedFile;
 
 
         public StudyCreationPageViewModel()
@@ -31,7 +33,7 @@ namespace StudyConfigurationUI.ViewModel
             AllUsers = new ObservableCollection<User>();
             Datafields = new ObservableCollection<Datafield>();
             SelectedUsers = new List<User>();
-            SelectedFile = "";
+            LoadedFile = "";
             AddCachedUsers();
             AddPredefinedDatafields();
         }
@@ -58,13 +60,13 @@ namespace StudyConfigurationUI.ViewModel
             }
         }
 
-        public string SelectedFile
+        public string LoadedFile
         {
-            get { return _selectedFile; }
+            get { return _loadedFile; }
             set
             {
-                if (value == _selectedFile) return;
-                _selectedFile = value;
+                if (value == _loadedFile) return;
+                _loadedFile = value;
                 OnPropertyChanged();
             }
         }
@@ -184,7 +186,7 @@ namespace StudyConfigurationUI.ViewModel
         public void DeleteDatafield(int selectedItem)
         {
             var toDelete = Datafields[selectedItem];
-            if(toDelete.Type == "predifined")return;
+            if (toDelete.Type == "predifined") return;
             Datafields.RemoveAt(selectedItem);
         }
 
@@ -203,7 +205,30 @@ namespace StudyConfigurationUI.ViewModel
             }
         }
 
-      
-
+        //ResourceFileMethods
+        /// <summary>
+        /// Read content of resource file and load it to memory
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns> Task if successful
+        /// </returns>
+        public async Task<bool> AddResourceFile(StorageFile file)
+        {
+            try
+            {
+                var handler = new FileHandler();
+                var parsedFile = await handler.Parse(file);
+                if (!string.IsNullOrWhiteSpace(parsedFile))
+                {
+                    LoadedFile = parsedFile;
+                    return true;
+                }
+                return false;
+            }
+            catch (InvalidOperationException)
+            {
+                return false;
+            }
+        }
     }
 }
