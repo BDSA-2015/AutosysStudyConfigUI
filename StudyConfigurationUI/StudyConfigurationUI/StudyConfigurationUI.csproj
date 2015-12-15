@@ -100,6 +100,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\FileHandler.cs" />
+    <Compile Include="Model\Handlers\CriteriaHandler.cs" />
     <Compile Include="Model\Handlers\DatafieldHandler.cs" />
     <Compile Include="Model\LocalCache.cs" />
     <Compile Include="Model\PhaseModels\Criteria.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="View\Pages\StudyCreationPages\StudyPhaseListPage.xaml.cs">
       <DependentUpon>StudyPhaseListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewDTO\ViewCriteriaDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

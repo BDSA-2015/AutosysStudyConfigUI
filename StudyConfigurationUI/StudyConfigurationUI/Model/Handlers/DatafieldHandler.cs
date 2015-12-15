@@ -13,10 +13,11 @@ namespace StudyConfigurationUI.Model.Handlers
         {
             var customDatafield = new Datafield()
             {
-                Name = name,
-                Description = description,
-                Type = type,
-                FieldData = new[] { value }
+                Name = name.Trim(),
+                Description = description.Trim(),
+                Type = type.Trim(),
+                FieldData = new[] { value.Trim() }
+                
             };
             if (IsCustomValid(customDatafield)) return customDatafield;
             else throw new ArgumentException("Invalid data entered");

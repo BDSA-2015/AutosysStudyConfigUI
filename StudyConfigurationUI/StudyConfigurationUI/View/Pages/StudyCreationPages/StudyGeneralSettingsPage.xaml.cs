@@ -67,6 +67,7 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
                     {
                         Title = "Error"
                     };
+                await errorMsg.ShowAsync();
                 return;
             }
 
@@ -93,6 +94,26 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
         {
             var selections = MembersTable.SelectedItems.Cast<User>().ToList();
             _viewModel.AddSelectedUsers(selections);
+        }
+
+
+        private async void ResetStudyBut_OnClick(object sender, RoutedEventArgs e)
+        {
+            var dialog = new MessageDialog(
+            "Are you sure you want to reset the study configuration? THIS CAN NOT BE UNDONE.")
+            { Title = "Warning - Reset of study" };
+            dialog.Commands.Add(new UICommand("Yes") { Id = 0 });
+            dialog.Commands.Add(new UICommand("No") { Id = 1 });
+
+            dialog.DefaultCommandIndex = 1;
+            dialog.CancelCommandIndex = 1;
+
+            var choice = await dialog.ShowAsync();
+
+            if (choice.Id.Equals(0))
+            {
+                _viewModel.ResetConfiguration();
+            }
         }
     }
 }

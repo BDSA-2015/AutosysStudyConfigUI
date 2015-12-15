@@ -5,6 +5,7 @@
 #region
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -15,25 +16,41 @@ using StudyConfigurationUI.Annotations;
 using StudyConfigurationUI.Model;
 using StudyConfigurationUI.Model.Handlers;
 using StudyConfigurationUI.Model.PhaseModels;
+using StudyConfigurationUI.View.ViewDTO;
 
 #endregion
 
 namespace StudyConfigurationUI.ViewModel
 {
+    /// <summary>
+    /// view model for study creation
+    /// </summary>
     public class StudyCreationPageViewModel : INotifyPropertyChanged
     {
         private string _description;
-        private string _name;
         private string _loadedFile;
+        private string _name;
 
 
         public StudyCreationPageViewModel()
         {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Initialize view model.
+        /// </summary>
+        private void Initialize()
+        {
+            Name = "";
+            Description = "";
+            LoadedFile = "";
             Phases = new ObservableCollection<Phase>();
             AllUsers = new ObservableCollection<User>();
             Datafields = new ObservableCollection<Datafield>();
+            ExclusionCriteria = new ObservableCollection<Criteria>();
+            InclusionCriteria = new ObservableCollection<Criteria>();
             SelectedUsers = new List<User>();
-            LoadedFile = "";
             AddCachedUsers();
             AddPredefinedDatafields();
         }
@@ -72,12 +89,15 @@ namespace StudyConfigurationUI.ViewModel
         }
 
 
-        public ObservableCollection<Phase> Phases { get; }
-        public ObservableCollection<User> AllUsers { get; }
-        public ObservableCollection<Datafield> Datafields { get; }
-        public ObservableCollection<Criteria> ExclusionCriteria { get; }
-        public ObservableCollection<Criteria> InclusionCriteria { get; }
+        public ObservableCollection<Phase> Phases { get; set; }
+        public ObservableCollection<User> AllUsers { get; set; }
+        public ObservableCollection<Datafield> Datafields { get; set; }
+        public ObservableCollection<Criteria> ExclusionCriteria { get; set; }
+        public ObservableCollection<Criteria> InclusionCriteria { get; set; }
 
+        /// <summary>
+        /// Selected users for the study
+        /// </summary>
         public IList<User> SelectedUsers { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -125,13 +145,13 @@ namespace StudyConfigurationUI.ViewModel
         /// <returns></returns>
         public bool ValidateStudy()
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         //UserMethods
 
         /// <summary>
-        /// Add all users retrieved from server
+        ///     Add all users retrieved from server
         /// </summary>
         private void AddCachedUsers()
         {
@@ -143,11 +163,10 @@ namespace StudyConfigurationUI.ViewModel
                     AllUsers.Add(user);
                 }
             }
-
         }
 
         /// <summary>
-        /// Add selected user to study. 
+        ///     Add selected user to study.
         /// </summary>
         /// <param name="selectedUsers"></param>
         public void AddSelectedUsers(IList<User> selectedUsers)
@@ -158,8 +177,14 @@ namespace StudyConfigurationUI.ViewModel
 
         //DatafieldMethods
 
+        public bool CheckDataField()
+        {
+            return Datafields.Count != 0;
+        }
+
+
         /// <summary>
-        /// Add a custom datafield defined in UI
+        ///     Add a custom datafield defined in UI
         /// </summary>
         /// <param name="name"> of datafield</param>
         /// <param name="description"></param>
@@ -179,11 +204,10 @@ namespace StudyConfigurationUI.ViewModel
             {
                 return false;
             }
-
         }
 
         /// <summary>
-        /// Removes a datafield from collection
+        ///     Removes a datafield from collection
         /// </summary>
         /// <param name="selectedItem"></param>
         public void DeleteDatafield(int selectedItem)
@@ -194,7 +218,7 @@ namespace StudyConfigurationUI.ViewModel
         }
 
         /// <summary>
-        /// Add all predefined datafields from database.
+        ///     Add all predefined datafields from database.
         /// </summary>
         private void AddPredefinedDatafields()
         {
@@ -210,10 +234,11 @@ namespace StudyConfigurationUI.ViewModel
 
         //ResourceFileMethods
         /// <summary>
-        /// Read content of resource file and load it to memory
+        ///     Read content of resource file and load it to memory
         /// </summary>
         /// <param name="file"></param>
-        /// <returns> Task if successful
+        /// <returns>
+        ///     Task if successful
         /// </returns>
         public async Task<bool> AddResourceFile(StorageFile file)
         {
@@ -233,5 +258,100 @@ namespace StudyConfigurationUI.ViewModel
                 return false;
             }
         }
+
+
+        /// <summary>
+        ///     Adds inclusion criteria
+        /// </summary>
+        /// <param name="dto">dto of criteria</param>
+        /// <returns> if adding criteria is successful</returns>
+        public bool AddInclusionCriteria(ViewCriteriaDto dto)
+        {
+            try
+            {
+                return AddCriteria(InclusionCriteria, dto);
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+            catch (NullReferenceException)
+            {
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        ///     Adds exclusion criteria
+        /// </summary>
+        /// <param name="dto">dto of criteria given from view</param>
+        /// <returns> if adding criteria is successful</returns>
+        public bool AddExclusionCriteria(ViewCriteriaDto dto)
+        {
+            try
+            {
+                return AddCriteria(ExclusionCriteria, dto);
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+            catch (NullReferenceException)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        ///     Add criteria to a observable collection
+        /// </summary>
+        /// <param name="list"> Observable collection</param>
+        /// <param name="dto"> dto of criteria given from view</param>
+        /// <returns></returns>
+        private bool AddCriteria(ICollection<Criteria> list, ViewCriteriaDto dto)
+        {
+            var handler = new CriteriaHandler();
+            var criteria = handler.CreateCriteria(dto);
+            list.Add(criteria);
+            return true;
+        }
+
+        /// <summary>
+        ///     Delete criteria from inclusion list
+        /// </summary>
+        /// <param name="selectedIndex"> criteria to delete</param>
+        public void DeleteInclusionCriteria(int selectedIndex)
+        {
+            DeleteCriteria(InclusionCriteria, selectedIndex);
+        }
+
+        /// <summary>
+        ///     Delete criteria from inclusion list
+        /// </summary>
+        /// <param name="selectedIndex">criteria to delete</param>
+        public void DeleteExclusionCriteria(int selectedIndex)
+        {
+            DeleteCriteria(ExclusionCriteria, selectedIndex);
+        }
+
+        /// <summary>
+        ///     Deletes a criteria from an observable list
+        /// </summary>
+        /// <param name="list"> observable list</param>
+        /// <param name="index"> of criteria to delete</param>
+        private void DeleteCriteria(IList list, int index)
+        {
+            list.RemoveAt(index);
+        }
+
+        /// <summary>
+        /// Resets the study configuration
+        /// </summary>
+        public void ResetConfiguration()
+        {
+            Initialize();
+        }
+
     }
 }

@@ -43,7 +43,7 @@
                                     <TextBlock Text="Type:" FontWeight="SemiBold" Margin="50,0,0,0"/>
                                     <TextBlock Text="{x:Bind Type}" Margin="5,0,0,0" FontWeight="SemiLight"/>
                                     <TextBlock Text="Default Value:" FontWeight="SemiBold" Margin="50,0,0,0"/>
-                                    <TextBlock Text="{x:Bind FieldData[0]}" FontWeight="SemiLight" />
+                                    <TextBlock Text="{x:Bind FieldData[0]}" FontWeight="SemiLight" Margin="5,0,0,0" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
