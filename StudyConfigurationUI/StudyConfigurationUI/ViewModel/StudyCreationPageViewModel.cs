@@ -1,4 +1,10 @@
-﻿using System;
+﻿// StudyCreationPageViewModel.cs is a part of Autosys project in BDSA-2015. Created: 14, 12, 2015.
+// Creators: Dennis Thinh Tan Nguyen, William Diedricsehn Marstrand, Thor Valentin Aakjær Olesen Nielsen, 
+// Jacob Mullit Møiniche.
+
+#region
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,10 +12,31 @@ using System.Runtime.CompilerServices;
 using StudyConfigurationUI.Annotations;
 using StudyConfigurationUI.Model.PhaseModels;
 
+#endregion
+
 namespace StudyConfigurationUI.ViewModel
 {
     public class StudyCreationPageViewModel : INotifyPropertyChanged
     {
+        private string _description;
+        private string _name;
+        private string _selectedFile;
+
+
+        public StudyCreationPageViewModel()
+        {
+            Phases = new ObservableCollection<Phase>();
+            AllUsers= new ObservableCollection<User>();
+            SelectedUsers = new List<User>();
+            SelectedFile = "";
+            Phases.Add(new Phase()
+            {
+                Name = "Phase 1 Test",
+                Description = "This is just a test of a phase object added to phase collection"
+            });
+        }
+
+
         public string Name
         {
             get { return _name; }
@@ -20,7 +47,6 @@ namespace StudyConfigurationUI.ViewModel
                 OnPropertyChanged();
             }
         }
-        private string _name;
 
         public string Description
         {
@@ -32,20 +58,25 @@ namespace StudyConfigurationUI.ViewModel
                 OnPropertyChanged();
             }
         }
-        private string _description;
 
-        public ObservableCollection<Phase> Phases { get; } 
-        public ObservableCollection<User> AllUsers { get; } 
-        public IList<User> SelectedUsers { get;} 
+        public string SelectedFile
+        {
+            get { return _selectedFile; }
+            set
+            {
+                if (value == _selectedFile) return;
+                _selectedFile = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public ObservableCollection<Phase> Phases { get; }
+        public ObservableCollection<User> AllUsers { get; }
+        public IList<User> SelectedUsers { get; }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-
-        public StudyCreationPageViewModel()
-        {
-            Phases = new ObservableCollection<Phase>();
-            Phases.Add(new Phase() {Name = "Phase 1 Test", Description = "This is just a test of a phase object added to phase collection"});
-        }
 
 
         [NotifyPropertyChangedInvocator]
@@ -55,7 +86,7 @@ namespace StudyConfigurationUI.ViewModel
         }
 
         /// <summary>
-        /// Add a phase to collection and returns it for creation
+        ///     Add a phase to collection and returns it for creation
         /// </summary>
         /// <returns>Phase object</returns>
         public Phase AddPhase()
@@ -66,7 +97,7 @@ namespace StudyConfigurationUI.ViewModel
         }
 
         /// <summary>
-        /// Delete a given phase
+        ///     Delete a given phase
         /// </summary>
         /// <param name="selectedIndex"> Selected phase in UI</param>
         public void DeletePhase(int selectedIndex)
@@ -75,7 +106,7 @@ namespace StudyConfigurationUI.ViewModel
         }
 
         /// <summary>
-        /// Gets a phase selected from UI
+        ///     Gets a phase selected from UI
         /// </summary>
         /// <param name="selectedIndex"> selected phase</param>
         /// <returns> Phase Object</returns>
@@ -85,7 +116,7 @@ namespace StudyConfigurationUI.ViewModel
         }
 
         /// <summary>
-        /// Validates the study if the configuration is correct.
+        ///     Validates the study if the configuration is correct.
         /// </summary>
         /// <returns></returns>
         public bool ValidateStudy()
