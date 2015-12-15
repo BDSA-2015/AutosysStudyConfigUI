@@ -99,21 +99,18 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\FileHandler.cs" />
+    <Compile Include="Model\Handlers\CriteriaHandler.cs" />
+    <Compile Include="Model\Handlers\DatafieldHandler.cs" />
+    <Compile Include="Model\LocalCache.cs" />
     <Compile Include="Model\PhaseModels\Criteria.cs" />
-    <Compile Include="Model\PhaseModels\BibTag.cs" />
     <Compile Include="Model\PhaseModels\Datafield.cs" />
     <Compile Include="Model\PhaseModels\Phase.cs" />
-    <Compile Include="Model\PhaseModels\Member.cs" />
-    <Compile Include="Model\PhaseModels\Task.cs" />
-    <Compile Include="Model\PhaseModels\Team.cs" />
+    <Compile Include="Model\PhaseModels\PhaseMember.cs" />
     <Compile Include="Model\PhaseModels\User.cs" />
-    <Compile Include="Model\ServerHandler\Models\DataField.cs" />
-    <Compile Include="Model\ServerHandler\Models\StageOverview.cs" />
-    <Compile Include="Model\ServerHandler\Models\StudyOverview.cs" />
-    <Compile Include="Model\ServerHandler\Models\Team.cs" />
     <Compile Include="ViewModel\PhaseCreationViewModels\PhaseCreationViewModel.cs" />
+    <Compile Include="ViewModel\PhaseViewModel.cs" />
     <Compile Include="ViewModel\StudyCreationPageViewModel.cs" />
-    <Compile Include="ViewModel\ResourcePageViewModel.cs" />
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -147,6 +144,7 @@
     <Compile Include="View\Pages\StudyCreationPages\StudyPhaseListPage.xaml.cs">
       <DependentUpon>StudyPhaseListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewDTO\ViewCriteriaDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -212,7 +210,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\ServerHandler\HttpRequestHandlers\" />
+    <Folder Include="Model\StudyModels\" />
+    <Folder Include="Model\WebAPI\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

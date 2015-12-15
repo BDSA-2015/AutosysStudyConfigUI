@@ -6,13 +6,9 @@ namespace StudyConfigurationUI.Model.PhaseModels
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public int[] TeamIds { get; set; }
-        public IList<Datafield> Datafields { get; set; } 
-
-        /// <summary>
-        /// List of members and their roles.
-        /// </summary>
-        public Dictionary<int,Member[]> Members { get; set; }
+        public IList<PhaseMember> PhaseMembers { get; set; }
+        public IList<Datafield> VisibleDataField { get; set; }
+        public IList<Datafield> RequestedDatafield { get; set; }
 
     }
 }

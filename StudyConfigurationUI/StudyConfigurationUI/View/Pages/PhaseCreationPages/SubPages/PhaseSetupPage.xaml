@@ -21,6 +21,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <!-- Adaptive Triggers -->
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="NarrowState">
@@ -98,7 +99,7 @@
                               ItemsSource="{Binding Members}"
                               Height="200">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="data:Member">
+                            <DataTemplate x:DataType="data:PhaseMember">
                                 <StackPanel Orientation="Horizontal">
                                     <!-- TODO figure out how to display roles and user together-->
                                 </StackPanel>

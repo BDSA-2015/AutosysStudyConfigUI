@@ -14,28 +14,6 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!--Visual Triggers -->
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="NarrowState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                    </VisualState.Setters>
-                </VisualState>
-
-                <VisualState x:Name="WideState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1080" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-
-        </VisualStateManager.VisualStateGroups>
-
         <!-- Description header -->
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">
             <TextBlock Text="Description:" Margin="10,10,0,0" FontSize="14" FontWeight="SemiBold" />
@@ -49,27 +27,31 @@
                 <!-- Tables -->
 
                 <!-- Datafield table-->
-                <StackPanel x:Name="DatafieldsTable" VerticalAlignment="Center" Margin="20">
+                <StackPanel VerticalAlignment="Center" Margin="20">
                     <TextBlock Text="Datafields" FontWeight="Medium" FontSize="18" />
 
-                    <ListView SelectionMode="None" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
+                    <ListView x:Name="DatafieldsTable"  SelectionMode="Single" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
                               ItemsSource="{Binding Datafields}"
                               Height="200">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Datafield">
                                 <StackPanel Orientation="Horizontal">
-                                    <!--Todo Add Data layout here -->
+                                    <TextBlock Text="Name:" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{x:Bind Name}" Margin="5,0,0,0" FontWeight="SemiLight"/>
+                                    <TextBlock Text="Description:" FontWeight="SemiBold" Margin="50,0,0,0"/>
+                                    <TextBlock Text="{x:Bind Description}" Margin="5,0,0,0" FontWeight="SemiLight"/>
+                                    <TextBlock Text="Type:" FontWeight="SemiBold" Margin="50,0,0,0"/>
+                                    <TextBlock Text="{x:Bind Type}" Margin="5,0,0,0" FontWeight="SemiLight"/>
+                                    <TextBlock Text="Default Value:" FontWeight="SemiBold" Margin="50,0,0,0"/>
+                                    <TextBlock Text="{x:Bind FieldData[0]}" FontWeight="SemiLight" Margin="5,0,0,0" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                     <!--Table Buttons -->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">
-                        <Button x:Name="DeleteDatafieldBut" Style="{StaticResource TableButton}">
+                        <Button x:Name="DeleteDatafieldBut" Style="{StaticResource TableButton}" Click="DeleteDatafieldBut_OnClick">
                             <SymbolIcon Symbol="Delete"/>
-                        </Button>
-                        <Button x:Name="EditDatafieldBut" Style="{StaticResource TableButton}">
-                            <SymbolIcon Symbol="Edit"/>
                         </Button>
                         <Button x:Name="AddDatafieldBut" Style="{StaticResource TableButton}" Click="AddDatafieldBut_OnClick">
                             <SymbolIcon Symbol="Add"/>
@@ -83,7 +65,9 @@
         <ContentDialog x:Name="DataFieldCreationWindow" 
            PrimaryButtonText="Accept"
              PrimaryButtonClick="DataFieldCreationWindow_OnPrimaryButtonClick"
-           SecondaryButtonText="Cancel" 
+             IsPrimaryButtonEnabled="False" 
+          SecondaryButtonText="Cancel"
+             SecondaryButtonClick="DataFieldCreationWindow_OnSecondaryButtonClick"
            FullSizeDesired ="False"
            Grid.Row="1" Grid.Column="0">
             <ContentDialog.TitleTemplate>
@@ -100,14 +84,17 @@
                              Header="Name:" 
                              PlaceholderText="Name of datafield" 
                              Width="300" HorizontalAlignment="Left" 
-                             Margin="0,10,0,10"/>
+                             Margin="0,10,0,10"
+                             TextChanging="CheckTextInput"
+                             />
 
                     <TextBox x:Name="DatafieldDescriptionBox" 
                              Header="Description:" 
                              PlaceholderText="Description of datafield"
                              Width="{Binding ElementName=DatafieldNameBox, Path=ActualWidth}" 
                              Height="75" 
-                             Margin="0,10,0,0" HorizontalAlignment="Left"/>
+                             Margin="0,10,0,0" HorizontalAlignment="Left"
+                             TextChanging="CheckTextInput"/>
 
 
                     <ComboBox x:Name="TypeComboBox" 
@@ -125,9 +112,10 @@
 
                     <RelativePanel Margin="0,15,0,0">
                         <TextBox x:Name="DatafieldValueBox" 
-                             Header="Value:" 
+                             Header="Default value:" 
                              PlaceholderText="Value of datafield." 
-                             Width="300" VerticalAlignment="Center"/>
+                             Width="300" VerticalAlignment="Center"
+                             TextChanging="CheckTextInput"/>
                     </RelativePanel>
                 </StackPanel>
             </ScrollViewer>

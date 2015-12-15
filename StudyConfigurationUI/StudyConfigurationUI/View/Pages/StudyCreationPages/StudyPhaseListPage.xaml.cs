@@ -1,39 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿// StudyPhaseListPage.xaml.cs is a part of Autosys project in BDSA-2015. Created: 15, 12, 2015.
+// Creators: Dennis Thinh Tan Nguyen, William Diedricsehn Marstrand, Thor Valentin Aakjær Olesen Nielsen, 
+// Jacob Mullit Møiniche.
+
+#region
+
+using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using StudyConfigurationUI.View.Pages.PhaseCreationPages.SubPages;
+using StudyConfigurationUI.ViewModel;
+
+#endregion
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class StudyPhaseListPage : Page
     {
+        private StudyCreationPageViewModel _viewModel;
+
         public StudyPhaseListPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            _viewModel = App.StudyViewModel;
+            DataContext = _viewModel;
         }
-
 
 
         private void EditPhaseBut_OnClick(object sender, RoutedEventArgs e)
         {
-            
         }
 
         private async void DeletePhaseBut_OnClick(object sender, RoutedEventArgs e)
@@ -42,9 +42,9 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
             {
                 var dialog = new MessageDialog(
                     "Are you sure you want to delete the selected phase?")
-                { Title = "Delete Phase." };
-                dialog.Commands.Add(new UICommand("Yes") { Id = 0 });
-                dialog.Commands.Add(new UICommand("No") { Id = 1 });
+                {Title = "Delete Phase."};
+                dialog.Commands.Add(new UICommand("Yes") {Id = 0});
+                dialog.Commands.Add(new UICommand("No") {Id = 1});
 
                 dialog.DefaultCommandIndex = 1;
                 dialog.CancelCommandIndex = 1;
@@ -60,7 +60,7 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 
         private void AddPhaseBut_OnClick(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof (PhaseSetupPage));
+            Frame.Navigate(typeof (PhaseSetupPage));
         }
     }
 }
