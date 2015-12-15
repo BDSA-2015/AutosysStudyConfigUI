@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -9,8 +10,33 @@ namespace StudyConfigurationUI.ViewModel
 {
     public class StudyCreationPageViewModel : INotifyPropertyChanged
     {
-      
-        public ObservableCollection<Phase> Phases { get; private set; } 
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                if (value == _name) return;
+                _name = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _name;
+
+        public string Description
+        {
+            get { return _description; }
+            set
+            {
+                if (value == _description) return;
+                _description = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _description;
+
+        public ObservableCollection<Phase> Phases { get; } 
+        public ObservableCollection<User> AllUsers { get; } 
+        public IList<User> SelectedUsers { get;} 
 
         public event PropertyChangedEventHandler PropertyChanged;
 
