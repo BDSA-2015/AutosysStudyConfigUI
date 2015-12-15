@@ -24,7 +24,7 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
             InitializeComponent();
         }
 
-        private void ExclusionCreationWindow_OnPrimaryButtonClick(ContentDialog sender,
+        private void CriteriaCreationWindow_OnPrimaryButtonClick(ContentDialog sender,
             ContentDialogButtonClickEventArgs args)
         {
             //Todo add creation of criteria and add it to obs list in viewmodel.
@@ -41,7 +41,7 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
             //throw new NotImplementedException();
         }
 
-        private void ExclusionTagComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CriteriaTagComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //throw new NotImplementedException();
         }
@@ -69,12 +69,12 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 
         private async void AddInclusionBut_OnClick(object sender, RoutedEventArgs e)
         {
-            await InclusionCreationWindow.ShowAsync();
+            await CriteriaCreationWindow.ShowAsync();
         }
 
         private async void AddExclusionBut_OnClick(object sender, RoutedEventArgs e)
         {
-            await ExclusionCreationWindow.ShowAsync();
+            await CriteriaCreationWindow.ShowAsync();
         }
     }
 }

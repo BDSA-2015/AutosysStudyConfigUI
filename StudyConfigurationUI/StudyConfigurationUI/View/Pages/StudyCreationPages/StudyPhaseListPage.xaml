@@ -49,7 +49,7 @@
                     <Button x:Name="EditPhaseBut"   Style="{StaticResource TableButton}" >
                         <SymbolIcon Symbol="Edit"/>
                     </Button>
-                    <Button x:Name="AddPhaseBut"    Style="{StaticResource TableButton}">
+                    <Button x:Name="AddPhaseBut"    Style="{StaticResource TableButton}" Click="AddPhaseBut_OnClick">
                         <SymbolIcon Symbol="Add"/>
                     </Button>
                 </StackPanel>

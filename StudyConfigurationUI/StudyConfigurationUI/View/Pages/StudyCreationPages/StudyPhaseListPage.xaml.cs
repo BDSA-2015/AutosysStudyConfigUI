@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using StudyConfigurationUI.View.Pages.PhaseCreationPages.SubPages;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -57,5 +58,9 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
             }
         }
 
+        private void AddPhaseBut_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof (PhaseSetupPage));
+        }
     }
 }

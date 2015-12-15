@@ -122,8 +122,8 @@
     <Compile Include="View\Pages\ManageStudiesPage.xaml.cs">
       <DependentUpon>ManageStudiesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\PhaseCreationPages\SubPages\PhaseOverviewPage.xaml.cs">
-      <DependentUpon>PhaseOverviewPage.xaml</DependentUpon>
+    <Compile Include="View\Pages\PhaseCreationPages\SubPages\PhaseSetupPage.xaml.cs">
+      <DependentUpon>PhaseSetupPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\StudyCreationPage.xaml.cs">
       <DependentUpon>StudyCreationPage.xaml</DependentUpon>
@@ -178,7 +178,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Pages\PhaseCreationPages\SubPages\PhaseOverviewPage.xaml">
+    <Page Include="View\Pages\PhaseCreationPages\SubPages\PhaseSetupPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
