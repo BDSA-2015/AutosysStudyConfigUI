@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="StudyConfigurationUI.View.Pages.PhaseCreationPages.SubPages.PhaseCriteriaPage"
+    x:Class="StudyConfigurationUI.View.Pages.StudyCreationPages.StudyCriteriaPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:StudyConfigurationUI.View.Pages.PhaseCreationPages.SubPages"
@@ -24,10 +24,7 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="DatafieldsTable.(Grid.Column)" Value="1" />
-                        <Setter Target="DatafieldsTable.(Grid.Row)" Value="0" />
-                        <Setter Target="TopRow.Height" Value="*" />
-                        <Setter Target="LeftColumn.Width" Value="Auto" />
+                        <Setter Target="InnerPanel.Orientation" Value="Vertical" />
                     </VisualState.Setters>
                 </VisualState>
 
@@ -36,10 +33,7 @@
                         <AdaptiveTrigger MinWindowWidth="1080" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="DatafieldsTable.(Grid.Column)" Value="0" />
-                        <Setter Target="DatafieldsTable.(Grid.Row)" Value="2" />
-                        <Setter Target="TopRow.Height" Value="Auto" />
-                        <Setter Target="LeftColumn.Width" Value="*" />
+                        <Setter Target="InnerPanel.Orientation" Value="Horizontal" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -55,27 +49,19 @@
 
         <!-- Table Pane -->
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <Grid x:Name="InnerGrid">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition x:Name="LeftColumn" Width="*" />
-                    <ColumnDefinition x:Name="RightColumn" Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition x:Name="TopRow" />
-                    <RowDefinition x:Name="ButtomRow"/>
-                </Grid.RowDefinitions>
-
-
+            <StackPanel x:Name="InnerPanel" HorizontalAlignment="Center" >
+       
                 <!-- Tables -->
 
                 <!-- Exclusion table-->
-                <StackPanel x:Name="ExclusionTable" VerticalAlignment="Center" Margin="20" Grid.Column="1" Grid.Row="1">
+                <StackPanel x:Name="ExclusionTable" VerticalAlignment="Center" Margin="20">
                     <TextBlock Text="Exclusion Criteria" FontWeight="Medium" FontSize="18" />
 
                     <!--Exclusion table-->
                     <ListView SelectionMode="Multiple" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
                               ItemsSource="{Binding ExclusionCriteria}"
-                              Height="200">
+                              Height="200"
+                              Width="500">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Criteria">
                                 <StackPanel Orientation="Horizontal">
@@ -104,7 +90,8 @@
 
                     <ListView SelectionMode="None" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
                               ItemsSource="{Binding InclusionCriteria}"
-                              Height="200">
+                              Height="200"
+                              Width="500">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Criteria">
                                 <StackPanel Orientation="Horizontal">
@@ -128,47 +115,46 @@
                     </StackPanel>
                 </StackPanel>
 
-            </Grid>
+            </StackPanel>
         </ScrollViewer>
 
-        <!--ContentDialog Exclusion -->
-        <ContentDialog x:Name="ExclusionCreationWindow" 
+        <!--ContentDialog AddCriteria -->
+        <ContentDialog x:Name="CriteriaCreationWindow" 
            PrimaryButtonText="Accept"
-             PrimaryButtonClick="ExclusionCreationWindow_OnPrimaryButtonClick"
+             PrimaryButtonClick="CriteriaCreationWindow_OnPrimaryButtonClick"
            SecondaryButtonText="Cancel" 
-           Opened="ExclusionCreationWindow_OnOpened"
            FullSizeDesired ="False"
            Grid.Row="1" Grid.Column="0">
             <ContentDialog.TitleTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Add Exclusion Criteria" />
+                        <TextBlock Text="Add Criteria" />
                     </StackPanel>
                 </DataTemplate>
             </ContentDialog.TitleTemplate>
 
             <ScrollViewer VerticalScrollBarVisibility="Hidden">
-                <StackPanel Width="{Binding ElementName=ExclusionCreationWindow, Path=MaxWidth}" >
-                    <TextBox x:Name="ExclusionNameBox" 
+                <StackPanel Width="{Binding ElementName=CriteriaCreationWindow, Path=MaxWidth}" >
+                    <TextBox x:Name="CriteriaNameBox" 
                              Header="Name:" 
                              PlaceholderText="Name of Criteria" 
                              Width="300" HorizontalAlignment="Left" 
                              Margin="0,10,0,10"/>
 
-                    <TextBox x:Name="ExclusionCriteriaDescriptionBox" 
+                    <TextBox x:Name="CriteriaDescriptionBox" 
                              Header="Description:" 
                              PlaceholderText="Description of criteria"
-                             Width="{Binding ElementName=ExclusionNameBox, Path=ActualWidth}" 
+                             Width="{Binding ElementName=CriteriaNameBox, Path=ActualWidth}" 
                              Height="75" 
                              Margin="0,10,0,0" HorizontalAlignment="Left"/>
 
 
-                    <ComboBox x:Name="ExclusionTagComboBox" 
+                    <ComboBox x:Name="TagComboBox" 
                               Header="Tag:" 
                               PlaceholderText="..." 
                               Margin="0,10,0,0" HorizontalAlignment="Left"
-                              Width="{Binding ElementName=ExclusionNameBox, Path=ActualWidth}" 
-                              SelectionChanged="ExclusionTagComboBox_OnSelectionChanged"
+                              Width="{Binding ElementName=CriteriaNameBox, Path=ActualWidth}" 
+                              SelectionChanged="CriteriaTagComboBox_OnSelectionChanged"
                               ItemsSource="{Binding Tags}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate x:DataType="data:BibTag">
@@ -177,92 +163,24 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
 
-                    <ComboBox x:Name="ExclusionComparatorComboBox" 
+                    <ComboBox x:Name="CriteriaComparatorComboBox" 
                               Header="Type:" 
                               PlaceholderText="..." 
                               Margin="0,10,0,0" HorizontalAlignment="Left"
-                              Width="{Binding ElementName=ExclusionNameBox, Path=ActualWidth}" 
+                              Width="{Binding ElementName=CriteriaNameBox, Path=ActualWidth}" 
                               SelectionChanged="ExclusionComparator_OnSelectionChanged">
                         <ComboBoxItem x:Name="ExclusionLessThan" Tag="Less" Content="LessThan"/>
                         <ComboBoxItem x:Name="ExclusionGreaterThan" Tag="" Content="GreaterThan"/>
                         <ComboBoxItem x:Name="ExclusionqualTo" Content="Equal"/>
-                            <!-- Todo Add more item -->
+                        <ComboBoxItem x:Name="ExclusionContains" Content="Contains"/>
                     </ComboBox>
 
-                    <TextBox x:Name="ExclusionValueBox" 
+                    <TextBox x:Name="CriteriaValueBox" 
                              Header="Name:" 
                              PlaceholderText="Value of comparator eg: John Doe if tag is Author " 
                              Width="300" HorizontalAlignment="Left" 
                              Margin="0,10,0,10"/>
 
-                </StackPanel>
-            </ScrollViewer>
-        </ContentDialog>
-
-
-        <!--ContentDialog Task -->
-        <ContentDialog x:Name="InclusionCreationWindow" 
-           PrimaryButtonText="Accept"
-             PrimaryButtonClick="InclusionCreationWindow_OnPrimaryButtonClick"
-           SecondaryButtonText="Cancel" 
-           Opened="InclusionCreationWindow_OnOpened"
-           FullSizeDesired ="False"
-           Grid.Row="1" Grid.Column="0">
-            <ContentDialog.TitleTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Add Inclusion Criteria" />
-                    </StackPanel>
-                </DataTemplate>
-            </ContentDialog.TitleTemplate>
-
-            <ScrollViewer VerticalScrollBarVisibility="Hidden">
-                <StackPanel Width="{Binding ElementName=InclusionCreationWindow, Path=MaxWidth}" >
-                    <TextBox x:Name="InclusionNameBox" 
-                             Header="Name:" 
-                             PlaceholderText="Name of Criteria" 
-                             Width="300" HorizontalAlignment="Left" 
-                             Margin="0,10,0,10"/>
-
-                    <TextBox x:Name="InclusionCriteriaDescriptionBox" 
-                             Header="Description:" 
-                             PlaceholderText="Description of criteria"
-                             Width="{Binding ElementName=InclusionNameBox, Path=ActualWidth}" 
-                             Height="75" 
-                             Margin="0,10,0,0" HorizontalAlignment="Left"/>
-
-
-                    <ComboBox x:Name="InclusionTagComboBox" 
-                              Header="Tag:" 
-                              PlaceholderText="..." 
-                              Margin="0,10,0,0" HorizontalAlignment="Left"
-                              Width="{Binding ElementName=InclusionNameBox, Path=ActualWidth}" 
-                              SelectionChanged="InclusionTagComboBox_OnSelectionChanged"
-                              ItemsSource="{Binding Tags}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate x:DataType="data:BibTag">
-                                <ComboBoxItem Content="{x:Bind TagName}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-
-                    <ComboBox x:Name="InclusionComparatorComboBox" 
-                              Header="Type:" 
-                              PlaceholderText="..." 
-                              Margin="0,10,0,0" HorizontalAlignment="Left"
-                              Width="{Binding ElementName=InclusionNameBox, Path=ActualWidth}" 
-                              SelectionChanged="InclusionComparator_OnSelectionChanged">
-                        <ComboBoxItem x:Name="InclusionLessThan" Tag="Less" Content="LessThan"/>
-                        <ComboBoxItem x:Name="InclusionGreaterThan" Tag="Greater" Content="GreaterThan"/>
-                        <ComboBoxItem x:Name="InclusionEqualTo" Tag="Equal" Content="Equal"/>
-                        <!-- Todo Add more item -->
-                    </ComboBox>
-
-                    <TextBox x:Name="InclusionValueBox" 
-                             Header="Name:" 
-                             PlaceholderText="Value of comparator eg: John Doe if tag is Author " 
-                             Width="300" HorizontalAlignment="Left" 
-                             Margin="0,10,0,10"/>
                 </StackPanel>
             </ScrollViewer>
         </ContentDialog>
