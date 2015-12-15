@@ -106,9 +106,6 @@
                         <Button x:Name="DeleteInclusionBut" Style="{StaticResource TableButton}">
                             <SymbolIcon Symbol="Delete"/>
                         </Button>
-                        <Button x:Name="EditInclusionBut" Style="{StaticResource TableButton}">
-                            <SymbolIcon Symbol="Edit"/>
-                        </Button>
                         <Button x:Name="AddInclusionBut" Style="{StaticResource TableButton}" Click="AddInclusionBut_OnClick">
                             <SymbolIcon Symbol="Add"/>
                         </Button>

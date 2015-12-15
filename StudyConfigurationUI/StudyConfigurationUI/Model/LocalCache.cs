@@ -13,8 +13,8 @@ namespace StudyConfigurationUI.Model
     /// </summary>
     public class LocalCache
     {
-        IList<Datafield> CachedDatafields { get; set; }
-        IList<User> CachedUsers { get; set; }
+        public IList<Datafield> CachedDatafields { get; set; }
+        public IList<User> CachedUsers { get; set; }
 
         private static LocalCache _localCache;
 
@@ -38,7 +38,10 @@ namespace StudyConfigurationUI.Model
         /// </summary>
         public void RefreshData()
         {
+            CachedUsers = new List<User>();
+            CachedDatafields = new List<Datafield>();
             //Todo call webAPI to store data
+
         }
     }
 }

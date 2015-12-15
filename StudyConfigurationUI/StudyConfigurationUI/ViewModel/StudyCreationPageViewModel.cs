@@ -10,6 +10,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using StudyConfigurationUI.Annotations;
+using StudyConfigurationUI.Model;
+using StudyConfigurationUI.Model.Handlers;
 using StudyConfigurationUI.Model.PhaseModels;
 
 #endregion
@@ -26,18 +28,13 @@ namespace StudyConfigurationUI.ViewModel
         public StudyCreationPageViewModel()
         {
             Phases = new ObservableCollection<Phase>();
-            AllUsers= new ObservableCollection<User>();
+            AllUsers = new ObservableCollection<User>();
+            Datafields = new ObservableCollection<Datafield>();
             SelectedUsers = new List<User>();
             SelectedFile = "";
-            Phases.Add(new Phase()
-            {
-                Name = "Phase 1 Test",
-                Description = "This is just a test of a phase object added to phase collection"
-            });
-
-            AllUsers.Add(new User() {Name = "Test",Description = "Test"});
+            AddCachedUsers();
+            AddPredefinedDatafields();
         }
-
 
         public string Name
         {
@@ -75,6 +72,7 @@ namespace StudyConfigurationUI.ViewModel
 
         public ObservableCollection<Phase> Phases { get; }
         public ObservableCollection<User> AllUsers { get; }
+        public ObservableCollection<Datafield> Datafields { get; }
         public IList<User> SelectedUsers { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -125,9 +123,87 @@ namespace StudyConfigurationUI.ViewModel
             throw new NotImplementedException();
         }
 
+        //UserMethods
+
+        /// <summary>
+        /// Add all users retrieved from server
+        /// </summary>
+        private void AddCachedUsers()
+        {
+            var users = LocalCache.GetCache().CachedUsers;
+            if (users != null)
+            {
+                foreach (var user in users)
+                {
+                    AllUsers.Add(user);
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// Add selected user to study. 
+        /// </summary>
+        /// <param name="selectedUsers"></param>
         public void AddSelectedUsers(IList<User> selectedUsers)
         {
             SelectedUsers = selectedUsers;
         }
+
+
+        //DatafieldMethods
+
+        /// <summary>
+        /// Add a custom datafield defined in UI
+        /// </summary>
+        /// <param name="name"> of datafield</param>
+        /// <param name="description"></param>
+        /// <param name="type"> of datafield</param>
+        /// <param name="value"> value of type</param>
+        /// <returns></returns>
+        public bool AddDatafield(string name, string description, string type, string value)
+        {
+            var handler = new DatafieldHandler();
+            try
+            {
+                var datafield = handler.CreateCustomDatafield(name, description, type, value);
+                Datafields.Add(datafield);
+                return true;
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+
+        }
+
+        /// <summary>
+        /// Removes a datafield from collection
+        /// </summary>
+        /// <param name="selectedItem"></param>
+        public void DeleteDatafield(int selectedItem)
+        {
+            var toDelete = Datafields[selectedItem];
+            if(toDelete.Type == "predifined")return;
+            Datafields.RemoveAt(selectedItem);
+        }
+
+        /// <summary>
+        /// Add all predefined datafields from database.
+        /// </summary>
+        private void AddPredefinedDatafields()
+        {
+            var predifinedDatafields = LocalCache.GetCache().CachedDatafields;
+            if (predifinedDatafields != null)
+            {
+                foreach (var datafield in predifinedDatafields)
+                {
+                    Datafields.Add(datafield);
+                }
+            }
+        }
+
+      
+
     }
 }
