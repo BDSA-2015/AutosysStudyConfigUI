@@ -11,6 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <!--Adaptive Triggers-->
         <VisualStateManager.VisualStateGroups>
@@ -85,6 +86,9 @@
 
         <!-- Frame for subpages -->
         <Frame x:Name="PhasePageFrame" Grid.Row="1" />
+
+
+    
 
     </Grid>
 </Page>
