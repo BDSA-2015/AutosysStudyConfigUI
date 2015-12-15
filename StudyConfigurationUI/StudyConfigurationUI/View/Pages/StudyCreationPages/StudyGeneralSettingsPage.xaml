@@ -1,0 +1,110 @@
+﻿<Page
+    x:Class="StudyConfigurationUI.View.Pages.StudyCreationPages.StudyGeneralSettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StudyConfigurationUI.View.Pages.StudyCreationPages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:StudyConfigurationUI.Model.PhaseModels"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock Text="Description:" FontWeight="SemiBold"/>
+            <TextBlock Text="This page let you setup general study settings"/>
+
+
+            <!-- Adaptive trigger -->
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup>
+                    <VisualState x:Name="NarrowState">
+                        <VisualState.StateTriggers>
+                            <AdaptiveTrigger MinWindowWidth="420" />
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Target="CommandBar.ClosedDisplayMode" Value="Minimal" />
+                        </VisualState.Setters>
+                    </VisualState>
+
+                    <VisualState x:Name="WideState">
+                        <VisualState.StateTriggers>
+                            <AdaptiveTrigger MinWindowWidth="1080" />
+                        </VisualState.StateTriggers>
+                        <VisualState.Setters>
+                            <Setter Target="CommandBar.ClosedDisplayMode" Value="Compact" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+
+
+
+        </StackPanel>
+        <ScrollViewer Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Width="500">
+            <StackPanel Margin="13">
+                <TextBlock Text="Study Settings" 
+                           FontWeight="SemiBold"
+                           FontSize="24"/>
+                <TextBox x:Name="StudyNameTextbox" 
+                         Header="Name:"
+                         PlaceholderText="Name of study"
+                         Text="{Binding Path=Name, Mode=TwoWay}"
+                         Margin="0,10,0,0"/>
+                <TextBox x:Name="StudyDescriptionTextbox" 
+                         Header="Description:"
+                         PlaceholderText="Description of study"
+                         Height="150"
+                         Text="{Binding Path=Description, Mode=TwoWay}"
+                         Margin="0,10,0,0"/>
+                <TextBlock Text="Select Members:"/>
+                <ListView x:Name="MembersTable" 
+                          Height="250"
+                          BorderBrush="Black"
+                          BorderThickness="1" 
+                          SelectionMode="Multiple"
+                          ItemsSource="{Binding AllUsers}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="data:User">
+                            <StackPanel>
+                                <TextBlock Text="Name:"/>
+                                <TextBlock Text="{x:Bind Name}"/>
+                                <TextBlock Text="Description:"/>
+                                <TextBlock Text="{x:Bind Description}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource TableButton}"
+                            Click="ConfirmSelectionBut_OnClick">
+                        <SymbolIcon Symbol="Save"/>
+                    </Button>
+                    <TextBlock Text="Confirm Selections" FontSize="12" Margin="0,9,0,0"/>
+                </StackPanel>
+                <StackPanel BorderBrush="Black" BorderThickness="1">
+                    <TextBlock Text="Selected file: " FontWeight="SemiBold"/>
+                    <TextBlock x:Name="SelectedFileLabel" FontWeight="SemiLight" TextWrapping="Wrap"/>
+                    <Button Content="Select File" Click="SelectFile_OnClick" VerticalAlignment="Bottom"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+
+        <CommandBar Name="CommandBar" Grid.Row="2" >
+            <AppBarButton Icon="Upload" Label="Submit Study" Click="SubmitBut_OnClick"/>
+            <AppBarSeparator />
+            <AppBarButton Icon="Cancel" Label="Reset" Click="ResetStudyBut_OnClick" />
+            <CommandBar.Content>
+                <TextBlock Text="Study Options" Margin="12,14" />
+            </CommandBar.Content>
+        </CommandBar>
+
+
+
+    </Grid>
+</Page>

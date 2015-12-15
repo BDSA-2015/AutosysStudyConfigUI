@@ -53,6 +53,17 @@ namespace StudyConfigurationUI.ViewModel
             SelectedUsers = new List<User>();
             AddCachedUsers();
             AddPredefinedDatafields();
+
+
+
+            AllUsers.Add(new User() {Description = "Test", Name="Name"});
+            AllUsers.Add(new User() {Description = "Test", Name="Name"});
+            AllUsers.Add(new User() {Description = "Test", Name="Name"});
+            AllUsers.Add(new User() {Description = "Test", Name="Name"});
+            AllUsers.Add(new User() {Description = "Test", Name="Name"});
+            AllUsers.Add(new User() {Description = "Test", Name="Name"});
+            AllUsers.Add(new User() {Description = "Test", Name="Name"});
+            AllUsers.Add(new User() {Description = "Test", Name="Name"});
         }
 
         public string Name

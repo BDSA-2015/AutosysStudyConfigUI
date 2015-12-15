@@ -108,7 +108,6 @@
     <Compile Include="Model\PhaseModels\Phase.cs" />
     <Compile Include="Model\PhaseModels\PhaseMember.cs" />
     <Compile Include="Model\PhaseModels\User.cs" />
-    <Compile Include="Model\StudyModels\Study.cs" />
     <Compile Include="ViewModel\PhaseCreationViewModels\PhaseCreationViewModel.cs" />
     <Compile Include="ViewModel\PhaseViewModel.cs" />
     <Compile Include="ViewModel\StudyCreationPageViewModel.cs" />
@@ -211,6 +210,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Model\StudyModels\" />
     <Folder Include="Model\WebAPI\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
