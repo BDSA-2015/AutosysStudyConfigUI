@@ -157,8 +157,8 @@
                               SelectionChanged="CriteriaTagComboBox_OnSelectionChanged"
                               ItemsSource="{Binding Tags}">
                         <ComboBox.ItemTemplate>
-                            <DataTemplate x:DataType="data:BibTag">
-                                <ComboBoxItem Content="{x:Bind TagName}"/>
+                            <DataTemplate x:DataType="data:Datafield">
+                                <ComboBoxItem Content="{x:Bind Name}"/>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
