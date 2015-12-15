@@ -1,8 +1,7 @@
 ﻿<Page
-    x:Class="StudyConfigurationUI.View.Pages.PhaseCreationPages.PhaseCreationPage"
+    x:Class="StudyConfigurationUI.View.Pages.StudyCreationPages.StudyCreationMainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:StudyConfigurationUI.View.Pages.PhaseCreationPages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -22,7 +21,6 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="OverviewLabel.FontSize" Value="12" />
-                        <Setter Target="TeamsLabel.FontSize" Value="12" />
                         <Setter Target="DatafieldLabel.FontSize" Value="12" />
                         <Setter Target="CriteriasLabel.FontSize" Value="12" />
                     </VisualState.Setters>
@@ -34,7 +32,6 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="OverviewLabel.FontSize" Value="13" />
-                        <Setter Target="TeamsLabel.FontSize" Value="13" />
                         <Setter Target="DatafieldLabel.FontSize" Value="13" />
                         <Setter Target="CriteriasLabel.FontSize" Value="13" />
                     </VisualState.Setters>
@@ -46,7 +43,6 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="OverviewLabel.FontSize" Value="14" />
-                        <Setter Target="TeamsLabel.FontSize" Value="14" />
                         <Setter Target="DatafieldLabel.FontSize" Value="14" />
                         <Setter Target="CriteriasLabel.FontSize" Value="14" />
                     </VisualState.Setters>
@@ -73,12 +69,8 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
 
-            <ListViewItem x:Name="OverviewPageBut">
+            <ListViewItem x:Name="GeneralPageBut">
                 <TextBlock x:Name="OverviewLabel" Text="Overview" />
-            </ListViewItem>
-
-            <ListViewItem x:Name="TeamsBut">
-                <TextBlock x:Name="TeamsLabel" Text="Teams and Roles" />
             </ListViewItem>
 
             <ListViewItem x:Name="DatafieldBut">

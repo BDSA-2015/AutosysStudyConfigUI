@@ -63,12 +63,6 @@ namespace StudyConfigurationUI.View
                 MainFrame.Navigate(typeof(ManageStudiesPage));
                 titleText = "Manage Studies";
             }
-            else if (Resources.IsSelected)
-            {
-                MainFrame.Navigate(typeof(ResourcePage));
-                titleText = "Resources";
-            }
-
             Title.Text = titleText;
         }
     }

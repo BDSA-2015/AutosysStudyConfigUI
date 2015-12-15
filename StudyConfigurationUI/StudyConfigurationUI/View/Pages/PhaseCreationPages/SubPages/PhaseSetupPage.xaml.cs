@@ -21,14 +21,19 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages.SubPages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class PhaseOverviewPage : Page
+    public sealed partial class PhaseSetupPage : Page
     {
         private PhaseCreationViewModel _viewModel;
-        public PhaseOverviewPage()
+        public PhaseSetupPage()
         {
             this.InitializeComponent();
             _viewModel = new PhaseCreationViewModel();
             DataContext = _viewModel;
+        }
+
+        private void ScrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+        {
+
         }
     }
 }

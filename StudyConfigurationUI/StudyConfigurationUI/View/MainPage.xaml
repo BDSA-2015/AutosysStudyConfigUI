@@ -71,6 +71,12 @@
                        RelativePanel.AlignVerticalCenterWith="HamburgerButton"
                        Margin="5,5,0,0"
                        FontWeight="Bold" />
+            <TextBlock x:Name="Version" 
+                       Text="{Binding VersionText}"
+                       RelativePanel.AlignVerticalCenterWith="HamburgerButton"
+                       Margin="0,0,10,0"
+                       FontWeight="SemiLight"
+                       RelativePanel.AlignRightWithPanel="True"/>
 
         </RelativePanel>
 
@@ -97,13 +103,6 @@
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Symbol="Edit" />
                             <TextBlock Text="Manage Studies" Margin="15,0,0,0" />
-                        </StackPanel>
-                    </ListBoxItem>
-
-                    <ListBoxItem x:Name="Resources">
-                        <StackPanel Orientation="Horizontal">
-                            <SymbolIcon Symbol="OpenFile" />
-                            <TextBlock Text="Resources" Margin="15,0,0,0" />
                         </StackPanel>
                     </ListBoxItem>
                 </ListBox>
