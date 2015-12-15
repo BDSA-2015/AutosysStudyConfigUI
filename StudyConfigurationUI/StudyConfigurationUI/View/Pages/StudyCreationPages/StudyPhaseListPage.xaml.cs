@@ -10,6 +10,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using StudyConfigurationUI.View.Pages.PhaseCreationPages.SubPages;
 using StudyConfigurationUI.ViewModel;
+using PhaseSetupPage = StudyConfigurationUI.View.Pages.PhaseCreationPages.PhaseSetupPage;
 
 #endregion
 
