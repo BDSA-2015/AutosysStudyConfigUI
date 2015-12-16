@@ -46,7 +46,7 @@ namespace StudyConfigurationUI.Model.Handlers
         {
             if (users != null)
             {
-                return users.Select(user => new PhaseMember() {UserId = user.Id}).ToList();
+                return users.Select(user => new PhaseMember() {UserId = user.Id, Name = user.Name}).ToList();
             }
             throw new NullReferenceException("List with users were null");
         }

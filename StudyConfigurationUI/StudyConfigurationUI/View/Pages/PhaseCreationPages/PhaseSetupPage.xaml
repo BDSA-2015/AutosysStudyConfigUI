@@ -9,8 +9,13 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <Style TargetType="TextBlock" x:Key="ItemText">
-            <Setter Property="FontSize" Value="11" />
+        <Style TargetType="TextBlock" x:Key="ItemLabel">
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style TargetType="TextBlock" x:Key="ItemValue">
+            <Setter Property="FontWeight" Value="SemiLight" />
+            <Setter Property="Margin" Value="10,0,0,0" />
+
         </Style>
     </Page.Resources>
 
@@ -66,13 +71,13 @@
                 <TextBlock Text="You can set up a phase in this page" Margin="10,0,0,0"
                        FontSize="12" FontWeight="Light" TextWrapping="WrapWholeWords" MaxWidth="200" />
             </StackPanel>
-   
+
 
         </StackPanel>
 
 
         <!-- Table Pane -->
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" ViewChanged="ScrollViewer_ViewChanged">
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <Grid x:Name="InnerGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition x:Name="LeftColumn" Width="*" />
@@ -87,54 +92,89 @@
 
                 <!-- Textboxes -->
                 <StackPanel Name="TextboxPane" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20">
-                    <TextBox Name="NameTextBox" Header="Name:" PlaceholderText="Name of phase" Width="300"/>
-                    <TextBox Name="DescriptionTextBox" Header="Description" PlaceholderText="Description of phase" TextWrapping="Wrap" Height="200" Width="300"/>
+                    <TextBox Name="NameTextBox" 
+                             Header="Name:" 
+                             PlaceholderText="Name of phase"
+                             Text="{Binding Name, Mode=TwoWay}"
+                             Width="300"/>
+                    <TextBox Name="DescriptionTextBox" 
+                             Header="Description" 
+                             PlaceholderText="Description of phase" 
+                             TextWrapping="Wrap" 
+                             Height="200" Width="300"
+                             Text="{Binding Description, Mode=TwoWay}"
+                             />
                 </StackPanel>
 
                 <!-- Tables -->
-                <StackPanel x:Name="RolesTable" VerticalAlignment="Center" Margin="20" Grid.Column="1" Grid.Row="1">
-                    <TextBlock Text="Roles" FontWeight="Medium" FontSize="18" />
+                <StackPanel x:Name="RolesPane" VerticalAlignment="Center" Margin="20" Grid.Column="1" Grid.Row="1">
+                    <TextBlock Text="Reviewers" FontWeight="Medium" FontSize="18" />
 
-                    <ListView SelectionMode="None" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
-                              ItemsSource="{Binding Members}"
+                    <ListView x:Name="RolesTable" SelectionMode="None" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
+                              ItemsSource="{Binding Reviewers}"
                               Height="200">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:PhaseMember">
-                                <StackPanel Orientation="Horizontal">
-                                    <!-- TODO figure out how to display roles and user together-->
-                                </StackPanel>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Name: " Style="{StaticResource ItemLabel}"/>
+                                        <TextBlock Text="{x:Bind Name}" Style="{StaticResource ItemValue}"/>
+                                    </StackPanel>
+                                    <TextBlock Text="Reviewers" Style="{StaticResource ItemLabel}"/>
+                              </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+                    <ComboBox x:Name="ReviewerCombobox" Header="Validator" SelectionChanged="Validator_OnSelectionChanged" 
+                              ItemsSource="{Binding Members}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate x:DataType="data:PhaseMember">
+                                <ComboBoxItem Content="{x:Bind Name}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </StackPanel>
 
-                <StackPanel x:Name="VisibleDataFieldTable" VerticalAlignment="Bottom" Margin="20" Grid.Column="0" Grid.Row="2">
+                <StackPanel x:Name="VisibleDataFieldPane" VerticalAlignment="Bottom" Margin="20" Grid.Column="0" Grid.Row="2">
                     <TextBlock Text="VisibleDataFieldTable" FontWeight="Medium" FontSize="18" />
 
-                    <ListView SelectionMode="Single" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
-                              ItemsSource="{Binding Datafields}"
+                    <ListView x:Name="VisibleDataFieldTable"  SelectionMode="Single" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
+                              ItemsSource="{Binding VisibleDatafields}"
                               Height="200">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Datafield">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Name:" Margin="10,0,10,0" Style="{StaticResource ItemText}"
-                                               FontWeight="SemiBold" />
-                                    <TextBlock x:Name="DatafieldName" Text="{Binding Name}"
-                                               Style="{StaticResource ItemText}" />
+                                    <TextBlock Text="Name:" Style="{StaticResource ItemLabel}" />
+                                    <TextBlock Text="{x:Bind Name}" Style="{StaticResource ItemValue}"/>
+                                    <TextBlock Text="Description:" Style="{StaticResource ItemLabel}"/>
+                                    <TextBlock Text="{x:Bind Description}" Style="{StaticResource ItemValue}" />
+                                    <TextBlock Text="Type:" Style="{StaticResource ItemLabel}"/>
+                                    <TextBlock Text="{x:Bind Type}" Style="{StaticResource ItemValue}" />
+                                    <TextBlock Text="Default Value:" Style="{StaticResource ItemLabel}"/>
+                                    <TextBlock Text="{x:Bind FieldData[0]}" Style="{StaticResource ItemValue}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                        <ComboBox Name="VisibleFields" Header="Tags" PlaceholderText="..." ItemsSource="{Binding Datafields}">
+                        <ComboBox Name="VisibleFieldsComboBox" Header="Tags" PlaceholderText="..." ItemsSource="{Binding Datafields}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="data:Datafield">
                                     <ComboBoxItem Content="{x:Bind Name}"/>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <Button Name="AddVisibleFieldsBut" Margin="5,27,0,0" Content="Add" Style="{StaticResource TableButton}" BorderBrush="Gray"/>
-                        <Button Name="DeleteVisibleFieldsBut" Margin="5,27,0,0" Style="{StaticResource TableButton}"  BorderBrush="Gray">
+                        <Button Name="AddVisibleFieldsBut" 
+                                Margin="5,27,0,0" 
+                                Content="Add" 
+                                Style="{StaticResource TableButton}" 
+                                BorderBrush="Gray"
+                                Click="AddVisibleFieldsBut_OnClick"/>
+                        <Button Name="DeleteVisibleFieldsBut" 
+                                Margin="5,27,0,0" 
+                                Style="{StaticResource TableButton}"  
+                                BorderBrush="Gray"
+                                Click="DeleteVisibleFieldsBut_OnClick">
                             <SymbolIcon Symbol="Delete"/>
                         </Button>
                     </StackPanel>
@@ -142,37 +182,47 @@
                 </StackPanel>
 
 
-                <StackPanel x:Name="RequestedDatafieldTable" VerticalAlignment="Bottom" Margin="20" Grid.Column="1" Grid.Row="2">
+                <StackPanel x:Name="RequestedDatafieldPane" VerticalAlignment="Bottom" Margin="20" Grid.Column="1" Grid.Row="2">
                     <TextBlock Text="Requested Datafields" FontWeight="Medium" FontSize="18" />
 
-                    <ListView SelectionMode="Single" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
-                              ItemsSource="{Binding Datafields}"
+                    <ListView Name="RequestedDatafieldTable" SelectionMode="Single" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
+                              ItemsSource="{Binding RequestedDatafields}"
                               Height="200">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Datafield">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Name:" Margin="10,0,10,0" Style="{StaticResource ItemText}"
-                                               FontWeight="SemiBold" />
-                                    <TextBlock x:Name="Name" Text="{Binding Name}" Style="{StaticResource ItemText}" />
-
-                                    <TextBlock Text="Description:" Margin="10,0,10,0" Style="{StaticResource ItemText}"
-                                               FontWeight="SemiBold" />
-                                    <TextBlock x:Name="Description" Text="{Binding Description}"
-                                               Style="{StaticResource ItemText}" />
+                                    <TextBlock Text="Name:" Style="{StaticResource ItemLabel}" />
+                                    <TextBlock Text="{x:Bind Name}" Style="{StaticResource ItemValue}"/>
+                                    <TextBlock Text="Description:" Style="{StaticResource ItemLabel}"/>
+                                    <TextBlock Text="{x:Bind Description}" Style="{StaticResource ItemValue}" />
+                                    <TextBlock Text="Type:" Style="{StaticResource ItemLabel}"/>
+                                    <TextBlock Text="{x:Bind Type}" Style="{StaticResource ItemValue}" />
+                                    <TextBlock Text="Default Value:" Style="{StaticResource ItemLabel}"/>
+                                    <TextBlock Text="{x:Bind FieldData[0]}" Style="{StaticResource ItemValue}" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                        <ComboBox Name="RequestedFields" Header="Tags" PlaceholderText="..." ItemsSource="{Binding Datafields}">
+                        <ComboBox Name="RequestedFieldsCombobox" Header="Tags" 
+                                  PlaceholderText="..." 
+                                  ItemsSource="{Binding Datafields}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="data:Datafield">
                                     <ComboBoxItem Content="{x:Bind Name}"/>
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <Button Name="AddRequestedFieldsBut" Margin="5,27,0,0" Content="Add" Style="{StaticResource TableButton}" BorderBrush="Gray"/>
-                        <Button Name="DeleteRequestedFieldsBut" Margin="5,27,0,0" Style="{StaticResource TableButton}"  BorderBrush="Gray">
+                        <Button Name="AddRequestedFieldsBut" 
+                                Margin="5,27,0,0" Content="Add" 
+                                Style="{StaticResource TableButton}" 
+                                BorderBrush="Gray"
+                                Click="AddRequestedFieldsBut_OnClick"/>
+                        <Button Name="DeleteRequestedFieldsBut" 
+                                Margin="5,27,0,0" 
+                                Style="{StaticResource TableButton}"  
+                                BorderBrush="Gray"
+                                Click="DeleteRequestedFieldsBut_OnClick">
                             <SymbolIcon Symbol="Delete"/>
                         </Button>
                     </StackPanel>

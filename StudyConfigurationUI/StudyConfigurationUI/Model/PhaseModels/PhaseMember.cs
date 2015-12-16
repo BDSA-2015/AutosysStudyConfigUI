@@ -10,6 +10,24 @@ namespace StudyConfigurationUI.Model.PhaseModels
     public class PhaseMember
     {
         public int UserId { get; set; }
-        public string Role { get; set; }
+        public string Name { get; set; }
+
+        public bool IsValidator => _isValidator;
+        private bool _isValidator;
+        public bool IsReviewer => _isReviewer;
+        private bool _isReviewer;
+
+
+        public void SetAsReviewer()
+        {
+            _isReviewer = true;
+            _isValidator = false;
+        }
+
+        public void SetasValidator()
+        {
+            _isReviewer = false;
+            _isValidator = true;
+        }
     }
 }
