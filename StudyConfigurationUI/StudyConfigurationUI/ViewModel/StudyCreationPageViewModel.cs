@@ -206,7 +206,7 @@ namespace StudyConfigurationUI.ViewModel
                 if (!string.IsNullOrWhiteSpace(parsedFile))
                 {
                     LoadedFile = parsedFile;
-                    await SetDatafields();
+                    //await SetDatafields();
                     return true;
                 }
                 return false;
@@ -382,7 +382,8 @@ namespace StudyConfigurationUI.ViewModel
                 ResourceFile = _loadedFile
             };
             var handler = new StudyHandler();
-            return await handler.SendStudy(toSend);
+            return true;
+            //return await handler.SendStudy(toSend);
         }
     }
 }
