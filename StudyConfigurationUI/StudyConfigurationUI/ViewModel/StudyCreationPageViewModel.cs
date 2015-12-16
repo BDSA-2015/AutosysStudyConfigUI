@@ -17,6 +17,7 @@ using StudyConfigurationUI.Annotations;
 using StudyConfigurationUI.Model;
 using StudyConfigurationUI.Model.Handlers;
 using StudyConfigurationUI.Model.PhaseModels;
+using StudyConfigurationUI.Model.StudyModels;
 using StudyConfigurationUI.View.ViewDTO;
 
 #endregion
@@ -103,11 +104,10 @@ namespace StudyConfigurationUI.ViewModel
             AddPredefinedDatafields();
 
 
-            AllUsers.Add(new User() {Description = "Test", Name = "Name1"});
-            AllUsers.Add(new User() {Description = "Test", Name = "Name2"});
-            AllUsers.Add(new User() {Description = "Test", Name = "Name3"});
-            AllUsers.Add(new User() {Description = "Test", Name = "Name4"});
-         
+            AllUsers.Add(new User() { Description = "Test", Name = "Name1" });
+            AllUsers.Add(new User() { Description = "Test", Name = "Name2" });
+            AllUsers.Add(new User() { Description = "Test", Name = "Name3" });
+            AllUsers.Add(new User() { Description = "Test", Name = "Name4" });
         }
 
 
@@ -258,6 +258,9 @@ namespace StudyConfigurationUI.ViewModel
         }
 
 
+
+        //CriteriaMethods
+
         /// <summary>
         ///     Adds inclusion criteria
         /// </summary>
@@ -376,7 +379,27 @@ namespace StudyConfigurationUI.ViewModel
             {
                 return null;
             }
+        }
 
+        //Study Creation
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool SubmitStudy()
+        {
+            var toSend = new Study()
+            {
+                Name = _name,
+                Description = _description,
+                Users = SelectedUsers,
+                Datafields = this.Datafields,
+                Phases = this.Phases,
+                ExclusioCriteria = this.ExclusionCriteria,
+                InclusionCriteria = this.InclusionCriteria,
+                ResourceFile = _loadedFile
+            };
+            var handler = new StudyHandler();
+            return handler.SendStudy(toSend);
         }
     }
 }
