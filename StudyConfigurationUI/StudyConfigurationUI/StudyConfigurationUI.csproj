@@ -102,10 +102,12 @@
     <Compile Include="Model\FileHandler.cs" />
     <Compile Include="Model\Handlers\CriteriaHandler.cs" />
     <Compile Include="Model\Handlers\DatafieldHandler.cs" />
+    <Compile Include="Model\Handlers\PhaseHandler.cs" />
     <Compile Include="Model\LocalCache.cs" />
     <Compile Include="Model\PhaseModels\Criteria.cs" />
     <Compile Include="Model\PhaseModels\Datafield.cs" />
     <Compile Include="Model\PhaseModels\Phase.cs" />
+    <Compile Include="Model\PhaseModels\PhaseCreationDto.cs" />
     <Compile Include="Model\PhaseModels\PhaseMember.cs" />
     <Compile Include="Model\PhaseModels\User.cs" />
     <Compile Include="ViewModel\PhaseCreationViewModels\PhaseCreationViewModel.cs" />
@@ -123,7 +125,7 @@
     <Compile Include="View\Pages\ManageStudiesPage.xaml.cs">
       <DependentUpon>ManageStudiesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\PhaseCreationPages\SubPages\PhaseSetupPage.xaml.cs">
+    <Compile Include="View\Pages\PhaseCreationPages\PhaseSetupPage.xaml.cs">
       <DependentUpon>PhaseSetupPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\StudyCreationPage.xaml.cs">
@@ -180,9 +182,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Pages\PhaseCreationPages\SubPages\PhaseSetupPage.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="View\Pages\PhaseCreationPages\PhaseSetupPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Pages\StudyCreationPage.xaml">
       <Generator>MSBuild:Compile</Generator>

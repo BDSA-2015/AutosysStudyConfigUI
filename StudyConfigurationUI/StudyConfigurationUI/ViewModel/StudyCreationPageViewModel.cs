@@ -1,4 +1,4 @@
-﻿// StudyCreationPageViewModel.cs is a part of Autosys project in BDSA-2015. Created: 14, 12, 2015.
+﻿// StudyCreationPageViewModel.cs is a part of Autosys project in BDSA-2015. Created: 15, 12, 2015.
 // Creators: Dennis Thinh Tan Nguyen, William Diedricsehn Marstrand, Thor Valentin Aakjær Olesen Nielsen, 
 // Jacob Mullit Møiniche.
 
@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -23,7 +24,7 @@ using StudyConfigurationUI.View.ViewDTO;
 namespace StudyConfigurationUI.ViewModel
 {
     /// <summary>
-    /// view model for study creation
+    ///     view model for study creation
     /// </summary>
     public class StudyCreationPageViewModel : INotifyPropertyChanged
     {
@@ -35,35 +36,6 @@ namespace StudyConfigurationUI.ViewModel
         public StudyCreationPageViewModel()
         {
             Initialize();
-        }
-
-        /// <summary>
-        /// Initialize view model.
-        /// </summary>
-        private void Initialize()
-        {
-            Name = "";
-            Description = "";
-            LoadedFile = "";
-            Phases = new ObservableCollection<Phase>();
-            AllUsers = new ObservableCollection<User>();
-            Datafields = new ObservableCollection<Datafield>();
-            ExclusionCriteria = new ObservableCollection<Criteria>();
-            InclusionCriteria = new ObservableCollection<Criteria>();
-            SelectedUsers = new List<User>();
-            AddCachedUsers();
-            AddPredefinedDatafields();
-
-
-
-            AllUsers.Add(new User() {Description = "Test", Name="Name"});
-            AllUsers.Add(new User() {Description = "Test", Name="Name"});
-            AllUsers.Add(new User() {Description = "Test", Name="Name"});
-            AllUsers.Add(new User() {Description = "Test", Name="Name"});
-            AllUsers.Add(new User() {Description = "Test", Name="Name"});
-            AllUsers.Add(new User() {Description = "Test", Name="Name"});
-            AllUsers.Add(new User() {Description = "Test", Name="Name"});
-            AllUsers.Add(new User() {Description = "Test", Name="Name"});
         }
 
         public string Name
@@ -107,11 +79,36 @@ namespace StudyConfigurationUI.ViewModel
         public ObservableCollection<Criteria> InclusionCriteria { get; set; }
 
         /// <summary>
-        /// Selected users for the study
+        ///     Selected users for the study
         /// </summary>
         public IList<User> SelectedUsers { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        ///     Initialize view model.
+        /// </summary>
+        private void Initialize()
+        {
+            Name = "";
+            Description = "";
+            LoadedFile = "";
+            Phases = new ObservableCollection<Phase>();
+            AllUsers = new ObservableCollection<User>();
+            Datafields = new ObservableCollection<Datafield>();
+            ExclusionCriteria = new ObservableCollection<Criteria>();
+            InclusionCriteria = new ObservableCollection<Criteria>();
+            SelectedUsers = new List<User>();
+            AddCachedUsers();
+            AddPredefinedDatafields();
+
+
+            AllUsers.Add(new User() {Description = "Test", Name = "Name1"});
+            AllUsers.Add(new User() {Description = "Test", Name = "Name2"});
+            AllUsers.Add(new User() {Description = "Test", Name = "Name3"});
+            AllUsers.Add(new User() {Description = "Test", Name = "Name4"});
+         
+        }
 
 
         [NotifyPropertyChangedInvocator]
@@ -120,16 +117,6 @@ namespace StudyConfigurationUI.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        /// <summary>
-        ///     Add a phase to collection and returns it for creation
-        /// </summary>
-        /// <returns>Phase object</returns>
-        public Phase AddPhase()
-        {
-            var toCreate = new Phase();
-            Phases.Add(toCreate);
-            return toCreate;
-        }
 
         /// <summary>
         ///     Delete a given phase
@@ -357,12 +344,39 @@ namespace StudyConfigurationUI.ViewModel
         }
 
         /// <summary>
-        /// Resets the study configuration
+        ///     Resets the study configuration
         /// </summary>
         public void ResetConfiguration()
         {
             Initialize();
         }
 
+
+        //Phase Methods
+        /// <summary>
+        ///     Add a phase to collection and returns it for creation
+        /// </summary>
+        /// <returns>Phase object</returns>
+        public PhaseCreationDto AddPhase()
+        {
+            if (Datafields.Count == 0) return null;
+            try
+            {
+                var phase = new Phase();
+                var handler = new PhaseHandler();
+                var dto = handler.GetPhaseCreationDto(phase, Datafields.ToList(), SelectedUsers);
+                if (dto != null)
+                {
+                    Phases.Add(phase);
+                    return dto;
+                }
+                return null;
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
+
+        }
     }
 }
