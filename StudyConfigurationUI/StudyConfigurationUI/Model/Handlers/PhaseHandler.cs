@@ -80,17 +80,20 @@ namespace StudyConfigurationUI.Model.Handlers
         private bool IsMemberRolesValid(IList<PhaseMember> members)
         {
             //Check if there is any reviewers
+            var counter = 0;
             foreach (var phaseMember in members)
             {
-                if (phaseMember.IsReviewer) break;
-                else
+                if (phaseMember.IsReviewer)
                 {
-                    return false;
+                    counter++;
+                    break;
                 }
+                
             }
+            if (counter == 0) return false;
 
             //Check if there is only one validator
-            var counter = 0;
+            counter = 0;
             foreach ( var member in members)
             {
                 if (member.IsValidator) counter++;

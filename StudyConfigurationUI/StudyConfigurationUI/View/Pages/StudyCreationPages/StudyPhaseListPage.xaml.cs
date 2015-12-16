@@ -59,7 +59,7 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
             var dto = _viewModel.AddPhase();
             if( dto == null)
             {
-                var dialog = new MessageDialog("Something went wrong when creating phase") {Title = "Error"};
+                var dialog = new MessageDialog("Something went wrong when creating phase. Is datafields list empty?") {Title = "Error"};
                 await dialog.ShowAsync();
             }
             else Frame.Navigate(typeof (PhaseSetupPage),dto);

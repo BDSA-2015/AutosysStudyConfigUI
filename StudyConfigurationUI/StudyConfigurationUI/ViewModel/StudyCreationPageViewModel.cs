@@ -359,6 +359,7 @@ namespace StudyConfigurationUI.ViewModel
         /// <returns>Phase object</returns>
         public PhaseCreationDto AddPhase()
         {
+            if (Datafields.Count == 0) return null;
             try
             {
                 var phase = new Phase();
