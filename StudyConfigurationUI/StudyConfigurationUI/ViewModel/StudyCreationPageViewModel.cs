@@ -368,7 +368,7 @@ namespace StudyConfigurationUI.ViewModel
         /// <summary>
         ///     Submits a created study to server.
         /// </summary>
-        public bool SubmitStudy()
+        public async Task<bool> SubmitStudy()
         {
             var toSend = new Study()
             {
@@ -382,7 +382,7 @@ namespace StudyConfigurationUI.ViewModel
                 ResourceFile = _loadedFile
             };
             var handler = new StudyHandler();
-            return handler.SendStudy(toSend);
+            return await handler.SendStudy(toSend);
         }
     }
 }

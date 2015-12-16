@@ -73,7 +73,7 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 
             if (choice.Id.Equals(0))
             {
-                var isSuccess = _viewModel.SubmitStudy();
+                var isSuccess = await _viewModel.SubmitStudy();
                 if (!isSuccess)
                 {
                     var errorMsg =
