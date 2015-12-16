@@ -383,7 +383,7 @@ namespace StudyConfigurationUI.ViewModel
 
         //Study Creation
         /// <summary>
-        /// 
+        /// Submits a created study to server.
         /// </summary>
         public bool SubmitStudy()
         {
