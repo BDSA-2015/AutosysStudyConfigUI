@@ -90,10 +90,17 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
         }
 
 
-        private void ConfirmSelectionBut_OnClick(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Confirming user selection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void ConfirmSelectionBut_OnClick(object sender, RoutedEventArgs e)
         {
             var selections = MembersTable.SelectedItems.Cast<User>().ToList();
             _viewModel.AddSelectedUsers(selections);
+            var dialog = new MessageDialog("Selection confirmed") {Title ="Notice"};
+            await dialog.ShowAsync();
         }
 
 

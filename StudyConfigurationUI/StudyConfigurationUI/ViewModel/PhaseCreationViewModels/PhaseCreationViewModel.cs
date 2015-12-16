@@ -56,6 +56,8 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
         }
 
 
+        private IList<PhaseMember> _members;
+
         public ObservableCollection<PhaseMember> Members { get; set; }
         public ObservableCollection<PhaseMember> Reviewers { get; set; }
 
@@ -70,10 +72,11 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
         private void Initialize(PhaseCreationDto toCreationDto)
         {
             Members = new ObservableCollection<PhaseMember>();
-            Reviewers = new ObservableCollection<PhaseMember>();
             VisibleDatafields = new ObservableCollection<Datafield>();
             RequestedDatafields = new ObservableCollection<Datafield>();
+            Datafields = new ObservableCollection<Datafield>();
             _phase = toCreationDto.Phase;
+            _members = toCreationDto.Members;
 
             foreach (var datafield in toCreationDto.Datafields)
             {
@@ -92,14 +95,10 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
         /// </summary>
         private void AddReviewers()
         {
-            Reviewers.Clear();
-            foreach (var member in Members)
+            Members.Clear();
+            foreach (var member in _members)
             {
-                member.SetAsReviewer();
-                if (member.IsReviewer)
-                {
-                    Members.Add(member);
-                }
+                Members.Add(member);
             }
         }
 
@@ -110,6 +109,7 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
         /// <param name="selectedMember"></param>
         public void SetValidator(int selectedMember)
         {
+            if (selectedMember == -1) return;
             if (_currentValidator != null)
             {
                 _currentValidator.SetAsReviewer();
@@ -125,7 +125,7 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
             }
             AddReviewers();
         }
-        
+
 
 
 
@@ -142,7 +142,7 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
         public void AddRequestField(int selectedField)
         {
             var toInsert = Datafields[selectedField];
-            AddDatafield(RequestedDatafields,toInsert);
+            AddDatafield(RequestedDatafields, toInsert);
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
             {
                 return false;
             }
-      
+
 
 
         }

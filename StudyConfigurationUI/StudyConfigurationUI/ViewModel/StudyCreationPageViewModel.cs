@@ -103,14 +103,11 @@ namespace StudyConfigurationUI.ViewModel
             AddPredefinedDatafields();
 
 
-            AllUsers.Add(new User() {Description = "Test", Name = "Name"});
-            AllUsers.Add(new User() {Description = "Test", Name = "Name"});
-            AllUsers.Add(new User() {Description = "Test", Name = "Name"});
-            AllUsers.Add(new User() {Description = "Test", Name = "Name"});
-            AllUsers.Add(new User() {Description = "Test", Name = "Name"});
-            AllUsers.Add(new User() {Description = "Test", Name = "Name"});
-            AllUsers.Add(new User() {Description = "Test", Name = "Name"});
-            AllUsers.Add(new User() {Description = "Test", Name = "Name"});
+            AllUsers.Add(new User() {Description = "Test", Name = "Name1"});
+            AllUsers.Add(new User() {Description = "Test", Name = "Name2"});
+            AllUsers.Add(new User() {Description = "Test", Name = "Name3"});
+            AllUsers.Add(new User() {Description = "Test", Name = "Name4"});
+         
         }
 
 

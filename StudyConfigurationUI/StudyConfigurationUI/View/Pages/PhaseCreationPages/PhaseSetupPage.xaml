@@ -11,10 +11,11 @@
     <Page.Resources>
         <Style TargetType="TextBlock" x:Key="ItemLabel">
             <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Margin" Value="10,0,0,0" />
         </Style>
         <Style TargetType="TextBlock" x:Key="ItemValue">
             <Setter Property="FontWeight" Value="SemiLight" />
-            <Setter Property="Margin" Value="10,0,0,0" />
+            <Setter Property="Margin" Value="5,0,0,15" />
 
         </Style>
     </Page.Resources>
@@ -108,10 +109,10 @@
 
                 <!-- Tables -->
                 <StackPanel x:Name="RolesPane" VerticalAlignment="Center" Margin="20" Grid.Column="1" Grid.Row="1">
-                    <TextBlock Text="Reviewers" FontWeight="Medium" FontSize="18" />
+                    <TextBlock Text="Roles" FontWeight="Medium" FontSize="18" />
 
                     <ListView x:Name="RolesTable" SelectionMode="None" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
-                              ItemsSource="{Binding Reviewers}"
+                              ItemsSource="{Binding Members}"
                               Height="200">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:PhaseMember">
@@ -119,8 +120,11 @@
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="Name: " Style="{StaticResource ItemLabel}"/>
                                         <TextBlock Text="{x:Bind Name}" Style="{StaticResource ItemValue}"/>
+                                        <TextBlock Text="Reviewer: " Style="{StaticResource ItemLabel}"/>
+                                        <TextBlock Text="{x:Bind IsReviewer}" Style="{StaticResource ItemValue}"/>
+                                        <TextBlock Text="Validator: " Style="{StaticResource ItemLabel}"/>
+                                        <TextBlock Text="{x:Bind IsValidator}" Style="{StaticResource ItemValue}"/>
                                     </StackPanel>
-                                    <TextBlock Text="Reviewers" Style="{StaticResource ItemLabel}"/>
                               </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

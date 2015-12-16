@@ -49,7 +49,7 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 
                 if (choice.Id.Equals(0))
                 {
-                    //Add Deletetion
+                    _viewModel.DeletePhase(PhaseList.SelectedIndex);
                 }
             }
         }
