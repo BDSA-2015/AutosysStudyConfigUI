@@ -237,6 +237,7 @@ namespace StudyConfigurationUI.ViewModel
                 var parsedFile = await handler.Parse(file);
                 if (!string.IsNullOrWhiteSpace(parsedFile))
                 {
+                    
                     LoadedFile = parsedFile;
                     return true;
                 }
@@ -248,6 +249,11 @@ namespace StudyConfigurationUI.ViewModel
             }
         }
 
+
+        private void SetDatafields()
+        {
+            LocalCache.GetCache().
+        }
 
         //CriteriaMethods
 

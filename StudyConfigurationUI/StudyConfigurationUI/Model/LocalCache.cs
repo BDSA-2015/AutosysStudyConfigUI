@@ -3,7 +3,9 @@
 // Jacob Mullit Møiniche.
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using StudyConfigurationUI.Model.PhaseModels;
+using StudyConfigurationUI.Model.WebAPI;
 
 namespace StudyConfigurationUI.Model
 {
@@ -13,19 +15,21 @@ namespace StudyConfigurationUI.Model
     /// </summary>
     public class LocalCache
     {
-        public IList<Datafield> CachedDatafields { get; set; }
-        public IList<User> CachedUsers { get; set; }
+        private IList<Datafield> _cachedDatafields;
+        private IList<User> _cachedUsers;
 
         private static LocalCache _localCache;
 
 
         private LocalCache()
         {
-            RefreshData();
+            _cachedUsers = new List<User>();
+            _cachedDatafields = new List<Datafield>();
+            _cachedUsers = GetUsers().Result;
         }
 
         /// <summary>
-        /// Returns a local cach object
+        /// Returns a local cache object
         /// </summary>
         /// <returns></returns>
         public static LocalCache GetCache()
@@ -36,12 +40,33 @@ namespace StudyConfigurationUI.Model
         /// <summary>
         /// Populate data with data from server
         /// </summary>
-        public void RefreshData()
+        public async Task<IList<User>> GetUsers()
         {
-            CachedUsers = new List<User>();
-            CachedDatafields = new List<Datafield>();
-            //Todo call webAPI to store data
+            var handler = new WebApiHandler();
+            var returnedItem = await handler.GetUsers();
+            if (returnedItem != null)
+            {
+                _cachedUsers = returnedItem;
+            }
+            return _cachedUsers;
 
         }
+
+        /// <summary>
+        /// Populate data with data from server
+        /// </summary>
+        public async Task<IList<Datafield>> GetDatafields(string file)
+        {
+            if (file == null) return _cachedDatafields;
+
+            var handler = new WebApiHandler();
+            var returnedItem =  await handler.GetDatafields(file);
+            if (returnedItem != null)
+            {
+                _cachedDatafields = returnedItem;
+            }
+            return _cachedDatafields;
+        }
+
     }
 }
