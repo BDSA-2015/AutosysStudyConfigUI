@@ -112,6 +112,7 @@
     <Compile Include="Model\PhaseModels\PhaseMember.cs" />
     <Compile Include="Model\PhaseModels\User.cs" />
     <Compile Include="Model\StudyModels\Study.cs" />
+    <Compile Include="Model\WebAPI\Dto\BibtexTag.cs" />
     <Compile Include="Model\WebAPI\WebApiHandler.cs" />
     <Compile Include="ViewModel\PhaseCreationViewModels\PhaseCreationViewModel.cs" />
     <Compile Include="ViewModel\PhaseViewModel.cs" />

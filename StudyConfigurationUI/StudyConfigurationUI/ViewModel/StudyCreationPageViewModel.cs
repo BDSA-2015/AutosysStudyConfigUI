@@ -100,14 +100,12 @@ namespace StudyConfigurationUI.ViewModel
             ExclusionCriteria = new ObservableCollection<Criteria>();
             InclusionCriteria = new ObservableCollection<Criteria>();
             SelectedUsers = new List<User>();
-            AddCachedUsers();
-            AddPredefinedDatafields();
+            SetUsers();
 
-
-            AllUsers.Add(new User() {Description = "Test", Name = "Name1"});
-            AllUsers.Add(new User() {Description = "Test", Name = "Name2"});
-            AllUsers.Add(new User() {Description = "Test", Name = "Name3"});
-            AllUsers.Add(new User() {Description = "Test", Name = "Name4"});
+            AllUsers.Add(new User() {Metadata = "Test", Name = "Name1"});
+            AllUsers.Add(new User() {Metadata = "Test", Name = "Name2"});
+            AllUsers.Add(new User() {Metadata = "Test", Name = "Name3"});
+            AllUsers.Add(new User() {Metadata = "Test", Name = "Name4"});
         }
 
 
@@ -138,21 +136,6 @@ namespace StudyConfigurationUI.ViewModel
         }
 
         //UserMethods
-
-        /// <summary>
-        ///     Add all users retrieved from server
-        /// </summary>
-        private void AddCachedUsers()
-        {
-            var users = LocalCache.GetCache().CachedUsers;
-            if (users != null)
-            {
-                foreach (var user in users)
-                {
-                    AllUsers.Add(user);
-                }
-            }
-        }
 
         /// <summary>
         ///     Add selected user to study.
@@ -206,20 +189,6 @@ namespace StudyConfigurationUI.ViewModel
             Datafields.RemoveAt(selectedItem);
         }
 
-        /// <summary>
-        ///     Add all predefined datafields from database.
-        /// </summary>
-        private void AddPredefinedDatafields()
-        {
-            var predifinedDatafields = LocalCache.GetCache().CachedDatafields;
-            if (predifinedDatafields != null)
-            {
-                foreach (var datafield in predifinedDatafields)
-                {
-                    Datafields.Add(datafield);
-                }
-            }
-        }
 
         //ResourceFileMethods
         /// <summary>
@@ -238,6 +207,7 @@ namespace StudyConfigurationUI.ViewModel
                 if (!string.IsNullOrWhiteSpace(parsedFile))
                 {
                     LoadedFile = parsedFile;
+                    await SetDatafields();
                     return true;
                 }
                 return false;
@@ -248,6 +218,30 @@ namespace StudyConfigurationUI.ViewModel
             }
         }
 
+        /// <summary>
+        ///     Add all predefined datafields from database.
+        /// </summary>
+        private async Task SetDatafields()
+        {
+            var datafields = await LocalCache.GetCache().GetDatafields(_loadedFile);
+            foreach (var datafield in datafields)
+            {
+                Datafields.Add(datafield);
+            }
+        }
+
+        /// <summary>
+        ///     Add users retrieved from database
+        /// </summary>
+        /// <returns></returns>
+        private async Task SetUsers()
+        {
+            var users = await LocalCache.GetCache().GetUsers();
+            foreach (var user in users)
+            {
+                AllUsers.Add(user);
+            }
+        }
 
         //CriteriaMethods
 

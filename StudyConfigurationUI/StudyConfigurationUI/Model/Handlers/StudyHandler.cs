@@ -46,7 +46,7 @@ namespace StudyConfigurationUI.Model.Handlers
             return
                 study.Users.All(
                     user =>
-                        !string.IsNullOrWhiteSpace(user.Name) || !string.IsNullOrWhiteSpace(user.Description) ||
+                        !string.IsNullOrWhiteSpace(user.Name) || !string.IsNullOrWhiteSpace(user.Metadata) ||
                         user.Id >= 0);
         }
 

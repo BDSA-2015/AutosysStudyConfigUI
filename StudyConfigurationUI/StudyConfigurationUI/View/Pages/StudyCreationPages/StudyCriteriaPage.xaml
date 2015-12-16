@@ -42,7 +42,7 @@
 
         <!-- Description header -->
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0">
-            <TextBlock Text="Description:" Margin="10,10,0,0" FontSize="14" FontWeight="SemiBold" />
+            <TextBlock Text="Metadata:" Margin="10,10,0,0" FontSize="14" FontWeight="SemiBold" />
             <TextBlock Text="This page lets you create and add criteria to the study configuration." Margin="10,0,0,0"
                        FontSize="12" FontWeight="Light" TextWrapping="WrapWholeWords" MaxWidth="200" />
         </StackPanel>
@@ -67,7 +67,7 @@
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock Text="Name:" FontWeight="SemiBold"/>
                                     <TextBlock Text="{x:Bind Name}" Margin="10,0,0,0" FontWeight="SemiLight"/>
-                                    <TextBlock Text="Description:" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Metadata:" FontWeight="SemiBold"/>
                                     <TextBlock Text="{x:Bind Description}" Margin="10,0,0,0" FontWeight="SemiLight"/>
                                     <TextBlock Text="Datafield:" FontWeight="SemiBold" />
                                     <TextBlock Text="{x:Bind FieldTag}" Margin="10,0,0,0" FontWeight="SemiLight"/>
@@ -104,7 +104,7 @@
                                 <StackPanel Orientation="Vertical">
                                     <TextBlock Text="Name:" FontWeight="SemiBold"/>
                                     <TextBlock Text="{x:Bind Name}" Margin="10,0,0,0" FontWeight="SemiLight"/>
-                                    <TextBlock Text="Description:" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Metadata:" FontWeight="SemiBold"/>
                                     <TextBlock Text="{x:Bind Description}" Margin="10,0,0,0" FontWeight="SemiLight"/>
                                     <TextBlock Text="Datafield:" FontWeight="SemiBold" />
                                     <TextBlock Text="{x:Bind FieldTag}" Margin="10,0,0,0" FontWeight="SemiLight"/>
@@ -156,8 +156,8 @@
                              TextChanging="CheckTextInput"/>
 
                     <TextBox x:Name="CriteriaDescriptionBox" 
-                             Header="Description:" 
-                             PlaceholderText="Description of criteria"
+                             Header="Metadata:" 
+                             PlaceholderText="Metadata of criteria"
                              Width="{Binding ElementName=CriteriaNameBox, Path=ActualWidth}" 
                              Height="75" 
                              Margin="0,10,0,0" HorizontalAlignment="Left"
