@@ -4,11 +4,14 @@
 
 #region
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using StudyConfigurationUI.Annotations;
+using StudyConfigurationUI.Model.Handlers;
 using StudyConfigurationUI.Model.PhaseModels;
 
 #endregion
@@ -182,6 +185,30 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
         public void DeleteVisibleField(int selectedIndex)
         {
             VisibleDatafields.RemoveAt(selectedIndex);
+        }
+
+        public bool SetPhaseSettings()
+        {
+
+            try
+            {
+                var handler = new PhaseHandler();
+                return handler.SetPhase(
+                   _phase,
+                   Name,
+                   Description,
+                   Members.ToList(),
+                   VisibleDatafields.ToList(),
+                   RequestedDatafields.ToList()
+                   );
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+      
+
+
         }
     }
 }

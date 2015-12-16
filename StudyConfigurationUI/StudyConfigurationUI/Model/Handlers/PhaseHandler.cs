@@ -50,5 +50,53 @@ namespace StudyConfigurationUI.Model.Handlers
             }
             throw new NullReferenceException("List with users were null");
         }
+
+        public bool SetPhase(Phase phase,string name, string description, IList<PhaseMember> members, IList<Datafield> visibleDatafields, IList<Datafield> requestedDatafields)
+        {
+            if(string.IsNullOrWhiteSpace(name)||string.IsNullOrWhiteSpace(description))
+                throw new ArgumentException("Name and description must not be null or whitespace");
+            if(members.Count == 0 || visibleDatafields.Count == 0 || requestedDatafields.Count == 0)
+                throw new ArgumentException("users, requested- and visible fields must not be empty");
+            if(!IsMemberRolesValid(members))
+                throw new ArgumentException("Member roles are invalid");
+
+            phase.Name = name;
+            phase.Description = description;
+            phase.PhaseMembers = members;
+            phase.VisibleDataField = visibleDatafields;
+            phase.RequestedDatafield = requestedDatafields;
+
+            return true;
+
+
+
+        }
+
+        /// <summary>
+        /// Checking if member roles a correct
+        /// </summary>
+        /// <param name="members"></param>
+        /// <returns></returns>
+        private bool IsMemberRolesValid(IList<PhaseMember> members)
+        {
+            //Check if there is any reviewers
+            foreach (var phaseMember in members)
+            {
+                if (phaseMember.IsReviewer) break;
+                else
+                {
+                    return false;
+                }
+            }
+
+            //Check if there is only one validator
+            var counter = 0;
+            foreach ( var member in members)
+            {
+                if (member.IsValidator) counter++;
+                if (counter > 1) return false;
+            }
+            return counter == 1;
+        }
     }
 }

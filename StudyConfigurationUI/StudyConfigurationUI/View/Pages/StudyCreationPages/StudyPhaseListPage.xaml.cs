@@ -32,10 +32,6 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
         }
 
 
-        private void EditPhaseBut_OnClick(object sender, RoutedEventArgs e)
-        {
-        }
-
         private async void DeletePhaseBut_OnClick(object sender, RoutedEventArgs e)
         {
             if (PhaseList.SelectedIndex != -1)

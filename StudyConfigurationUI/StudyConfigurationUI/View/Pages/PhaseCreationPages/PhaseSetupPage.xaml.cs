@@ -4,6 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using StudyConfigurationUI.Model.PhaseModels;
+using StudyConfigurationUI.View.Pages.StudyCreationPages;
 using StudyConfigurationUI.ViewModel.PhaseCreationViewModels;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -71,6 +72,22 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages
         {
             var selectedMember = ReviewerCombobox.SelectedIndex;
             _viewModel.SetValidator(selectedMember);
+        }
+
+        private async void SaveButton_OnClick(object sender, RoutedEventArgs e)
+        {
+
+            var isSucces =_viewModel.SetPhaseSettings();
+            if (!isSucces)
+            {
+                var dialog =
+                    new MessageDialog(
+                        "Something went wrong with creating the phase. Please check your settings or go back and remove it again")
+                    {Title = "Error"};
+                await dialog.ShowAsync();
+                return;
+            }
+            else Frame.Navigate(typeof (StudyPhaseListPage));
         }
     }
 }
