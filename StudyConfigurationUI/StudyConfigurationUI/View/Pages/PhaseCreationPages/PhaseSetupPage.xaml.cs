@@ -1,4 +1,10 @@
-﻿using System;
+﻿// PhaseSetupPage.xaml.cs is a part of Autosys project in BDSA-2015. Created: 16, 12, 2015.
+// Creators: Dennis Thinh Tan Nguyen, William Diedricsehn Marstrand, Thor Valentin Aakjær Olesen Nielsen, 
+// Jacob Mullit Møiniche.
+
+#region
+
+using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -7,19 +13,22 @@ using StudyConfigurationUI.Model.PhaseModels;
 using StudyConfigurationUI.View.Pages.StudyCreationPages;
 using StudyConfigurationUI.ViewModel.PhaseCreationViewModels;
 
+#endregion
+
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace StudyConfigurationUI.View.Pages.PhaseCreationPages
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class PhaseSetupPage : Page
     {
         private PhaseCreationViewModel _viewModel;
+
         public PhaseSetupPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -28,13 +37,13 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages
 
             if (e.Parameter is PhaseCreationDto)
             {
-                var phaseToCreate = (PhaseCreationDto)e.Parameter;
+                var phaseToCreate = (PhaseCreationDto) e.Parameter;
                 _viewModel = new PhaseCreationViewModel(phaseToCreate);
                 DataContext = _viewModel;
             }
             else
             {
-                var dialog = new MessageDialog("Something went wrong.") { Title = "Error loading game." };
+                var dialog = new MessageDialog("Something went wrong.") {Title = "Error loading game."};
                 await dialog.ShowAsync();
             }
         }
@@ -66,7 +75,6 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages
             var selectedMember = RolesTable.SelectedIndex;
         }
 
-   
 
         private void Validator_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -76,8 +84,7 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages
 
         private async void SaveButton_OnClick(object sender, RoutedEventArgs e)
         {
-
-            var isSucces =_viewModel.SetPhaseSettings();
+            var isSucces = _viewModel.SetPhaseSettings();
             if (!isSucces)
             {
                 var dialog =

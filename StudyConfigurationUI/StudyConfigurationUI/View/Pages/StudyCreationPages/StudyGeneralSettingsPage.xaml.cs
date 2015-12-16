@@ -60,7 +60,6 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 
         private async void SubmitBut_OnClick(object sender, RoutedEventArgs e)
         {
-
             var dialog = new MessageDialog(
                 "Are you sure you want to submit the Study?")
             {Title = "Submit Phase."};
@@ -87,7 +86,7 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
                 }
                 else
                 {
-                    var msg = new MessageDialog("Submitted.") { Title = "Notice" };
+                    var msg = new MessageDialog("Submitted.") {Title = "Notice"};
                     await msg.ShowAsync();
                     _viewModel.ResetConfiguration();
                     Frame.Navigate(typeof (HomePage));
@@ -97,7 +96,7 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 
 
         /// <summary>
-        /// Confirming user selection
+        ///     Confirming user selection
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -105,7 +104,7 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
         {
             var selections = MembersTable.SelectedItems.Cast<User>().ToList();
             _viewModel.AddSelectedUsers(selections);
-            var dialog = new MessageDialog("Selection confirmed") {Title ="Notice"};
+            var dialog = new MessageDialog("Selection confirmed") {Title = "Notice"};
             await dialog.ShowAsync();
         }
 
@@ -113,10 +112,10 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
         private async void ResetStudyBut_OnClick(object sender, RoutedEventArgs e)
         {
             var dialog = new MessageDialog(
-            "Are you sure you want to reset the study configuration? THIS CAN NOT BE UNDONE.")
-            { Title = "Warning - Reset of study" };
-            dialog.Commands.Add(new UICommand("Yes") { Id = 0 });
-            dialog.Commands.Add(new UICommand("No") { Id = 1 });
+                "Are you sure you want to reset the study configuration? THIS CAN NOT BE UNDONE.")
+            {Title = "Warning - Reset of study"};
+            dialog.Commands.Add(new UICommand("Yes") {Id = 0});
+            dialog.Commands.Add(new UICommand("No") {Id = 1});
 
             dialog.DefaultCommandIndex = 1;
             dialog.CancelCommandIndex = 1;

@@ -8,8 +8,8 @@ using System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using StudyConfigurationUI.View.Pages.PhaseCreationPages;
 using StudyConfigurationUI.ViewModel;
-using PhaseSetupPage = StudyConfigurationUI.View.Pages.PhaseCreationPages.PhaseSetupPage;
 
 #endregion
 
@@ -57,12 +57,17 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
         private async void AddPhaseBut_OnClick(object sender, RoutedEventArgs e)
         {
             var dto = _viewModel.AddPhase();
-            if( dto == null)
+            if (dto == null)
             {
-                var dialog = new MessageDialog("Something went wrong when creating phase. Make sure that you selected users and datafield lis is not empty.") {Title = "Error"};
+                var dialog =
+                    new MessageDialog(
+                        "Something went wrong when creating phase. Make sure that you selected users and datafield lis is not empty.")
+                    {
+                        Title = "Error"
+                    };
                 await dialog.ShowAsync();
             }
-            else Frame.Navigate(typeof (PhaseSetupPage),dto);
+            else Frame.Navigate(typeof (PhaseSetupPage), dto);
         }
     }
 }

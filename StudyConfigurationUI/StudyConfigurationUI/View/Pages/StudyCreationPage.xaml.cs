@@ -1,15 +1,11 @@
-﻿// StudyCreationPage.xaml.cs is a part of Autosys project in BDSA-2015. Created: 10, 12, 2015.
+﻿// StudyCreationPage.xaml.cs is a part of Autosys project in BDSA-2015. Created: 15, 12, 2015.
 // Creators: Dennis Thinh Tan Nguyen, William Diedricsehn Marstrand, Thor Valentin Aakjær Olesen Nielsen, 
 // Jacob Mullit Møiniche.
 
 #region
 
-using System;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using StudyConfigurationUI.View.Pages.StudyCreationPages;
-using StudyConfigurationUI.ViewModel;
 
 #endregion
 
@@ -22,14 +18,12 @@ namespace StudyConfigurationUI.View.Pages
     /// </summary>
     public sealed partial class StudyCreationPage : Page
     {
-
         public StudyCreationPage()
         {
             InitializeComponent();
             DataContext = App.StudyViewModel;
             StudyPageFrame.Navigate(typeof (StudyGeneralSettingsPage));
         }
-
 
 
         /// <summary>

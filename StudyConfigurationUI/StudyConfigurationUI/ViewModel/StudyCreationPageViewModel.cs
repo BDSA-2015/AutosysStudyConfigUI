@@ -104,10 +104,10 @@ namespace StudyConfigurationUI.ViewModel
             AddPredefinedDatafields();
 
 
-            AllUsers.Add(new User() { Description = "Test", Name = "Name1" });
-            AllUsers.Add(new User() { Description = "Test", Name = "Name2" });
-            AllUsers.Add(new User() { Description = "Test", Name = "Name3" });
-            AllUsers.Add(new User() { Description = "Test", Name = "Name4" });
+            AllUsers.Add(new User() {Description = "Test", Name = "Name1"});
+            AllUsers.Add(new User() {Description = "Test", Name = "Name2"});
+            AllUsers.Add(new User() {Description = "Test", Name = "Name3"});
+            AllUsers.Add(new User() {Description = "Test", Name = "Name4"});
         }
 
 
@@ -249,7 +249,6 @@ namespace StudyConfigurationUI.ViewModel
         }
 
 
-
         //CriteriaMethods
 
         /// <summary>
@@ -374,7 +373,7 @@ namespace StudyConfigurationUI.ViewModel
 
         //Study Creation
         /// <summary>
-        /// Submits a created study to server.
+        ///     Submits a created study to server.
         /// </summary>
         public bool SubmitStudy()
         {
@@ -383,10 +382,10 @@ namespace StudyConfigurationUI.ViewModel
                 Name = _name,
                 Description = _description,
                 Users = SelectedUsers,
-                Datafields = this.Datafields,
-                Phases = this.Phases,
-                ExclusioCriteria = this.ExclusionCriteria,
-                InclusionCriteria = this.InclusionCriteria,
+                Datafields = Datafields,
+                Phases = Phases,
+                ExclusioCriteria = ExclusionCriteria,
+                InclusionCriteria = InclusionCriteria,
                 ResourceFile = _loadedFile
             };
             var handler = new StudyHandler();
