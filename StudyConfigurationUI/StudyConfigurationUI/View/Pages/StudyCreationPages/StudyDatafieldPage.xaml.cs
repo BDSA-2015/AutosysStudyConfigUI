@@ -1,4 +1,4 @@
-﻿// StudyDatafieldPage.xaml.cs is a part of Autosys project in BDSA-2015. Created: 14, 12, 2015.
+﻿// StudyDatafieldPage.xaml.cs is a part of Autosys project in BDSA-2015. Created: 16, 12, 2015.
 // Creators: Dennis Thinh Tan Nguyen, William Diedricsehn Marstrand, Thor Valentin Aakjær Olesen Nielsen, 
 // Jacob Mullit Møiniche.
 
@@ -22,6 +22,7 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
     public sealed partial class StudyDatafieldPage : Page
     {
         private StudyCreationPageViewModel _viewModel;
+
         public StudyDatafieldPage()
         {
             InitializeComponent();
@@ -39,15 +40,15 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
                 DatafieldValueBox.Text.Trim().ToLower());
             if (!isSucces)
             {
-                var dialog = new MessageDialog("Entered data is invalid") { Title = "Error"};
+                var dialog = new MessageDialog("Entered data is invalid") {Title = "Error"};
                 await dialog.ShowAsync();
             }
             ResetFields();
         }
 
         /// <summary>
-        /// Resets every fields in popup window
-        /// </summar
+        ///     Resets every fields in popup window
+        ///     </summar
         private void ResetFields()
         {
             DatafieldNameBox.Text = "";
@@ -58,8 +59,8 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
         }
 
         /// <summary>
-        /// When a different type is selected in combo box
-        /// Set placement text in value textbox.
+        ///     When a different type is selected in combo box
+        ///     Set placement text in value textbox.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -77,7 +78,7 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
         }
 
         /// <summary>
-        /// When add datafieldbutton is pressed show popup window
+        ///     When add datafieldbutton is pressed show popup window
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -87,29 +88,28 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
         }
 
         /// <summary>
-        /// When cancel is pressed, reset text fields
+        ///     When cancel is pressed, reset text fields
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        private void DataFieldCreationWindow_OnSecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private void DataFieldCreationWindow_OnSecondaryButtonClick(ContentDialog sender,
+            ContentDialogButtonClickEventArgs args)
         {
             ResetFields();
         }
 
         private void CheckTextInput(TextBox sender, TextBoxTextChangingEventArgs args)
         {
-
             if (!string.IsNullOrWhiteSpace(DatafieldNameBox.Text) &&
                 !string.IsNullOrWhiteSpace(DatafieldDescriptionBox.Text) &&
                 !string.IsNullOrWhiteSpace(DatafieldValueBox.Text))
                 DataFieldCreationWindow.IsPrimaryButtonEnabled = true;
             else
                 DataFieldCreationWindow.IsPrimaryButtonEnabled = false;
-
         }
 
         /// <summary>
-        /// Deletes datafield when button is pressed
+        ///     Deletes datafield when button is pressed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

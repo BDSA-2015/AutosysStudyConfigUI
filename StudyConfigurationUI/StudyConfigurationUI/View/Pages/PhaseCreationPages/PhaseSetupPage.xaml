@@ -140,7 +140,7 @@
                 </StackPanel>
 
                 <StackPanel x:Name="VisibleDataFieldPane" VerticalAlignment="Bottom" Margin="20" Grid.Column="0" Grid.Row="2">
-                    <TextBlock Text="VisibleDataFieldTable" FontWeight="Medium" FontSize="18" />
+                    <TextBlock Text="Visible DataField" FontWeight="Medium" FontSize="18" />
 
                     <ListView x:Name="VisibleDataFieldTable"  SelectionMode="Single" CanReorderItems="True" BorderThickness="1" BorderBrush="Black"
                               ItemsSource="{Binding VisibleDatafields}"

@@ -19,11 +19,15 @@ using StudyConfigurationUI.Model.PhaseModels;
 namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
 {
     /// <summary>
-    /// This viewmodel is used to create a single phase
+    ///     This viewmodel is used to create a single phase
     /// </summary>
     public class PhaseCreationViewModel : INotifyPropertyChanged
     {
+        private PhaseMember _currentValidator;
         private string _description;
+
+
+        private IList<PhaseMember> _members;
         private string _name;
 
         private Phase _phase;
@@ -55,17 +59,12 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
             }
         }
 
-
-        private IList<PhaseMember> _members;
-
         public ObservableCollection<PhaseMember> Members { get; set; }
         public ObservableCollection<PhaseMember> Reviewers { get; set; }
 
         public ObservableCollection<Datafield> VisibleDatafields { get; set; }
         public ObservableCollection<Datafield> RequestedDatafields { get; set; }
         public ObservableCollection<Datafield> Datafields { get; set; }
-
-        private PhaseMember _currentValidator;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -91,7 +90,7 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
         }
 
         /// <summary>
-        /// Add all reviewers to list
+        ///     Add all reviewers to list
         /// </summary>
         private void AddReviewers()
         {
@@ -103,8 +102,8 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
         }
 
         /// <summary>
-        /// Set a member to current validator 
-        /// and removes previous one if existing
+        ///     Set a member to current validator
+        ///     and removes previous one if existing
         /// </summary>
         /// <param name="selectedMember"></param>
         public void SetValidator(int selectedMember)
@@ -127,8 +126,6 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
         }
 
 
-
-
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -136,7 +133,7 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
         }
 
         /// <summary>
-        /// Add datafield as requested datafield
+        ///     Add datafield as requested datafield
         /// </summary>
         /// <param name="selectedField"></param>
         public void AddRequestField(int selectedField)
@@ -146,7 +143,7 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
         }
 
         /// <summary>
-        /// Add given datafield as visiblefield
+        ///     Add given datafield as visiblefield
         /// </summary>
         /// <param name="selectedField"></param>
         public void AddVisibleField(int selectedField)
@@ -156,9 +153,9 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
         }
 
         /// <summary>
-        /// Add a datafield to a given list.
-        /// If item datafield already exist in the list
-        /// The datafield will be skipped
+        ///     Add a datafield to a given list.
+        ///     If item datafield already exist in the list
+        ///     The datafield will be skipped
         /// </summary>
         /// <param name="list">list to add datafield</param>
         /// <param name="toInsert">datafield to add</param>
@@ -169,7 +166,7 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
         }
 
         /// <summary>
-        /// Removes a requested datafield from list
+        ///     Removes a requested datafield from list
         /// </summary>
         /// <param name="selectedIndex">index of datafield</param>
         public void DeleteRequestedField(int selectedIndex)
@@ -179,7 +176,7 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
 
 
         /// <summary>
-        /// Removes a visible datafield from list
+        ///     Removes a visible datafield from list
         /// </summary>
         /// <param name="selectedIndex"> index of datafield</param>
         public void DeleteVisibleField(int selectedIndex)
@@ -189,26 +186,22 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
 
         public bool SetPhaseSettings()
         {
-
             try
             {
                 var handler = new PhaseHandler();
                 return handler.SetPhase(
-                   _phase,
-                   Name,
-                   Description,
-                   Members.ToList(),
-                   VisibleDatafields.ToList(),
-                   RequestedDatafields.ToList()
-                   );
+                    _phase,
+                    Name,
+                    Description,
+                    Members.ToList(),
+                    VisibleDatafields.ToList(),
+                    RequestedDatafields.ToList()
+                    );
             }
             catch (ArgumentException)
             {
                 return false;
             }
-
-
-
         }
     }
 }
