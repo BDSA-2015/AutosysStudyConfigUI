@@ -5,6 +5,7 @@
 #region
 
 using System.Linq;
+using System.Threading.Tasks;
 using StudyConfigurationUI.Model.StudyModels;
 using StudyConfigurationUI.Model.WebAPI;
 
@@ -19,7 +20,7 @@ namespace StudyConfigurationUI.Model.Handlers
         /// </summary>
         /// <param name="studyToSend"> Study that are to be send</param>
         /// <returns>bool if validation was successful</returns>
-        public bool SendStudy(Study studyToSend)
+        public async Task<bool> SendStudy(Study studyToSend)
         {
             var webHandler = new WebApiHandler();
             if (IsCriteriaValid(studyToSend) &&
@@ -29,7 +30,7 @@ namespace StudyConfigurationUI.Model.Handlers
                 IsResourceFileValid(studyToSend) &&
                 IsUsersValid(studyToSend))
             {
-                webHandler.SendStudy(studyToSend);
+                await webHandler.SendStudy(studyToSend);
                 return true;
             }
             return false;

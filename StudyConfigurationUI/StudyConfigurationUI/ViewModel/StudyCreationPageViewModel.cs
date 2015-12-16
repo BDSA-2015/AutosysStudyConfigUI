@@ -100,7 +100,6 @@ namespace StudyConfigurationUI.ViewModel
             ExclusionCriteria = new ObservableCollection<Criteria>();
             InclusionCriteria = new ObservableCollection<Criteria>();
             SelectedUsers = new List<User>();
-            SetUsers();
 
             AllUsers.Add(new User() {Metadata = "Test", Name = "Name1"});
             AllUsers.Add(new User() {Metadata = "Test", Name = "Name2"});
