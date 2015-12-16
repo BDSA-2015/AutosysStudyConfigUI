@@ -137,15 +137,6 @@ namespace StudyConfigurationUI.ViewModel
             return Phases[selectedIndex];
         }
 
-        /// <summary>
-        ///     Validates the study if the configuration is correct.
-        /// </summary>
-        /// <returns></returns>
-        public bool ValidateStudy()
-        {
-            return false;
-        }
-
         //UserMethods
 
         /// <summary>

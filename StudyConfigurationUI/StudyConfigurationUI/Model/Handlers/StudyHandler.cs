@@ -67,7 +67,7 @@ namespace StudyConfigurationUI.Model.Handlers
 
         private bool IsResourceFileValid(Study study)
         {
-            return string.IsNullOrWhiteSpace(study.ResourceFile);
+            return !string.IsNullOrWhiteSpace(study.ResourceFile);
         }
     }
 }
