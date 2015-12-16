@@ -60,17 +60,6 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 
         private async void SubmitBut_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!_viewModel.ValidateStudy())
-            {
-                var errorMsg =
-                    new MessageDialog("Study has not been configured correctly. Please validate your settings again")
-                    {
-                        Title = "Error"
-                    };
-                await errorMsg.ShowAsync();
-                return;
-            }
-
 
             var dialog = new MessageDialog(
                 "Are you sure you want to submit the Study?")
@@ -85,7 +74,24 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 
             if (choice.Id.Equals(0))
             {
-                //Todo Submit method
+                var isSuccess = _viewModel.SubmitStudy();
+                if (!isSuccess)
+                {
+                    var errorMsg =
+                        new MessageDialog(
+                            "Something went wrong with the submission. Please check your study configuration.")
+                        {
+                            Title = "Error"
+                        };
+                    await errorMsg.ShowAsync();
+                }
+                else
+                {
+                    var msg = new MessageDialog("Submitted.") { Title = "Notice" };
+                    await msg.ShowAsync();
+                    _viewModel.ResetConfiguration();
+                    Frame.Navigate(typeof (HomePage));
+                }
             }
         }
 
