@@ -99,8 +99,8 @@
                              Text="{Binding Name, Mode=TwoWay}"
                              Width="300"/>
                     <TextBox Name="DescriptionTextBox" 
-                             Header="Description" 
-                             PlaceholderText="Description of phase" 
+                             Header="Metadata" 
+                             PlaceholderText="Metadata of phase" 
                              TextWrapping="Wrap" 
                              Height="200" Width="300"
                              Text="{Binding Description, Mode=TwoWay}"
@@ -150,7 +150,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Name:" Style="{StaticResource ItemLabel}" />
                                     <TextBlock Text="{x:Bind Name}" Style="{StaticResource ItemValue}"/>
-                                    <TextBlock Text="Description:" Style="{StaticResource ItemLabel}"/>
+                                    <TextBlock Text="Metadata:" Style="{StaticResource ItemLabel}"/>
                                     <TextBlock Text="{x:Bind Description}" Style="{StaticResource ItemValue}" />
                                     <TextBlock Text="Type:" Style="{StaticResource ItemLabel}"/>
                                     <TextBlock Text="{x:Bind Type}" Style="{StaticResource ItemValue}" />
@@ -197,7 +197,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Name:" Style="{StaticResource ItemLabel}" />
                                     <TextBlock Text="{x:Bind Name}" Style="{StaticResource ItemValue}"/>
-                                    <TextBlock Text="Description:" Style="{StaticResource ItemLabel}"/>
+                                    <TextBlock Text="Metadata:" Style="{StaticResource ItemLabel}"/>
                                     <TextBlock Text="{x:Bind Description}" Style="{StaticResource ItemValue}" />
                                     <TextBlock Text="Type:" Style="{StaticResource ItemLabel}"/>
                                     <TextBlock Text="{x:Bind Type}" Style="{StaticResource ItemValue}" />

@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel>
-            <TextBlock Text="Description:" FontWeight="SemiBold"/>
+            <TextBlock Text="Metadata:" FontWeight="SemiBold"/>
             <TextBlock Text="This page let you setup general study settings"/>
 
 
@@ -56,8 +56,8 @@
                          Text="{Binding Path=Name, Mode=TwoWay}"
                          Margin="0,10,0,0"/>
                 <TextBox x:Name="StudyDescriptionTextbox" 
-                         Header="Description:"
-                         PlaceholderText="Description of study"
+                         Header="Metadata:"
+                         PlaceholderText="Metadata of study"
                          Height="150"
                          Text="{Binding Path=Description, Mode=TwoWay}"
                          Margin="0,10,0,0"/>
@@ -73,8 +73,8 @@
                             <StackPanel>
                                 <TextBlock Text="Name:" FontWeight="SemiBold"/>
                                 <TextBlock Text="{x:Bind Name}"/>
-                                <TextBlock Text="Description:" FontWeight="SemiBold"/>
-                                <TextBlock Text="{x:Bind Description}"/>
+                                <TextBlock Text="Metadata:" FontWeight="SemiBold"/>
+                                <TextBlock Text="{x:Bind Metadata}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

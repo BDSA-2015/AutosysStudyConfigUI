@@ -1,24 +1,27 @@
-﻿// LocalCache.cs is a part of Autosys project in BDSA-2015. Created: 15, 12, 2015.
+﻿// LocalCache.cs is a part of Autosys project in BDSA-2015. Created: 16, 12, 2015.
 // Creators: Dennis Thinh Tan Nguyen, William Diedricsehn Marstrand, Thor Valentin Aakjær Olesen Nielsen, 
 // Jacob Mullit Møiniche.
+
+#region
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using StudyConfigurationUI.Model.PhaseModels;
 using StudyConfigurationUI.Model.WebAPI;
 
+#endregion
+
 namespace StudyConfigurationUI.Model
 {
     /// <summary>
-    /// Stores all retrieved data from server. Uses singleton pattern 
-    /// to avoid creation of additional caches
+    ///     Stores all retrieved data from server. Uses singleton pattern
+    ///     to avoid creation of additional caches
     /// </summary>
     public class LocalCache
     {
+        private static LocalCache _localCache;
         private IList<Datafield> _cachedDatafields;
         private IList<User> _cachedUsers;
-
-        private static LocalCache _localCache;
 
 
         private LocalCache()
@@ -29,7 +32,7 @@ namespace StudyConfigurationUI.Model
         }
 
         /// <summary>
-        /// Returns a local cache object
+        ///     Returns a local cache object
         /// </summary>
         /// <returns></returns>
         public static LocalCache GetCache()
@@ -38,7 +41,7 @@ namespace StudyConfigurationUI.Model
         }
 
         /// <summary>
-        /// Populate data with data from server
+        ///     Populate data with data from server
         /// </summary>
         public async Task<IList<User>> GetUsers()
         {
@@ -49,24 +52,22 @@ namespace StudyConfigurationUI.Model
                 _cachedUsers = returnedItem;
             }
             return _cachedUsers;
-
         }
 
         /// <summary>
-        /// Populate data with data from server
+        ///     Populate data with data from server
         /// </summary>
         public async Task<IList<Datafield>> GetDatafields(string file)
         {
             if (file == null) return _cachedDatafields;
 
             var handler = new WebApiHandler();
-            var returnedItem =  await handler.GetDatafields(file);
+            var returnedItem = await handler.GetDatafields(file);
             if (returnedItem != null)
             {
                 _cachedDatafields = returnedItem;
             }
             return _cachedDatafields;
         }
-
     }
 }

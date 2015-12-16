@@ -102,10 +102,10 @@ namespace StudyConfigurationUI.ViewModel
             SelectedUsers = new List<User>();
             SetUsers();
 
-            AllUsers.Add(new User() {Description = "Test", Name = "Name1"});
-            AllUsers.Add(new User() {Description = "Test", Name = "Name2"});
-            AllUsers.Add(new User() {Description = "Test", Name = "Name3"});
-            AllUsers.Add(new User() {Description = "Test", Name = "Name4"});
+            AllUsers.Add(new User() {Metadata = "Test", Name = "Name1"});
+            AllUsers.Add(new User() {Metadata = "Test", Name = "Name2"});
+            AllUsers.Add(new User() {Metadata = "Test", Name = "Name3"});
+            AllUsers.Add(new User() {Metadata = "Test", Name = "Name4"});
         }
 
 
@@ -190,8 +190,6 @@ namespace StudyConfigurationUI.ViewModel
         }
 
 
-    
-
         //ResourceFileMethods
         /// <summary>
         ///     Read content of resource file and load it to memory
@@ -208,7 +206,6 @@ namespace StudyConfigurationUI.ViewModel
                 var parsedFile = await handler.Parse(file);
                 if (!string.IsNullOrWhiteSpace(parsedFile))
                 {
-                    
                     LoadedFile = parsedFile;
                     await SetDatafields();
                     return true;
@@ -226,16 +223,15 @@ namespace StudyConfigurationUI.ViewModel
         /// </summary>
         private async Task SetDatafields()
         {
-           var datafields = await LocalCache.GetCache().GetDatafields(_loadedFile);
+            var datafields = await LocalCache.GetCache().GetDatafields(_loadedFile);
             foreach (var datafield in datafields)
             {
                 Datafields.Add(datafield);
             }
-
         }
 
         /// <summary>
-        /// Add users retrieved from database
+        ///     Add users retrieved from database
         /// </summary>
         /// <returns></returns>
         private async Task SetUsers()
@@ -243,9 +239,8 @@ namespace StudyConfigurationUI.ViewModel
             var users = await LocalCache.GetCache().GetUsers();
             foreach (var user in users)
             {
-                AllUsers.Add(user);   
+                AllUsers.Add(user);
             }
-
         }
 
         //CriteriaMethods
