@@ -12,6 +12,9 @@ using StudyConfigurationUI.Annotations;
 
 namespace StudyConfigurationUI.ViewModel
 {
+    /// <summary>
+    /// This viewmodel represents the version of the program
+    /// </summary>
     public class MainPageViewModel : INotifyPropertyChanged
     {
         private double _version = 0.9;

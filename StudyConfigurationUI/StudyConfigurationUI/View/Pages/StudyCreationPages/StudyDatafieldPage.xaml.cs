@@ -17,11 +17,11 @@ using StudyConfigurationUI.ViewModel;
 namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 {
     /// <summary>
-    ///     An empty page that can be used on its own or navigated to within a Frame.
+    ///     This page represents the study datafield page where user can create new datafields
     /// </summary>
     public sealed partial class StudyDatafieldPage : Page
     {
-        private StudyCreationPageViewModel _viewModel;
+        private readonly StudyCreationPageViewModel _viewModel;
 
         public StudyDatafieldPage()
         {
@@ -30,6 +30,12 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
             DataContext = _viewModel;
         }
 
+        /// <summary>
+        ///     When submit butten is pressed in datafield creation popup window is
+        ///     pressed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private async void DataFieldCreationWindow_OnPrimaryButtonClick(ContentDialog sender,
             ContentDialogButtonClickEventArgs args)
         {
@@ -48,7 +54,7 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 
         /// <summary>
         ///     Resets every fields in popup window
-        ///     </summar
+        /// </summary>
         private void ResetFields()
         {
             DatafieldNameBox.Text = "";
@@ -98,6 +104,11 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
             ResetFields();
         }
 
+        /// <summary>
+        ///     This method check if textfields contains text
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void CheckTextInput(TextBox sender, TextBoxTextChangingEventArgs args)
         {
             if (!string.IsNullOrWhiteSpace(DatafieldNameBox.Text) &&

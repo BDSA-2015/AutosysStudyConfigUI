@@ -14,7 +14,7 @@ using StudyConfigurationUI.View.Pages.StudyCreationPages;
 namespace StudyConfigurationUI.View.Pages
 {
     /// <summary>
-    ///     An empty page that can be used on its own or navigated to within a Frame.
+    ///     This page represents the main frame of the program
     /// </summary>
     public sealed partial class StudyCreationPage : Page
     {

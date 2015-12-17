@@ -100,11 +100,7 @@ namespace StudyConfigurationUI.ViewModel
             ExclusionCriteria = new ObservableCollection<Criteria>();
             InclusionCriteria = new ObservableCollection<Criteria>();
             SelectedUsers = new List<User>();
-
-            AllUsers.Add(new User() {Metadata = "Test", Name = "Name1"});
-            AllUsers.Add(new User() {Metadata = "Test", Name = "Name2"});
-            AllUsers.Add(new User() {Metadata = "Test", Name = "Name3"});
-            AllUsers.Add(new User() {Metadata = "Test", Name = "Name4"});
+            SetUsers();
         }
 
 
@@ -184,7 +180,7 @@ namespace StudyConfigurationUI.ViewModel
         public void DeleteDatafield(int selectedItem)
         {
             var toDelete = Datafields[selectedItem];
-            if (toDelete.Type == "predifined") return;
+            if (toDelete.Type == "predefined") return;
             Datafields.RemoveAt(selectedItem);
         }
 
@@ -206,7 +202,7 @@ namespace StudyConfigurationUI.ViewModel
                 if (!string.IsNullOrWhiteSpace(parsedFile))
                 {
                     LoadedFile = parsedFile;
-                    //await SetDatafields();
+                    await SetDatafields();
                     return true;
                 }
                 return false;
@@ -382,8 +378,7 @@ namespace StudyConfigurationUI.ViewModel
                 ResourceFile = _loadedFile
             };
             var handler = new StudyHandler();
-            return true;
-            //return await handler.SendStudy(toSend);
+            return await handler.SendStudy(toSend);
         }
     }
 }

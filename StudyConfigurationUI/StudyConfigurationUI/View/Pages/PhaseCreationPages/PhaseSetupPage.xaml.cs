@@ -20,7 +20,7 @@ using StudyConfigurationUI.ViewModel.PhaseCreationViewModels;
 namespace StudyConfigurationUI.View.Pages.PhaseCreationPages
 {
     /// <summary>
-    ///     An empty page that can be used on its own or navigated to within a Frame.
+    ///     This represents the page where you setup a phase
     /// </summary>
     public sealed partial class PhaseSetupPage : Page
     {
@@ -31,6 +31,10 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Retrieves a phase that are to be configured when navigated to this page
+        /// </summary>
+        /// <param name="e"></param>
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -51,6 +55,7 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages
         private void AddRequestedFieldsBut_OnClick(object sender, RoutedEventArgs e)
         {
             var selectedField = RequestedFieldsCombobox.SelectedIndex;
+            if (selectedField == -1) return;
             _viewModel.AddRequestField(selectedField);
         }
 
@@ -62,6 +67,7 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages
         private void AddVisibleFieldsBut_OnClick(object sender, RoutedEventArgs e)
         {
             var selectedField = VisibleFieldsComboBox.SelectedIndex;
+            if (selectedField == -1) return;
             _viewModel.AddVisibleField(selectedField);
         }
 
@@ -69,12 +75,6 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages
         {
             _viewModel.DeleteVisibleField(RequestedDatafieldTable.SelectedIndex);
         }
-
-        private void ReviewerCheckBox_OnClick(object sender, RoutedEventArgs e)
-        {
-            var selectedMember = RolesTable.SelectedIndex;
-        }
-
 
         private void Validator_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -89,7 +89,7 @@ namespace StudyConfigurationUI.View.Pages.PhaseCreationPages
             {
                 var dialog =
                     new MessageDialog(
-                        "Something went wrong with creating the phase. Please check your settings or go back and remove it again")
+                        "Something went wrong with creating the phase.")
                     {Title = "Error"};
                 await dialog.ShowAsync();
                 return;

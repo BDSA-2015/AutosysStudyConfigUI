@@ -18,11 +18,11 @@ using StudyConfigurationUI.ViewModel;
 namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 {
     /// <summary>
-    ///     An empty page that can be used on its own or navigated to within a Frame.
+    ///    Page representing the study phase list where studies are shown
     /// </summary>
     public sealed partial class StudyPhaseListPage : Page
     {
-        private StudyCreationPageViewModel _viewModel;
+        private readonly StudyCreationPageViewModel _viewModel;
 
         public StudyPhaseListPage()
         {

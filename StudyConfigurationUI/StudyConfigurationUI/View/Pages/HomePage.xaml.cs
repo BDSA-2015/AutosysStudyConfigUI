@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Controls;
 namespace StudyConfigurationUI.View.Pages
 {
     /// <summary>
-    ///     An empty page that can be used on its own or navigated to within a Frame.
+    ///     Represents the main page with title
     /// </summary>
     public sealed partial class HomePage : Page
     {

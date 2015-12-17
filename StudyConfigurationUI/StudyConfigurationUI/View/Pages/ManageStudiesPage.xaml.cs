@@ -13,13 +13,14 @@ using Windows.UI.Xaml.Controls;
 namespace StudyConfigurationUI.View.Pages
 {
     /// <summary>
-    ///     An empty page that can be used on its own or navigated to within a Frame.
+    ///    This page allows users to manage existing pages
     /// </summary>
     public sealed partial class ManageStudiesPage : Page
     {
         public ManageStudiesPage()
         {
             InitializeComponent();
+            //TODO Functionalities for manage existing pages are currently not implemented
         }
     }
 }

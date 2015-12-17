@@ -19,7 +19,7 @@ using StudyConfigurationUI.ViewModel;
 namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 {
     /// <summary>
-    ///     An empty page that can be used on its own or navigated to within a Frame.
+    ///     This page represents the page where you can create a study criteria
     /// </summary>
     public sealed partial class StudyCriteriaPage : Page
     {
@@ -32,11 +32,10 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
             _viewModel = App.StudyViewModel;
             DataContext = _viewModel;
             CheckDatafieldNotEmpty();
-            
         }
 
         /// <summary>
-        /// Check if any datafields are defined 
+        ///     Check if any datafields are defined
         /// </summary>
         private async void CheckDatafieldNotEmpty()
         {
@@ -49,6 +48,7 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 
         /// <summary>
         ///     Pop ups criteria window
+        ///     Todo This should be refactored to view model
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
@@ -148,6 +148,9 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
             DeleteCriteria();
         }
 
+        /// <summary>
+        ///     This calls the right delete regarding which criteria must be removed
+        /// </summary>
         private void DeleteCriteria()
         {
             if (_type == CriteriaType.Inclusion)

@@ -13,7 +13,8 @@ using Windows.UI.Xaml.Controls;
 namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 {
     /// <summary>
-    ///     An empty page that can be used on its own or navigated to within a Frame.
+    ///     This page represents the main view that contains a frame for sub study creation pages
+    ///     This page only contain navigation components
     /// </summary>
     public sealed partial class StudyCreationMainPage : Page
     {

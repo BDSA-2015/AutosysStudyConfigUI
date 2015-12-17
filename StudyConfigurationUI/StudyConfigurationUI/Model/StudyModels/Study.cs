@@ -12,7 +12,7 @@ using StudyConfigurationUI.Model.PhaseModels;
 namespace StudyConfigurationUI.Model.StudyModels
 {
     /// <summary>
-    /// This class represents a full study
+    ///     This class represents a full study
     /// </summary>
     public class Study
     {

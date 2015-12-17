@@ -20,7 +20,8 @@ using StudyConfigurationUI.ViewModel;
 namespace StudyConfigurationUI.View.Pages.StudyCreationPages
 {
     /// <summary>
-    ///     An empty page that can be used on its own or navigated to within a Frame.
+    ///     This page represents the general settings page where one can define
+    ///     eg name of study, members etc.
     /// </summary>
     public sealed partial class StudyGeneralSettingsPage : Page
     {
@@ -33,6 +34,11 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
             DataContext = _viewModel;
         }
 
+        /// <summary>
+        ///     Selection of bibtex file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void SelectFile_OnClick(object sender, RoutedEventArgs e)
         {
             var filePicker = new FileOpenPicker
@@ -58,11 +64,16 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
             }
         }
 
+        /// <summary>
+        ///     Submission of study to server
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void SubmitBut_OnClick(object sender, RoutedEventArgs e)
         {
             var dialog = new MessageDialog(
                 "Are you sure you want to submit the Study?")
-            {Title = "Submit Phase."};
+            {Title = "Submit Study."};
             dialog.Commands.Add(new UICommand("Yes") {Id = 0});
             dialog.Commands.Add(new UICommand("No") {Id = 1});
 
@@ -109,6 +120,11 @@ namespace StudyConfigurationUI.View.Pages.StudyCreationPages
         }
 
 
+        /// <summary>
+        /// Calls the reset study to reset all created settings
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void ResetStudyBut_OnClick(object sender, RoutedEventArgs e)
         {
             var dialog = new MessageDialog(

@@ -15,6 +15,9 @@ using StudyConfigurationUI.Model.PhaseModels;
 
 namespace StudyConfigurationUI.ViewModel
 {
+    /// <summary>
+    /// This viewmodel represents a given phase that are to be configured
+    /// </summary>
     public class PhaseViewModel : INotifyPropertyChanged
     {
         private string _description;

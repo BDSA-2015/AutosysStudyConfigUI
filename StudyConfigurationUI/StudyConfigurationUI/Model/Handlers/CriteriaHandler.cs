@@ -1,4 +1,4 @@
-﻿// CriteriaHandler.cs is a part of Autosys project in BDSA-2015. Created: 15, 12, 2015.
+﻿// CriteriaHandler.cs is a part of Autosys project in BDSA-2015. Created: 16, 12, 2015.
 // Creators: Dennis Thinh Tan Nguyen, William Diedricsehn Marstrand, Thor Valentin Aakjær Olesen Nielsen, 
 // Jacob Mullit Møiniche.
 
@@ -58,6 +58,11 @@ namespace StudyConfigurationUI.Model.Handlers
             else throw new ArgumentException("Invalid Value");
         }
 
+        /// <summary>
+        /// Validate if a given criteria is valid
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns>bool stating validation of criteria</returns>
         private bool IsCriteriaValid(Criteria criteria)
         {
             if (criteria.Comparator == "<" || criteria.Comparator == ">")

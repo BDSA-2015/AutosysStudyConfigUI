@@ -1,4 +1,4 @@
-﻿// PhaseHandler.cs is a part of Autosys project in BDSA-2015. Created: 15, 12, 2015.
+﻿// PhaseHandler.cs is a part of Autosys project in BDSA-2015. Created: 16, 12, 2015.
 // Creators: Dennis Thinh Tan Nguyen, William Diedricsehn Marstrand, Thor Valentin Aakjær Olesen Nielsen, 
 // Jacob Mullit Møiniche.
 
@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using StudyConfigurationUI.Model.PhaseModels;
+using StudyConfigurationUI.View.ViewDTO;
 
 #endregion
 
@@ -19,7 +20,7 @@ namespace StudyConfigurationUI.Model.Handlers
     public class PhaseHandler
     {
         /// <summary>
-        ///     Gets a DTO object that are to be transfered between studyview and phaseview
+        ///     returns a phase DTO object that are to be transfered between studyview and phaseview
         /// </summary>
         /// <param name="phase">phase that are to create</param>
         /// <param name="datafields"></param>
@@ -51,29 +52,35 @@ namespace StudyConfigurationUI.Model.Handlers
             throw new NullReferenceException("List with users were null");
         }
 
-        public bool SetPhase(Phase phase,string name, string description, IList<PhaseMember> members, IList<Datafield> visibleDatafields, IList<Datafield> requestedDatafields)
+
+        /// <summary>
+        ///     Sets a phase with a given phase object and phase informations
+        /// </summary>
+        /// <param name="phase">phase to set</param>
+        /// <param name="phaseInformation">informations of a phase</param>
+        /// <returns>boolean whether the phase was created</returns>
+        public bool SetPhase(Phase phase, ViewPhaseDto phaseInformation)
         {
-            if(string.IsNullOrWhiteSpace(name)||string.IsNullOrWhiteSpace(description))
+            if (string.IsNullOrWhiteSpace(phaseInformation.Name) ||
+                string.IsNullOrWhiteSpace(phaseInformation.Description))
                 throw new ArgumentException("Name and description must not be null or whitespace");
-            if(members.Count == 0 || visibleDatafields.Count == 0 || requestedDatafields.Count == 0)
+            if (phaseInformation.Members.Count == 0 || phaseInformation.VisibleDatafields.Count == 0 ||
+                phaseInformation.RequestedDatafields.Count == 0)
                 throw new ArgumentException("users, requested- and visible fields must not be empty");
-            if(!IsMemberRolesValid(members))
+            if (!IsMemberRolesValid(phaseInformation.Members))
                 throw new ArgumentException("Member roles are invalid");
 
-            phase.Name = name;
-            phase.Description = description;
-            phase.PhaseMembers = members;
-            phase.VisibleDataField = visibleDatafields;
-            phase.RequestedDatafield = requestedDatafields;
+            phase.Name = phaseInformation.Name;
+            phase.Description = phaseInformation.Description;
+            phase.PhaseMembers = phaseInformation.Members;
+            phase.VisibleDataField = phaseInformation.VisibleDatafields;
+            phase.RequestedDatafield = phaseInformation.RequestedDatafields;
 
             return true;
-
-
-
         }
 
         /// <summary>
-        /// Checking if member roles a correct
+        ///     Checking if member roles a correct
         /// </summary>
         /// <param name="members"></param>
         /// <returns></returns>
@@ -88,13 +95,12 @@ namespace StudyConfigurationUI.Model.Handlers
                     counter++;
                     break;
                 }
-                
             }
             if (counter == 0) return false;
 
             //Check if there is only one validator
             counter = 0;
-            foreach ( var member in members)
+            foreach (var member in members)
             {
                 if (member.IsValidator) counter++;
                 if (counter > 1) return false;

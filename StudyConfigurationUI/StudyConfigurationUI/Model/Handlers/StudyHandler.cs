@@ -36,6 +36,7 @@ namespace StudyConfigurationUI.Model.Handlers
             return false;
         }
 
+
         private bool IsNameDescriptionValid(Study study)
         {
             return (!string.IsNullOrWhiteSpace(study.Name) && !string.IsNullOrWhiteSpace(study.Description));

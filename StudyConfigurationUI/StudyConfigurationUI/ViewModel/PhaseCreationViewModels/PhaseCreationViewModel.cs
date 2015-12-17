@@ -10,9 +10,11 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Windows.Foundation;
 using StudyConfigurationUI.Annotations;
 using StudyConfigurationUI.Model.Handlers;
 using StudyConfigurationUI.Model.PhaseModels;
+using StudyConfigurationUI.View.ViewDTO;
 
 #endregion
 
@@ -183,20 +185,23 @@ namespace StudyConfigurationUI.ViewModel.PhaseCreationViewModels
         {
             VisibleDatafields.RemoveAt(selectedIndex);
         }
-
+        
+        /// <summary>
+        /// Submit information on view to phase object
+        /// </summary>
+        /// <returns></returns>
         public bool SetPhaseSettings()
         {
             try
             {
+                var phaseInfo = new ViewPhaseDto() {
+                    Name = _name,Description = _description,
+                    Members = this.Members,
+                    RequestedDatafields = this.RequestedDatafields,
+                    VisibleDatafields = this.VisibleDatafields};
+
                 var handler = new PhaseHandler();
-                return handler.SetPhase(
-                    _phase,
-                    Name,
-                    Description,
-                    Members.ToList(),
-                    VisibleDatafields.ToList(),
-                    RequestedDatafields.ToList()
-                    );
+                return handler.SetPhase(_phase,phaseInfo);
             }
             catch (ArgumentException)
             {

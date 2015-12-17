@@ -4,7 +4,7 @@
 namespace StudyConfigurationUI.Model.WebAPI.Dto
 {
     /// <summary>
-    /// 
+    ///     This class represents a predefined datafield returned from the server
     /// </summary>
     public class BibtexTag
     {
