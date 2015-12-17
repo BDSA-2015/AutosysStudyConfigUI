@@ -17,7 +17,7 @@ namespace StudyConfigurationUI.ViewModel
     /// </summary>
     public class MainPageViewModel : INotifyPropertyChanged
     {
-        private double _version = 0.9;
+        private double _version = 0.995;
         public string VersionText => "Autosys Study Configuation - Version: " + _version;
         public event PropertyChangedEventHandler PropertyChanged;
 
